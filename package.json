@@ -26,8 +26,12 @@
     "pg": "^8.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-hook-form": "^7.31.0",
+    "react-router": "^6.3.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.1"
+    "react-scripts": "^3.4.1",
+    "react-stripe-elements": "^6.1.2",
+    "semantic-ui-react": "^2.1.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
