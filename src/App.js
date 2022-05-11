@@ -13,7 +13,7 @@ import { CssBaseline } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { Navbar, Products, Cart, Checkout } from './components';
-import { commerce } from './lib/commerce';
+// import { commerce } from './lib/commerce';
 
 const App = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -21,6 +21,8 @@ const App = () => {
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
+
+  const commerce = "data";
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();

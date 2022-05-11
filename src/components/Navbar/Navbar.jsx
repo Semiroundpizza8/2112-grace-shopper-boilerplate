@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/commerce.png';
 import useStyles from './styles';
 
-const PrimarySearchAppBar = ({ totalItems }) => {
+const Navbar = ({ totalItems }) => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const classes = useStyles();
   const location = useLocation();
@@ -54,4 +54,4 @@ const PrimarySearchAppBar = ({ totalItems }) => {
   );
 };
 
-export default PrimarySearchAppBar;
+export default Navbar;
