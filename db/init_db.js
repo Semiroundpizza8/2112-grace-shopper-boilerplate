@@ -9,7 +9,16 @@ async function buildTables() {
     client.connect();
 
     // drop tables in correct order
-
+    await client.query(`
+    DROP TABLE IF EXISTS guestCart CASCADE;
+    DROP TABLE IF EXISTS userCart CASCADE;
+    DROP TABLE IF EXISTS checkout CASCADE;
+    DROP TABLE IF EXISTS orders CASCADE;
+    DROP TABLE IF EXISTS products CASCADE;
+    DROP TABLE IF EXISTS users CASCADE;
+    DROP TABLE IF EXISTS customer CASCADE;
+    DROP TABLE IF EXISTS paymentTable CASCADE; 
+    `);
     // build tables in correct order
     await client.query(`
       CREATE TABLE users(
@@ -26,14 +35,7 @@ async function buildTables() {
         id SERIAL PRIMARY KEY,
         "userId" INTERGER REFRENCES users(id),
         email VARCHAR(255) UNIQUE NOT NULL,
-        firstName VARCHAR(255) NOT NULL,
-        lastName VARCHAR(255) NOT NULL,
-        street VARCHAR(255) NOT NULL,
-        city VARCHAR(255) NOT NULL,
-        state VARCHAR(255) NOT NULL,
-        zipcode VARCHAR(255) NOT NULL,
-        country VARCHAR(255) NOT NULL,
-        phone INTEGER NOT NULL
+        "orderId" INTEGER REFRENCES orders(id)
       );
 
       CREATE TABLE paymentTable (
@@ -67,6 +69,36 @@ async function buildTables() {
         total INTEGER,
       );
 
+      CREATE TABLE checkout (
+        id SERIAL PRIMARY KEY,
+        "userCart" INTEGER REFRENCES userCart(id),
+        "guestCart" INTEGER REFRENCES guestCart(id), 
+        firstName VARCHAR(255) NOT NULL,
+        lastName VARCHAR(255) NOT NULL,
+        street VARCHAR(255) NOT NULL,
+        city VARCHAR(255) NOT NULL,
+        state VARCHAR(255) NOT NULL,
+        zipcode VARCHAR(255) NOT NULL,
+        country VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        phone INTEGER NOT NULL
+      );
+
+      CREATE TABLE orders (
+        id SERIAL PRIMARY KEY,
+        firstName VARCHAR(255) NOT NULL,
+        lastName VARCHAR(255) NOT NULL,
+        street VARCHAR(255) NOT NULL,
+        city VARCHAR(255) NOT NULL,
+        state VARCHAR(255) NOT NULL,
+        zipcode VARCHAR(255) NOT NULL,
+        country VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        phone INTEGER NOT NULL,
+        "lineItems" VARCHAR(255),
+        total INTEGER NOT NULL
+      )
+
     `);
   } catch (error) {
     throw error;
@@ -78,6 +110,41 @@ async function populateInitialData() {
     // create useful starting data by leveraging your
     // Model.method() adapters to seed your db, for example:
     // const user1 = await User.createUser({ ...user info goes here... })
+    const usersToCreate = [
+      {
+        username: "Ramses",
+        password: "ramses1!",
+        email: "ramses@gmail.com",
+        firstName: "Ramses",
+        lastName: "Angles",
+        role: "Admin",
+      },
+      {
+        username: "albert",
+        password: "bertie99",
+        email: "bert@gmail.com",
+        firstName: "Bert",
+        lastName: "Nard",
+        role: "customer",
+      },
+      {
+        username: "sandra",
+        password: "sandra123",
+        email: "sandra@gmail.com",
+        firstName: "Sandra",
+        lastName: "Lemon",
+        role: "user",
+      },
+      {
+        username: "glamgal",
+        password: "glamgal123",
+        email: "glamgal@gmail.com",
+        firstName: "Gloria",
+        lastName: "Gal",
+        role: "user",
+      },
+    ];
+    const users = await Promise.all(usersToCreate.map(createUser));
   } catch (error) {
     throw error;
   }
