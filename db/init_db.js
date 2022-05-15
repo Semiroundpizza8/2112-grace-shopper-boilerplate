@@ -55,6 +55,7 @@ async function buildTables() {
       );
 
       CREATE TABLE cart (
+        "userId" REFERENCES users(id),
         "productId" REFERENCES products(id),
         "ordersId" REFEREENCES orders(id),
         priceAtTimeOfPurchase INTEGER NOT NULL,
