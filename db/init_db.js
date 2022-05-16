@@ -3,6 +3,8 @@ const {
   //add all other functions needed here.
 } = require("./");
 
+const {createUser, getUser, getUserById, getUserByUsername, getAllUsers} = require("./models")
+
 async function buildTables() {
   try {
 
