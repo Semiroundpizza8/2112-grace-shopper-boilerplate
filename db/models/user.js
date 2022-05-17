@@ -21,7 +21,7 @@ async function getAllUsers() {
 
 
 
-const createUser = async ({ username, password }) => {
+const createUser = async ({ username, password, email, firstname, lastname, role }) => {
 	try {
 		console.log('creating user....');
 
@@ -30,12 +30,12 @@ const createUser = async ({ username, password }) => {
 
 		const { rows: [ user ] } = await client.query(
 			`
-                INSERT INTO users (username, password) 
-                VALUES($1, $2) 
+                INSERT INTO users (username, password, email, firstName, lastName, role) 
+                VALUES($1, $2, $3, $4, $5, $6) 
                 ON CONFLICT (username) DO NOTHING 
-                RETURNING username,id;
+                RETURNING *;
               `,
-			[ username, hashedPassword ]
+			[ username, hashedPassword, email, firstname, lastname, role ]
 		);
 
 		password = hashedPassword;

@@ -1,3 +1,4 @@
+
 const {
   client,
   //add all other functions needed here.
@@ -11,7 +12,7 @@ const {
   getUserByUsername,
   getAllUsers,
   createProduct
-} = require("./models");
+} = require("./models/user");
 const {
   productsToAdd,
   ordersToCreate,
@@ -30,10 +31,10 @@ async function dropTables() {
 		// have to make sure to drop in correct order
 		await client.query(`
         
-    DROP TABLE IF EXISTS cart CASCADE;
-    DROP TABLE IF EXISTS orders CASCADE;
-    DROP TABLE IF EXISTS products CASCADE;
-    DROP TABLE IF EXISTS users CASCADE;
+    DROP TABLE IF EXISTS cart;
+    DROP TABLE IF EXISTS orders;
+    DROP TABLE IF EXISTS products;
+    DROP TABLE IF EXISTS users;
 		
         
       `);
@@ -86,7 +87,14 @@ CREATE TABLE orders (
   total INTEGER NOT NULL
 );
 
-
+CREATE TABLE cart (
+  id SERIAL PRIMARY KEY, 
+  "userId" INTEGER REFERENCES users(id),
+  "productId" INTEGER REFERENCES products(id),
+  "ordersId" INTEGER REFERENCES orders(id),
+  "priceAtTimeOfPurchase" integer NOT NULL,
+  quantity INTEGER NOT NULL
+)
     `);
 
     console.log('Finished building tables!');
@@ -97,17 +105,11 @@ CREATE TABLE orders (
 }
 
 
-// CREATE TABLE cart (
-//   id SERIAL PRIMARY KEY, 
-//   "userId" REFERENCES users(id),
-//   "productId" REFERENCES products(id),
-//   "ordersId" REFEREENCES orders(id),
-//   "priceAtTimeOfPurchase" INTEGER NOT NULL,
-//   quantity INTEGER NOT NULL
-// );
+
 
 async function createInitialUsers() {
   console.log("Starting to create users...");
+  console.log(usersToCreate);
   try {
     const users = await Promise.all(usersToCreate.map(createUser));
 

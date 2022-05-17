@@ -1294,7 +1294,7 @@ const usersToCreate = [
   },
   {
     username: "TOF38MY",
-    email: "donec.tincidunt.donec@icloud.org",
+    email: "donec@icloud.org",
     password: "IFQ77QTI0BR",
     firstName: "Conan",
     lastName: "Burris",
@@ -1302,7 +1302,7 @@ const usersToCreate = [
   },
   {
     username: "EPJ35JN",
-    email: "fermentum.fermentum.arcu@yahoo.net",
+    email: "arcu@yahoo.net",
     password: "XYG71QYZ8IH",
     firstName: "Vernon",
     lastName: "Kidd",
@@ -1326,7 +1326,7 @@ const usersToCreate = [
   },
   {
     username: "EXU91HW",
-    email: "at.fringilla.purus@outlook.net",
+    email: "purus@outlook.net",
     password: "DOX63WRV4OY",
     firstName: "Nero",
     lastName: "Morales",
