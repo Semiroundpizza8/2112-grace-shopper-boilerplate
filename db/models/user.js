@@ -39,7 +39,7 @@ const createUser = async ({ username, password, email, firstname, lastname, role
 		);
 
 		password = hashedPassword;
-		console.log("user in createUser", user)
+		//console.log("user in createUser", user)
 		return user;
 		
 	} catch (error) {

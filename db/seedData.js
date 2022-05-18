@@ -1274,7 +1274,7 @@ const usersToCreate = [
     email: "ramses@gmail.com",
     firstname: "Ramses",
     lastname: "Angles",
-    role: "Admin",
+    role: "admin",
   },
   {
     username: "HPS76LC",

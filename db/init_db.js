@@ -4,14 +4,12 @@ const {
   //add all other functions needed here.
 } = require("./");
 
+const {
+  createProduct
+} = require("./models/products");
 
 const {
   createUser,
-  getUser,
-  getUserById,
-  getUserByUsername,
-  getAllUsers,
-  createProduct
 } = require("./models/user");
 const {
   productsToAdd,
