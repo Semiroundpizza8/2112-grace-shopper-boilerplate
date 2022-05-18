@@ -30,17 +30,18 @@ const createUser = async ({ username, password, email, firstname, lastname, role
 
 		const { rows: [ user ] } = await client.query(
 			`
-                INSERT INTO users (username, password, email, firstName, lastName, role) 
+                INSERT INTO users (username, email, password, firstname, lastname, role) 
                 VALUES($1, $2, $3, $4, $5, $6) 
                 ON CONFLICT (username) DO NOTHING 
-                RETURNING *;
+                RETURNING id, username, password, email, firstname, lastname, role;
               `,
-			[ username, hashedPassword, email, firstname, lastname, role ]
+			[ username, email, hashedPassword, firstname, lastname, role ]
 		);
 
 		password = hashedPassword;
-
+		console.log("user in createUser", user)
 		return user;
+		
 	} catch (error) {
 		throw error;
 	}

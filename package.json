@@ -62,5 +62,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This full stack app boilerplate consists of:",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2112-FTB-GraceShopper-Furniture/2112-grace-shopper-boilerplate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2112-FTB-GraceShopper-Furniture/2112-grace-shopper-boilerplate/issues"
+  },
+  "homepage": "https://github.com/2112-FTB-GraceShopper-Furniture/2112-grace-shopper-boilerplate#readme"
 }

@@ -58,8 +58,8 @@ async function buildTables() {
         username VARCHAR(255) UNIQUE NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
-        "firstName" VARCHAR(255),
-        "lastName" VARCHAR(255),
+        firstname VARCHAR(255),
+        lastname VARCHAR(255),
         role VARCHAR(255)
       );
 
@@ -76,8 +76,8 @@ async function buildTables() {
 
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY, 
-  "firstName" VARCHAR(255) NOT NULL,
-  "lastName" VARCHAR(255) NOT NULL,
+  "firstname" VARCHAR(255) NOT NULL,
+  "lastname" VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   street VARCHAR(255) NOT NULL,
   city VARCHAR(255) NOT NULL,
@@ -109,10 +109,10 @@ CREATE TABLE cart (
 
 async function createInitialUsers() {
   console.log("Starting to create users...");
-  console.log(usersToCreate);
+
   try {
     const users = await Promise.all(usersToCreate.map(createUser));
-
+console.log(usersToCreate)
     console.log("Users created:");
     console.log(users);
     console.log("Finished creating users!");
@@ -174,8 +174,8 @@ async function rebuildDB() {
     await dropTables();
     await buildTables();
     await createInitialUsers();
-    // await createInitialProducts();
-    await createInitialOrders();
+    await createInitialProducts();
+    // await createInitialOrders();
     // await createInitialCarts();
   } catch (error) {
     console.log("Error during rebuildDB");
