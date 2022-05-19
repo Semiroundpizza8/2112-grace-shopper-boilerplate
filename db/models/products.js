@@ -1,5 +1,5 @@
 const client  = require("../client");
-console.log(client)
+
 
 async function createProduct({
   name,

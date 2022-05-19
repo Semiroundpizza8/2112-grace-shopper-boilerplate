@@ -1,8 +1,5 @@
 
-const {
-  client, 
-  //add all other functions needed here.
-} = require("./");
+const client= require('./client');
 
 const {
   createProduct
@@ -15,10 +12,6 @@ const {
   getUserByUsername,
   getAllUsers,
 } = require("./models/user");
-
-const {
-  createProduct,
-} = require("./models/products")
 
 const {
   productsToAdd,
