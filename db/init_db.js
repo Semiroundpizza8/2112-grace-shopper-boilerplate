@@ -9,7 +9,7 @@ const {
   getUserById,
   getUserByUsername,
   getAllUsers,
-} = require("./models");
+} = require("./models/user");
 
 const {
   createProduct,
