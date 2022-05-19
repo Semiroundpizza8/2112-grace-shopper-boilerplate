@@ -1,6 +1,5 @@
 const {
-  client,
-  createProduct,
+  client, 
   //add all other functions needed here.
 } = require("./");
 
@@ -11,10 +10,15 @@ const {
   getUserByUsername,
   getAllUsers,
 } = require("./models");
+
+const {
+  createProduct,
+} = require("./models/products")
+
 const {
   productsToAdd,
   ordersToCreate,
-  cartToCreate,
+  // cartToCreate,
   usersToCreate,
 } = require("./seedData");
 
@@ -35,8 +39,8 @@ async function buildTables() {
         username VARCHAR(255) UNIQUE NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
-        firstName VARCHAR(255),
-        lastName VARCHAR(255),
+        firstname VARCHAR(255),
+        lastname VARCHAR(255),
         role VARCHAR(255)
       );
 
@@ -46,31 +50,30 @@ async function buildTables() {
         image VARCHAR(255),
         description VARCHAR(255) NOT NULL,
         stock INTEGER NOT NULL,
-        price INTEGER NOT NULL,
+        price VARCHAR(255) NOT NULL,
         category VARCHAR(255),
-        "reviewStar" INTEGER,
+        reviewstars INTEGER
       );
 
 
       CREATE TABLE orders (
         id SERIAL PRIMARY KEY, 
-        firstName VARCHAR(255) NOT NULL,
-        lastName VARCHAR(255) NOT NULL,
+        firstname VARCHAR(255) NOT NULL,
+        lastname VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL,
         street VARCHAR(255) NOT NULL,
         city VARCHAR(255) NOT NULL,
         zipcode VARCHAR(255) NOT NULL,
         country VARCHAR(255) NOT NULL,
-        phone INTEGER NOT NULL
+        phone INTEGER NOT NULL,
         total INTEGER NOT NULL
-        status "PURCHASED" | "IN PROGRESS"
       );
 
       CREATE TABLE cart (
         id SERIAL PRIMARY KEY, 
-        "userId" REFERENCES users(id),
-        "productId" REFERENCES products(id),
-        "ordersId" REFEREENCES orders(id),
+        "userId" INTEGER REFERENCES users(id),
+        "productId" INTEGER REFERENCES products(id),
+        "ordersId" INTEGER REFERENCES orders(id),
         priceAtTimeOfPurchase INTEGER NOT NULL,
         quantity INTEGER NOT NULL
       );
@@ -145,10 +148,10 @@ async function rebuildDB() {
   try {
     client.connect();
     await buildTables();
-    await createInitialUsers();
+    // await createInitialUsers();
     await createInitialProducts();
     await createInitialOrders();
-    await createInitialCarts();
+    // await createInitialCarts();
   } catch (error) {
     console.log("Error during rebuildDB");
     throw error;

@@ -1215,57 +1215,57 @@ const ordersToCreate = [
   },
 ];
 
-const cartToCreate = [
-  {
-    userId: user1.id,
-    productId: product3.id,
-    ordersId: order2.id,
-    priceAtTimeOfPurchase: 30,
-    quantity: 5,
-  },
-  {
-    userId: user2.id,
-    productId: product3.id,
-    ordersId: order2.id,
-    priceAtTimeOfPurchase: 20,
-    quantity: 1,
-  },
-  {
-    userId: user3.id,
-    productId: product3.id,
-    ordersId: order2.id,
-    priceAtTimeOfPurchase: 17,
-    quantity: 3,
-  },
-  {
-    userId: user1.id,
-    productId: product2.id,
-    ordersId: order1.id,
-    priceAtTimeOfPurchase: 30,
-    quantity: 5,
-  },
-  {
-    userId: user1.id,
-    productId: product1.id,
-    ordersId: order2.id,
-    priceAtTimeOfPurchase: 10,
-    quantity: 5,
-  },
-  {
-    userId: user1.id,
-    productId: product3.id,
-    ordersId: order2.id,
-    priceAtTimeOfPurchase: 10,
-    quantity: 5,
-  },
-  {
-    userId: user1.id,
-    productId: product3.id,
-    ordersId: order2.id,
-    priceAtTimeOfPurchase: 10,
-    quantity: 5,
-  },
-];
+// const cartToCreate = [
+//   {
+//     userId: user1.id,
+//     productId: product3.id,
+//     ordersId: order2.id,
+//     priceAtTimeOfPurchase: 30,
+//     quantity: 5,
+//   },
+//   {
+//     userId: user2.id,
+//     productId: product3.id,
+//     ordersId: order2.id,
+//     priceAtTimeOfPurchase: 20,
+//     quantity: 1,
+//   },
+//   {
+//     userId: user3.id,
+//     productId: product3.id,
+//     ordersId: order2.id,
+//     priceAtTimeOfPurchase: 17,
+//     quantity: 3,
+//   },
+//   {
+//     userId: user1.id,
+//     productId: product2.id,
+//     ordersId: order1.id,
+//     priceAtTimeOfPurchase: 30,
+//     quantity: 5,
+//   },
+//   {
+//     userId: user1.id,
+//     productId: product1.id,
+//     ordersId: order2.id,
+//     priceAtTimeOfPurchase: 10,
+//     quantity: 5,
+//   },
+//   {
+//     userId: user1.id,
+//     productId: product3.id,
+//     ordersId: order2.id,
+//     priceAtTimeOfPurchase: 10,
+//     quantity: 5,
+//   },
+//   {
+//     userId: user1.id,
+//     productId: product3.id,
+//     ordersId: order2.id,
+//     priceAtTimeOfPurchase: 10,
+//     quantity: 5,
+//   },
+// ];
 
 const usersToCreate = [
   {
@@ -1433,6 +1433,6 @@ const usersToCreate = [
 module.exports = {
   productsToAdd,
   ordersToCreate,
-  cartToCreate,
+  // cartToCreate,
   usersToCreate,
 };

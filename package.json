@@ -41,7 +41,9 @@
     "db:build": "node ./db/init_db",
     "start:dev": "concurrently \"npm run client:build\" \"npm run client:dev\" \"npm run server:dev\"",
     "start": "node index.js",
-    "test:watch": "jest --watchAll --runInBand"
+    "test:watch": "jest --watchAll --runInBand",
+    "seed:dev": "nodemon ./db/seed.js"
+
   },
   "eslintConfig": {
     "extends": [
