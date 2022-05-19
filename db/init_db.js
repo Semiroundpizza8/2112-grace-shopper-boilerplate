@@ -43,6 +43,7 @@ async function buildTables() {
       CREATE TABLE products (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) UNIQUE NOT NULL,
+        image VARCHAR(255),
         description VARCHAR(255) NOT NULL,
         stock INTEGER NOT NULL,
         price INTEGER NOT NULL,

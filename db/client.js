@@ -22,5 +22,5 @@ if (process.env.CI) {
   // local / heroku client config
   client = new Client(DB_URL);
 }
-
+console.log(client)
 module.exports = client;
