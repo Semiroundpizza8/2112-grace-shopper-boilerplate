@@ -33,9 +33,7 @@ async function createTables() {
     await client.query(`
     CREATE TABLE users (
       id SERIAL PRIMARY KEY,
-      firstname varchar(255) NOT NULL,
-      lastname varchar(255) NOT NULL,
-      address1 varchar(255) NOT NULL,
+      username varchar(255) NOT NULL,
       email varchar(255) UNIQUE NOT NULL,
       city varchar(255) NOT NULL,
       state varchar(255) NOT NULL,
@@ -77,8 +75,7 @@ async function createTables() {
 async function populateInitialData() {
   try {
     const userData = [
-      { firstname: "tony", 
-      lastname: "Ayala",
+      { username: "tony", 
        address1: "8525 PandaBear Lane", 
        email: "imacuddlePanada@gmail.com", 
        city: "Pandaville", 
@@ -87,8 +84,7 @@ async function populateInitialData() {
          password: "blackandwhitealltheway"
     },
 
-    { firstname: "Sandra", 
-    lastname: "Quits",
+    { username: "Sandra", 
      address1: "3311 Bamboo Street", 
      email: "IeatPanadasBamboo@gmail.com", 
      city: "bejing", 
@@ -97,8 +93,7 @@ async function populateInitialData() {
        password: "bamboofarts"
 },
 
-{firstname: "Rihanna", 
-lastname: "Marc",
+{username: "Rihanna", 
  address1: "4444 Sunset Blvd", 
  email: "mylittepony@gmail.com", 
  city: "Sqwiggletown", 
