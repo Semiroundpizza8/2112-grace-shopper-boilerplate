@@ -15,7 +15,7 @@ const {
 
 const {
   productsToAdd,
-  ordersToCreate,
+ // ordersToCreate,
   // cartToCreate,
   usersToCreate,
 } = require("./seedData");
@@ -175,9 +175,9 @@ async function rebuildDB() {
     client.connect();
     await dropTables();
     await buildTables();
-    // await createInitialUsers();
+    await createInitialUsers();
     await createInitialProducts();
-    await createInitialOrders();
+    //await createInitialOrders();
     // await createInitialCarts();
   } catch (error) {
     console.log("Error during rebuildDB");

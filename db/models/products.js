@@ -22,7 +22,7 @@ async function createProduct({
             `,
       [name, image, description, stock, price, reviewstars, category]
     );
-    console.log(product);
+    //console.log(product);
     return product;
   } catch (error) {
     throw error;
