@@ -1432,7 +1432,7 @@ const usersToCreate = [
 
 module.exports = {
   productsToAdd,
-  //ordersToCreate,
+  ordersToCreate,
   // cartToCreate,
   usersToCreate,
 };

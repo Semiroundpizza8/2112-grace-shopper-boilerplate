@@ -1,5 +1,6 @@
 
 const client= require('./client');
+const { createOrder } = require('./models/orders');
 
 const {
   createProduct
@@ -15,7 +16,7 @@ const {
 
 const {
   productsToAdd,
- // ordersToCreate,
+ ordersToCreate,
   // cartToCreate,
   usersToCreate,
 } = require("./seedData");
@@ -79,13 +80,13 @@ async function buildTables() {
         id SERIAL PRIMARY KEY, 
         firstname VARCHAR(255) NOT NULL,
         lastname VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL,
+        email VARCHAR(255)  NOT NULL,
         street VARCHAR(255) NOT NULL,
         city VARCHAR(255) NOT NULL,
         zipcode VARCHAR(255) NOT NULL,
         country VARCHAR(255) NOT NULL,
-        phone INTEGER NOT NULL,
-        total INTEGER NOT NULL
+        phone VARCHAR(255) NOT NULL,
+        total VARCHAR(255) NOT NULL
       );
 
       CREATE TABLE cart (
@@ -140,19 +141,19 @@ async function createInitialProducts() {
   }
 }
 
-// async function createInitialOrders() {
-//   console.log("Starting to create orders...");
-//   try {
-//     const users = await Promise.all(ordersToCreate.map(createOrders));
+async function createInitialOrders() {
+  console.log("Starting to create orders...");
+  try {
+    const orders = await Promise.all(ordersToCreate.map(createOrder));
 
-//     console.log("Users created:");
-//     console.log(users);
-//     console.log("Finished creating users!");
-//   } catch (error) {
-//     console.error("Error creating users!");
-//     throw error;
-//   }
-// }
+    console.log("Orders created:");
+    console.log(orders);
+    console.log("Finished creating orders!");
+  } catch (error) {
+    console.error("Error creating orders!");
+    throw error;
+  }
+}
 
 // async function createInitialCarts() {
 //   try {
@@ -177,7 +178,7 @@ async function rebuildDB() {
     await buildTables();
     await createInitialUsers();
     await createInitialProducts();
-    //await createInitialOrders();
+    await createInitialOrders();
     // await createInitialCarts();
   } catch (error) {
     console.log("Error during rebuildDB");
