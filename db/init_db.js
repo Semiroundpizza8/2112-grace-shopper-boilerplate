@@ -1,6 +1,6 @@
 
 const {
-  client,
+  client, 
   //add all other functions needed here.
 } = require("./");
 
@@ -10,7 +10,16 @@ const {
 
 const {
   createUser,
+  getUser,
+  getUserById,
+  getUserByUsername,
+  getAllUsers,
 } = require("./models/user");
+
+const {
+  createProduct,
+} = require("./models/products")
+
 const {
   productsToAdd,
   ordersToCreate,
@@ -62,37 +71,39 @@ async function buildTables() {
       );
 
       CREATE TABLE products (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(255) UNIQUE NOT NULL,
-  description VARCHAR(255) NOT NULL,
-  stock INTEGER NOT NULL,
-  price INTEGER NOT NULL,
-  category VARCHAR(255),
-  "reviewStar" INTEGER
-);
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255) UNIQUE NOT NULL,
+        image VARCHAR(255),
+        description VARCHAR(255) NOT NULL,
+        stock INTEGER NOT NULL,
+        price VARCHAR(255) NOT NULL,
+        category VARCHAR(255),
+        reviewstars INTEGER
+      );
 
 
-CREATE TABLE orders (
-  id SERIAL PRIMARY KEY, 
-  "firstname" VARCHAR(255) NOT NULL,
-  "lastname" VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL,
-  street VARCHAR(255) NOT NULL,
-  city VARCHAR(255) NOT NULL,
-  zipcode VARCHAR(255) NOT NULL,
-  country VARCHAR(255) NOT NULL,
-  phone INTEGER NOT NULL,
-  total INTEGER NOT NULL
-);
+      CREATE TABLE orders (
+        id SERIAL PRIMARY KEY, 
+        firstname VARCHAR(255) NOT NULL,
+        lastname VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        street VARCHAR(255) NOT NULL,
+        city VARCHAR(255) NOT NULL,
+        zipcode VARCHAR(255) NOT NULL,
+        country VARCHAR(255) NOT NULL,
+        phone INTEGER NOT NULL,
+        total INTEGER NOT NULL
+      );
 
-CREATE TABLE cart (
-  id SERIAL PRIMARY KEY, 
-  "userId" INTEGER REFERENCES users(id),
-  "productId" INTEGER REFERENCES products(id),
-  "ordersId" INTEGER REFERENCES orders(id),
-  "priceAtTimeOfPurchase" integer NOT NULL,
-  quantity INTEGER NOT NULL
-)
+      CREATE TABLE cart (
+        id SERIAL PRIMARY KEY, 
+        "userId" INTEGER REFERENCES users(id),
+        "productId" INTEGER REFERENCES products(id),
+        "ordersId" INTEGER REFERENCES orders(id),
+        priceAtTimeOfPurchase INTEGER NOT NULL,
+        quantity INTEGER NOT NULL
+      );
+
     `);
 
     console.log('Finished building tables!');
@@ -171,9 +182,9 @@ async function rebuildDB() {
     client.connect();
     await dropTables();
     await buildTables();
-    await createInitialUsers();
+    // await createInitialUsers();
     await createInitialProducts();
-    // await createInitialOrders();
+    await createInitialOrders();
     // await createInitialCarts();
   } catch (error) {
     console.log("Error during rebuildDB");

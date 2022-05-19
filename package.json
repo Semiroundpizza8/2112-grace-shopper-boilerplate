@@ -31,10 +31,10 @@
     "supertest": "^6.2.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    
+    
     "test": "jest --runInBand",
-    "eject": "react-scripts eject",
+    
     "postinstall": "npm run client:build",
     "client:dev": "react-scripts start",
     "client:build": "react-scripts build",
@@ -42,8 +42,10 @@
     "db:build": "node ./db/init_db",
     "seed:dev": "nodemon ./db/seed.js",
     "start:dev": "concurrently \"npm run client:build\" \"npm run client:dev\" \"npm run server:dev\"",
-    "start:node": "node index.js",
-    "test:watch": "jest --watchAll --runInBand"
+    "start": "node index.js",
+    "test:watch": "jest --watchAll --runInBand",
+    "seed:dev": "nodemon ./db/seed.js"
+
   },
   "eslintConfig": {
     "extends": [
