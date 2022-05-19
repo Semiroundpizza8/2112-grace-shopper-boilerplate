@@ -11,8 +11,10 @@
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
     "concurrently": "^7.1.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "jest": "^28.1.0",
     "morgan": "^1.10.0",
@@ -21,27 +23,28 @@
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "volleyball": "^1.5.1",
     "web-vitals": "^2.1.4"
   },
-
   "devDependencies": {
     "nodemon": "^2.0.16",
     "supertest": "^6.2.3"
   },
-
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    
+    
     "test": "jest --runInBand",
-    "eject": "react-scripts eject",
+    
     "postinstall": "npm run client:build",
     "client:dev": "react-scripts start",
     "client:build": "react-scripts build",
     "server:dev": "nodemon index.js",
-    "db:build": "node ./db/init_db",
+    "seed:dev": "nodemon ./db/seed.js",
     "start:dev": "concurrently \"npm run client:build\" \"npm run client:dev\" \"npm run server:dev\"",
-    "start:node": "node index.js",
-    "test:watch": "jest --watchAll --runInBand"
+    "start": "node index.js",
+    "test:watch": "jest --watchAll --runInBand",
+    "seed:dev": "nodemon ./db/seed.js"
+
   },
   "eslintConfig": {
     "extends": [
@@ -60,5 +63,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This full stack app boilerplate consists of:",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2112-FTB-GraceShopper-Furniture/2112-grace-shopper-boilerplate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2112-FTB-GraceShopper-Furniture/2112-grace-shopper-boilerplate/issues"
+  },
+  "homepage": "https://github.com/2112-FTB-GraceShopper-Furniture/2112-grace-shopper-boilerplate#readme"
 }
