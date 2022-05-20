@@ -1,9 +1,10 @@
 
 const client= require('./client');
-const { createOrder } = require('./models/orders');
+const { createOrder, getAllOrders } = require('./models/orders');
+
 
 const {
-  createProduct
+  createProduct, getAllProducts
 } = require("./models/products");
 
 const {
@@ -17,9 +18,10 @@ const {
 const {
   productsToAdd,
  ordersToCreate,
-  // cartToCreate,
+  cartToCreate,
   usersToCreate,
 } = require("./seedData");
+const addProductsToOrder = require('./models/order_products');
 
 
 async function dropTables() {
@@ -32,7 +34,7 @@ async function dropTables() {
 		// have to make sure to drop in correct order
 		await client.query(`
         
-    DROP TABLE IF EXISTS cart;
+    DROP TABLE IF EXISTS orderProducts;
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS products;
     DROP TABLE IF EXISTS users;
@@ -89,13 +91,13 @@ async function buildTables() {
         total VARCHAR(255) NOT NULL
       );
 
-      CREATE TABLE cart (
+      CREATE TABLE orderProducts (
         id SERIAL PRIMARY KEY, 
-        "userId" INTEGER REFERENCES users(id),
+        "orderId" INTEGER REFERENCES orders(id) ON DELETE CASCADE,
         "productId" INTEGER REFERENCES products(id),
-        "ordersId" INTEGER REFERENCES orders(id),
-        priceAtTimeOfPurchase INTEGER NOT NULL,
-        quantity INTEGER NOT NULL
+        priceAtTimeOfPurchase INTEGER,
+        quantity INTEGER, 
+        UNIQUE("orderId","productId")
       );
 
     `);
@@ -106,9 +108,6 @@ async function buildTables() {
     throw error;
   }
 }
-
-
-
 
 async function createInitialUsers() {
   console.log("Starting to create users...");
@@ -158,10 +157,10 @@ async function createInitialOrders() {
 // async function createInitialCarts() {
 //   try {
 //     console.log("starting to create the cart...");
-//     // const [ user1, user2, user3 ] = await  AddFunctionThatRetrievesUserInfo
-//     // const [ product1, product2, product3  ] = await AddFunctionThatRetrievesProductInfo
-//     // const [ order1, order2, order3  ] = await AddFunctionThatRetrievesOrderInfo -orderId needs to match userinfo.
-//     const carts = await Promise.all(cartToCreate.map(createCarts));
+    
+//     const [ product1, product2, product3, product4, product5, product6 ] = await getAllProducts();
+//     const [ order1, order2, order3  ] = await getAllOrders();
+//     const carts = await Promise.all(cartToCreate.map(addToCart));
 
 //     console.log("Carts created:");
 //     console.log("Finished creating carts!");
@@ -171,6 +170,77 @@ async function createInitialOrders() {
 //   }
 // }
 
+async function createInitialOrderProducts() {
+	try {
+		console.log('starting to create order_products...');
+		const [ orderSofa, orderDining, orderChair, orderBed ] = await getAllOrders();
+		console.log('getAllOrders');
+		const [ sofa1, sofa2, dining1, dining2, bed1, bed2, bed3, chair1, chair2 ] = await getAllProducts();
+
+		const orderProductsToCreate = [
+			{
+				orderId: orderSofa.id,
+				productId: sofa1.id,
+				priceAtTimeOfPurchase: 10,
+				quantity: 5
+			},
+			{
+        orderId: orderSofa.id,
+				productId: sofa2.id,
+				priceAtTimeOfPurchase: 20,
+				quantity: 50
+			},
+			{
+        orderId: orderDining.id,
+				productId: dining1.id,
+				priceAtTimeOfPurchase: 100,
+				quantity: 2
+			},
+			{
+        orderId: orderDining.id,
+				productId: dining2.id,
+				priceAtTimeOfPurchase: 1200,
+				quantity: 1
+			},
+			{
+        orderId: orderBed.id,
+				productId: bed1.id,
+				priceAtTimeOfPurchase: 2000,
+				quantity: 1
+			},
+			{
+        orderId: orderBed.id,
+				productId: bed2.id,
+				priceAtTimeOfPurchase: 2500,
+				quantity: 2
+			},
+			{
+        orderId: orderBed.id,
+				productId: bed3.id,
+				priceAtTimeOfPurchase: 1500,
+				quantity: 3
+			},
+			{
+				orderId: orderChair.id,
+				productId: chair1.id,
+				priceAtTimeOfPurchase: 10,
+				quantity: 5
+			},
+			{
+        orderId: orderChair.id,
+				productId: chair2.id,
+				priceAtTimeOfPurchase: 10,
+				quantity: 5
+			}
+		];
+		const orderProducts = await Promise.all(orderProductsToCreate.map(addProductsToOrder));
+		console.log('order_products created: ', orderProducts);
+		console.log('Finished creating routines_activities!');
+	} catch (error) {
+		throw error;
+	}
+}
+
 async function rebuildDB() {
   try {
     client.connect();
@@ -179,7 +249,9 @@ async function rebuildDB() {
     await createInitialUsers();
     await createInitialProducts();
     await createInitialOrders();
-    // await createInitialCarts();
+    //await createInitialCarts();
+    await createInitialOrderProducts();
+
   } catch (error) {
     console.log("Error during rebuildDB");
     throw error;
