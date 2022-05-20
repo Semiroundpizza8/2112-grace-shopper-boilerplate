@@ -95,7 +95,7 @@ async function buildTables() {
         id SERIAL PRIMARY KEY, 
         "orderId" INTEGER REFERENCES orders(id) ON DELETE CASCADE,
         "productId" INTEGER REFERENCES products(id),
-        priceAtTimeOfPurchase INTEGER,
+        price INTEGER,
         quantity INTEGER, 
         UNIQUE("orderId","productId")
       );
@@ -170,72 +170,81 @@ async function createInitialOrders() {
 //   }
 // }
 
+
+
 async function createInitialOrderProducts() {
 	try {
-		console.log('starting to create order_products...');
+
+    console.log('starting to create order_products...');
+    console.log("getAllOrders",await getAllOrders());
+    console.log("getProducts", await getAllProducts());
+		
 		const [ orderSofa, orderDining, orderChair, orderBed ] = await getAllOrders();
-		console.log('getAllOrders');
+    console.log("orderSofa",orderSofa)
+    console.log("orderDining", orderDining)
+		
 		const [ sofa1, sofa2, dining1, dining2, bed1, bed2, bed3, chair1, chair2 ] = await getAllProducts();
+    console.log("dining",dining1);
 
 		const orderProductsToCreate = [
 			{
 				orderId: orderSofa.id,
 				productId: sofa1.id,
-				priceAtTimeOfPurchase: 10,
+				price: 10,
 				quantity: 5
 			},
 			{
         orderId: orderSofa.id,
 				productId: sofa2.id,
-				priceAtTimeOfPurchase: 20,
+				price: 20,
 				quantity: 50
 			},
 			{
         orderId: orderDining.id,
 				productId: dining1.id,
-				priceAtTimeOfPurchase: 100,
+				price: 100,
 				quantity: 2
 			},
 			{
         orderId: orderDining.id,
 				productId: dining2.id,
-				priceAtTimeOfPurchase: 1200,
+				price: 1200,
 				quantity: 1
 			},
 			{
         orderId: orderBed.id,
 				productId: bed1.id,
-				priceAtTimeOfPurchase: 2000,
+				price: 2000,
 				quantity: 1
 			},
 			{
         orderId: orderBed.id,
 				productId: bed2.id,
-				priceAtTimeOfPurchase: 2500,
+				price: 2500,
 				quantity: 2
 			},
 			{
         orderId: orderBed.id,
 				productId: bed3.id,
-				priceAtTimeOfPurchase: 1500,
+				price: 1500,
 				quantity: 3
 			},
 			{
 				orderId: orderChair.id,
 				productId: chair1.id,
-				priceAtTimeOfPurchase: 10,
+				price: 10,
 				quantity: 5
 			},
 			{
         orderId: orderChair.id,
 				productId: chair2.id,
-				priceAtTimeOfPurchase: 10,
+				price: 10,
 				quantity: 5
 			}
 		];
 		const orderProducts = await Promise.all(orderProductsToCreate.map(addProductsToOrder));
 		console.log('order_products created: ', orderProducts);
-		console.log('Finished creating routines_activities!');
+		console.log('Finished creating order_Products!');
 	} catch (error) {
 		throw error;
 	}

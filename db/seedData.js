@@ -1213,18 +1213,18 @@ const ordersToCreate = [
     phone: "(693) 481-8573",
     total: "$20.76",
   },
-];
+ ];
 
-// const cartToCreate = [
-//   {
+// // const cartToCreate = [
+// //   {
     
-//     productId: product1.id,
-//     ordersId: order1.id,
-//     priceAtTimeOfPurchase: 30,
-//     quantity: 5,
-//   },
+// //     productId: product1.id,
+// //     ordersId: order1.id,
+// //     price: 30,
+// //     quantity: 5,
+// //   },
   
-// ];
+// // ];
 
 const usersToCreate = [
   {
