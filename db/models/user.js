@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 async function getAllUsers() {
   /* this adapter should fetch a list of users from your db */
 	try {
-		const { rows: [ user ] } = await client.query(
+		const { rows: user } = await client.query(
 			`
             SELECT * FROM users
         `,
