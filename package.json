@@ -23,6 +23,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jest": "^24.9.0",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "pg": "^8.2.1",
     "react": "^16.13.1",
@@ -34,7 +35,6 @@
     "react-stripe-elements": "^6.1.2",
     "semantic-ui-react": "^2.1.2"
   },
-  
   "proxy": "http://localhost:4000",
   "browserslist": {
     "production": [
@@ -47,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
   }
 }

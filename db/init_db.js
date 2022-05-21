@@ -16,7 +16,7 @@ async function dropTables() {
     
       DROP TABLE IF EXISTS cart;
       DROP TABLE IF EXISTS product;
-      DROP TABLE IF EXISTS user;
+      DROP TABLE IF EXISTS users;
     `);
   } catch (error) {
     console.error("Error dropping tables!");
@@ -51,7 +51,7 @@ async function createTables() {
     ); 
     CREATE TABLE cart (
       id SERIAL PRIMARY KEY,
-      user varchar(255) REFERENCES users(id) ,
+      "userId" varchar(255) REFERENCES users(id) ,
       price double REFERENCES product(price) NOT NULL,
       "isPayFor" BOOLEAN DEFAULT false,
     
@@ -108,13 +108,13 @@ lastname: "Marc",
 }
  ]
 
- const users = await Promise.all(userData.map(populateInitialData));
-    // create useful starting data by leveraging your
+//  const users = await Promise.all(userData.map(populateInitialData));
+//     // create useful starting data by leveraging your
     // Model.method() adapters to seed your db, for example:
   
   // const user1 = await User.createUser({ ...user info goes here... })
   console.log("populateInitalData");
-    console.log(users);
+    // console.log(users);
     console.log("Finished creating populateInitalData")
   } catch (error) {
     throw error;
@@ -144,13 +144,13 @@ async function populateProductData() {
 }
  ]
 
- const products = await Promise.all(productData.map(populateProductData));
+//  const products = await Promise.all(productData.map(populateProductData));
     // create useful starting data by leveraging your
     // Model.method() adapters to seed your db, for example:
   
   // const user1 = await User.createUser({ ...user info goes here... })
   console.log("populateProductData");
-    console.log(products);
+    // console.log(products);
     console.log("Finished creating populateProductData")
   } catch (error) {
     throw error;
@@ -166,8 +166,8 @@ async function buildTables() {
     console.log("client has been contected")
     await dropTables();
     await createTables();
-    await populateInitialData();
-    await populateProductData();
+    // await populateInitialData();
+    // await populateProductData();
    
 
 
