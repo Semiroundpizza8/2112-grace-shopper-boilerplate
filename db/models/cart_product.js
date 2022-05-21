@@ -11,7 +11,7 @@ const addProductsToCart = async ({ userId, productId, price, quantity }) => {
             VALUES ($1, $2, $3, $4)
             RETURNING *;
         `,
-			[ userId, productId, price, quantity ]
+	        [ userId, productId, price, quantity ]
 		);
         console.log("inside cart_products",cart_products);
 		return cart_products;

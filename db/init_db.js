@@ -9,16 +9,12 @@ const {
 
 const {
   createUser,
-  getUser,
-  getUserById,
-  getUserByUsername,
   getAllUsers,
 } = require("./models/user");
 
 const {
   productsToAdd,
  ordersToCreate,
-  cartToCreate,
   usersToCreate,
 } = require("./seedData");
 const addProductsToOrder = require('./models/order_products');
