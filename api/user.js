@@ -1,6 +1,6 @@
 const express = require("express");
 const userRouter = express.Router();
-const { createUser, getUser } = require("../db/users");
+const { getUser, getAllUsers, createUser } = require('../db/models/user');
 const jwt = require("jsonwebtoken");
 
 userRouter.use((req, res, next) => {
@@ -12,7 +12,6 @@ userRouter.post("/register", async (req, res, next) => {
     const { username, password } = req.body;
     try {
         if (password.length < 8) {
-            next(error);
             return;
         }
         const user = await createUser ({ username, password });
@@ -66,5 +65,40 @@ userRouter.post("/login", async (req, res, next) => {
         next({ name: "error", message: "Unable to log in user!" });
     }
 });
+
+
+
+userRouter.get('/', async (req, res) => {
+	const users = await getUser();
+
+	res.send({ users });
+});
+
+userRouter.get('/me', async (req, res) => {
+	const users = await getUser();
+	res.send(users);
+});
+
+
+
+userRouter.get(`/admin/users`, async (req, res, next) => {
+	
+	const {token, username, password} = req.params;
+	req.header(token);
+
+	const user = await getUser({ username, password });
+	if (user.role === "admin") {
+		try {
+		const allUsers = await getAllUsers();
+		res.send(allUsers);
+		} 
+		catch ({ name, message }) {
+			next({ name, message });
+		}
+	} else {
+		next({name: 'IncorrectUserError', message: 'You are not allowed to see this page'})
+	}
+});
+
 
 module.exprots = userRouter;

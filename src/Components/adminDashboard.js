@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { getAllUsers } from 
+import { getAllUsers } from '../../api'
 
 
 function AdminDashboard(props) {
