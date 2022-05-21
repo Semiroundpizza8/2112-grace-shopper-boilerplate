@@ -1,4 +1,9 @@
-const apiRouter = require('express').Router();
+const express = require("express");
+const apiRouter = express.Router();
+
+const jwt = require("jsonwebtoken");
+const { getUserById } = require("../db");
+const { JWT_SECRET } = process.env;
 
 apiRouter.get('/', (req, res, next) => {
   res.send({
@@ -12,6 +17,48 @@ apiRouter.get('/health', (req, res, next) => {
   });
 });
 
-// place your routers here
+
+apiRouter.use(async (req, res, next) => {
+  const prefix = "Bearer ";
+  const auth = req.header("Authorization");
+
+  if (!auth) {
+    next();
+  } else if (auth.startsWith(prefix)) {
+    const token = auth.slice(prefix.length);
+
+    try {
+      const { id } = jwt.verify(token, JWT_SECRET);
+      if (id) {
+        req.user = await getUserById(id);
+        next();
+      }
+    } catch ({ name, message }) {
+      next({ name, message });
+    }
+    
+  } else {
+    next({
+      name: "AuthorizationHeaderError",
+      message: `Authorization token must start with ${prefix}`,
+    });
+  }
+});
+const healthRouter = require("./health");
+apiRouter.use("/health", healthRouter);
+
+const usersRouter = require("./users");
+apiRouter.use("/users", usersRouter);
+
+const cart_productRouter = require("./cart_product");
+apiRouter.use("/cart_product", cart_productRouter);
+
+const cartRouter = require("./cart");
+apiRouter.use("/cart", cartRouter);
+
+const productRouter = require("./product");
+apiRouter.use("/product", productRouter);
+
+
 
 module.exports = apiRouter;
