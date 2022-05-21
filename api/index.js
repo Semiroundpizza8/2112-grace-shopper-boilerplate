@@ -85,8 +85,8 @@ apiRouter.get('/products', async (req, res, next) => {
 
 
 
-const usersRouter = require('./users');
-apiRouter.use('/users', usersRouter);
+const userRouter = require('./user');
+apiRouter.use('/user', userRouter);
 
 
 
