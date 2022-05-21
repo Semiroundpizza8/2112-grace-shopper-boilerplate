@@ -9,6 +9,10 @@ const {
 } = require('../db/models/products')
 
 
+apiRouter.use((req, res, next) => {
+    console.log("A request is being made to "+req.originalUrl)
+    next();
+});
 
 
 apiRouter.get('/', (req, res, next) => {
