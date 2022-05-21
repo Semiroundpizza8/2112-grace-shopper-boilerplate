@@ -69,7 +69,7 @@ usersRouter.post("/login", async (req, res, next) => {
   }
 });
 
-usersRouter.get("/me", requireUser, async (req, res, next) => {
+usersRouter.get("/me", async (req, res, next) => {
   res.send(req.user);
 });
 
