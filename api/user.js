@@ -101,4 +101,4 @@ userRouter.get(`/admin/users`, async (req, res, next) => {
 });
 
 
-module.exprots = userRouter;
+module.exports = userRouter;
