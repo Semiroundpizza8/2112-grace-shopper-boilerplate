@@ -36,6 +36,7 @@ async function dropTables() {
     DROP TABLE IF EXISTS orders CASCADE;
     DROP TABLE IF EXISTS products CASCADE;
     DROP TABLE IF EXISTS users CASCADE;
+    DROP TABLE IF EXISTS creditcard CASCADE;
 		
         
       `);
@@ -106,6 +107,19 @@ async function buildTables() {
         quantity INTEGER, 
         UNIQUE("userId","productId")
       );
+
+      CREATE TABLE creditCard (
+        id SERIAL PRIMARY KEY,
+        "userId" INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        "orderId" INTEGER REFERENCES orders(id) ON DELETE CASCADE,
+        firstname VARCHAR(255) NOT NULL,
+        lastname VARCHAR(255) NOT NULL, 
+        cardtype  VARCHAR(50) NOT NULL,
+        zipcode VARCHAR(255) NOT NULL,
+        cardnumber VARCHAR(25) NOT NULL,
+        cvv VARCHAR(255) NOT NULL,
+        expdate VARCHAR(255) NOT NULL
+      )
 
     `);
 
@@ -316,6 +330,20 @@ async function createInitialCarts() {
 		throw error;
 	}
 }
+
+// async function createInitialCreditCard() {
+//   console.log("Starting to create credit cards...");
+//   try {
+//     const creditCard = await Promise.all(creditCardToCreate.map(createCreditCard));
+
+//     console.log("Credit card created:");
+//     console.log(creditCard);
+//     console.log("Finished creating orders!")
+//   } catch (error) {
+//     console.error("Error creating orders!");
+//     throw error;
+//   }
+// }
 
 async function rebuildDB() {
   try {
