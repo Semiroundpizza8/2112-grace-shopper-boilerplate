@@ -33,7 +33,7 @@ async function createOrder({
 async function getAllOrders() {
   try {
     // SELECT the report with id equal to reportId
-    const { rows: [orders] } = await client.query(`
+    const { rows: orders } = await client.query(`
       SELECT * FROM orders
     `);
     

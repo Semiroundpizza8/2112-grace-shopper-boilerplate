@@ -32,12 +32,12 @@ async function createProduct({
 async function getAllProducts() {
   try {
     // SELECT the report with id equal to reportId
-    const { rows: [products] } = await client.query(`
+    const { rows: products } = await client.query(`
       SELECT * FROM products
     `);
     
-    // return the report
-    console.log(products)
+
+    console.log("inside the products",products)
     return products;
   } catch (error) {
     throw error;
