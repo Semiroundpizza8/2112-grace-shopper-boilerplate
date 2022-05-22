@@ -3,23 +3,23 @@ const userRouter = express.Router();
 const { getUser, getAllUsers, createUser } = require('../db/models/user');
 const jwt = require("jsonwebtoken");
 
-userRouter.use((req, res, next) => {
-    console.log("A request is being made to /user route")
-    next();
-});
 
 userRouter.post("/register", async (req, res, next) => {
-    const { username, password } = req.body;
+    const { username, password, email, firstname, lastname, role } = req.body;
     try {
         if (password.length < 8) {
             return;
         }
-        const user = await createUser ({ username, password });
+        const user = await createUser ({ username, password, email, firstname, lastname, role });
 
         const token = jwt.sign(
             {
                 id: user.id,
-                username,
+                username: username,
+                email: email,
+                firstname: firstname, 
+                lastname: lastname,
+                role: role
             },
 
             process.env.JWT_SECRET,
@@ -31,8 +31,8 @@ userRouter.post("/register", async (req, res, next) => {
 
         res.send({
             message: "Thank you for signing up!",
-            token,
-            user,
+            token: token,
+            user: user,
         });
     } catch ({ name, message }) {
         next({ name, message });
@@ -66,7 +66,11 @@ userRouter.post("/login", async (req, res, next) => {
     }
 });
 
+userRouter.get('/debug', async (req, res) => {
+	const users = await getAllUsers();
 
+	res.send({ users });
+});
 
 userRouter.get('/', async (req, res) => {
 	const users = await getUser();

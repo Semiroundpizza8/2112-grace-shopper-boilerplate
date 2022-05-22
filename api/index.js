@@ -3,6 +3,17 @@ const { JWT_SECRET } = process.env;
 const { getUserById } = require('../db/models/user');
 const jwt = require('jsonwebtoken');
 
+const {
+  createProduct,
+  getAllProducts
+} = require('../db/models/products')
+
+
+apiRouter.use((req, res, next) => {
+    console.log("A request is being made to "+req.originalUrl)
+    next();
+});
+
 
 apiRouter.get('/', (req, res, next) => {
   res.send({
@@ -60,8 +71,9 @@ apiRouter.use((req, res, next) => {
 const userRouter = require('./user');
 apiRouter.use('/user', userRouter);
 
-const productRouter = require('./products');
-apiRouter.use('/products',productRouter);
+const cartRouter = require('./cart');
+apiRouter.use('/cart', cartRouter);
+
 
 
 
