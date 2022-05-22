@@ -44,7 +44,30 @@ async function getAllProducts() {
   }
 }
 
+
+
+// view the details for an individual product (including product descriptions, photos and optionally, reviews), 
+// so that I can determine whether that particular item fits my needs
+
+const getProductById = async (productId) => {
+	try {
+		const { rows: [ product ] } = await client.query(
+			`
+            SELECT *
+                FROM products
+                WHERE id=$1;
+            `,
+			[ productId ]
+		);
+
+		return product;
+	} catch (error) {
+		throw error;
+	}
+};
+
 module.exports = {
   createProduct,
-  getAllProducts
+  getAllProducts,
+  getProductById
 };

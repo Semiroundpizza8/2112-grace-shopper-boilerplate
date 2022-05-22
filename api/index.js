@@ -3,13 +3,6 @@ const { JWT_SECRET } = process.env;
 const { getUserById } = require('../db/models/user');
 const jwt = require('jsonwebtoken');
 
-const {
-  createProduct,
-  getAllProducts
-} = require('../db/models/products')
-
-
-
 
 apiRouter.get('/', (req, res, next) => {
   res.send({
@@ -63,31 +56,12 @@ apiRouter.use((req, res, next) => {
 
 
 // place your routers here
-apiRouter.post('/products', async (req, res, next) => {
-  try {
-    const newProduct = await createProduct(req.body);
-    res.send(newProduct);
-  } catch (error) {
-    next(error);
-  }
-})
-
-apiRouter.get('/products', async (req, res, next) => {
-  try {
-    const products = await getAllProducts();
-    res.send({products});
-  } catch (error){
-    next(error);
-  }
-})
-
-
-
-
 
 const userRouter = require('./user');
 apiRouter.use('/user', userRouter);
 
+const productRouter = require('./products');
+apiRouter.use('/products',productRouter);
 
 
 

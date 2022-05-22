@@ -77,16 +77,17 @@ async function buildTables() {
 
 
       CREATE TABLE orders (
-        id SERIAL PRIMARY KEY, 
-        firstname VARCHAR(255) NOT NULL,
-        lastname VARCHAR(255) NOT NULL,
+        
+        id SERIAL PRIMARY KEY,
+        "userId" INTEGER REFERENCES users(id) ON DELETE CASCADE, 
         email VARCHAR(255)  NOT NULL,
         street VARCHAR(255) NOT NULL,
         city VARCHAR(255) NOT NULL,
         zipcode VARCHAR(255) NOT NULL,
         country VARCHAR(255) NOT NULL,
         phone VARCHAR(255) NOT NULL,
-        total VARCHAR(255) NOT NULL
+        orderStatus ENUM("purchased", "inProgress")
+
       );
 
       CREATE TABLE orderProducts (
