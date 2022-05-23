@@ -6,8 +6,7 @@ import {BrowserRouter, Route, Link} from 'react-router-dom';
 // where each adapter fetches specific info from our express server's /api route
 import { getAPIHealth } from '../axios-services';
 import '../style/App.css';
-import Header from './Header'
-import Footer from './Footer'
+import ProductScreen from './ProductScreen';
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState('');
@@ -16,17 +15,13 @@ const App = () => {
 // const [username, setUsername] = useState('');
 // const [password, setPassword] = useState('');
  const [loggedIn, setLoggedIn] = useState(false);
+ const [products, setProducts] = useState([])
  
  
  useEffect(() => { 
      setLoggedIn(!!localStorage.getItem("UserToken"))
  }, []);
- 
- 
-//  const logOut = () => {
-//      localStorage.removeItem("UserToken");
-//      setLoggedIn(false);
-//  }
+
 
 
   useEffect(() => {
@@ -42,6 +37,8 @@ const App = () => {
     // invoke it immediately after its declaration, inside the useEffect callback
     getAPIStatus();
   }, []);
+
+ 
 
   return (
     <div className="app-container">
@@ -65,12 +62,9 @@ const App = () => {
  
              </BrowserRouter>
              <p>API Status: {APIHealth}</p>
+             <ProductScreen />
     </div>
   );
-
-
-
-
-};
+}
 
 export default App;
