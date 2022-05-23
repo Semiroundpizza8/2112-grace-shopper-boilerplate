@@ -1215,16 +1215,6 @@ const ordersToCreate = [
   },
  ];
 
-// // const cartToCreate = [
-// //   {
-    
-// //     productId: product1.id,
-// //     ordersId: order1.id,
-// //     price: 30,
-// //     quantity: 5,
-// //   },
-  
-// // ];
 
 const usersToCreate = [
   {
