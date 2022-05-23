@@ -8,6 +8,13 @@
 }
 
 .app-container h1 {
-  color: var(--green);
+  color: var(--grey);
   padding: 1rem;
+}
+
+#routeBox {
+ display: flex;
+ background-color: grey;
+
+
 }
