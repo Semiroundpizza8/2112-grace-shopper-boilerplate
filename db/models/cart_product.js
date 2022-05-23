@@ -1,6 +1,21 @@
 const client  = require("../client");
 
+const getCartById = async (cartId) => {
+	try {
+		const { rows: [ cart_products ] } = await client.query(
+			`
+            SELECT *
+                FROM cartProducts
+                WHERE id=$1;
+            `,
+			[ cartId ]
+		);
 
+		return cart_products;
+	} catch (error) {
+		throw error;
+	}
+};
 
 const addProductsToCart = async ({ userId, productId, price, quantity }) => {
 	try {
@@ -20,7 +35,7 @@ const addProductsToCart = async ({ userId, productId, price, quantity }) => {
 };
 
 
-const updateProductInCart = async (fields = { price, quantity }) => {
+const updateProductInCart = async (productId, fields = { price, quantity }) => {
 	const setString = Object.keys(fields).map((key, index) => `"${key}"=$${index + 1}`).join(', ');
 
 	try {
@@ -29,7 +44,7 @@ const updateProductInCart = async (fields = { price, quantity }) => {
 				`    
               UPDATE cartProducts
               SET ${setString}
-              WHERE id= ${fields.id} 
+              WHERE id= ${productId} 
               RETURNING *;
             `,
 				Object.values(fields)
@@ -69,4 +84,4 @@ const deleteProductInCart = async (id) => {
 
 
 
-module.exports = {addProductsToCart, updateProductInCart, deleteProductInCart}
+module.exports = {addProductsToCart, updateProductInCart, deleteProductInCart, getCartById}
