@@ -1,22 +1,22 @@
 // grab our db client connection to use with our adapters
-const client = require("./client");
+const client = require("../client");
 const bcrypt = require("bcrypt")
 
-async function createUser({ username, password }) {
+async function createUser({ username, address, email, city, state, zip, password }) {
   const SALT_COUNT = 10;
   const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
+  console.log("user",username, address, email, city, state, zip, password)
   try {
     const {
       rows: [user]
     } = await client.query(
       `
-        INSERT * FROM users 
-        ON CONFLICT (username) DO NOTHING 
-        RETURNING *;
+        INSERT INTO users (username, address, email, city, state, zip, password)
+        VALUES($1, $2, $3, $4, $5, $6, $7);
       `,
-      [username, hashedPassword]
+      [username, address, email, city, state, zip, hashedPassword]
     );
-    delete user.password;
+    delete password;
     return user;
   } catch (error) {
     throw error;

@@ -4,6 +4,8 @@ const {
   // for example, User
 } = require('./');
 
+const { createUser,getUserById, GetUser } = require('./models')
+
 
 
 
@@ -13,10 +15,10 @@ async function dropTables() {
   // drop all tables, in the correct order
   try {
     await client.query(`
-    
+      DROP TABLE IF EXISTS cart_product;
       DROP TABLE IF EXISTS cart;
       DROP TABLE IF EXISTS product;
-      DROP TABLE IF EXISTS user;
+      DROP TABLE IF EXISTS users;
     `);
   } catch (error) {
     console.error("Error dropping tables!");
@@ -34,6 +36,7 @@ async function createTables() {
     CREATE TABLE users (
       id SERIAL PRIMARY KEY,
       username varchar(255) NOT NULL,
+      address varchar(255) NOT NULL,
       email varchar(255) UNIQUE NOT NULL,
       city varchar(255) NOT NULL,
       state varchar(255) NOT NULL,
@@ -43,15 +46,15 @@ async function createTables() {
     CREATE TABLE product (
       id SERIAL PRIMARY KEY,
       name varchar(255)  NOT NULL,
-      description varchar(255) NOT NULL
+      description varchar(255) NOT NULL,
       pictures varchar(255)  NOT NULL,
-      price double  NOT NULL,
+      price INTEGER NOT NULL
     ); 
     CREATE TABLE cart (
       id SERIAL PRIMARY KEY,
-      user varchar(255) REFERENCES users(id) ,
-      price double REFERENCES product(price) NOT NULL,
-      "isPayFor" BOOLEAN DEFAULT false,
+      "userId" INTEGER REFERENCES users(id) ,
+      price INTEGER NOT NULL,
+      "isPayFor" BOOLEAN DEFAULT false
     
     );
     CREATE TABLE cart_product (
@@ -59,7 +62,7 @@ async function createTables() {
       "productId" INTEGER REFERENCES product(id),
       "cartId" INTEGER REFERENCES cart(id),
       quantity INTEGER,
-      price double NOT NULL,
+      price INTEGER NOT NULL
     ); 
     `);
   } catch (error) {
@@ -72,46 +75,44 @@ async function createTables() {
 }
 
 
-async function populateInitialData() {
+async function populateInitialUsers() {
   try {
     const userData = [
       { username: "tony", 
-       address1: "8525 PandaBear Lane", 
+       address: "8525 PandaBear Lane", 
        email: "imacuddlePanada@gmail.com", 
        city: "Pandaville", 
        state: "california",
-        zip: "75214",
+        zip: 75214,
          password: "blackandwhitealltheway"
     },
 
     { username: "Sandra", 
-     address1: "3311 Bamboo Street", 
+     address: "3311 Bamboo Street", 
      email: "IeatPanadasBamboo@gmail.com", 
      city: "bejing", 
      state: "china",
-      zip: "84217",
+      zip: 84217,
        password: "bamboofarts"
 },
 
 {username: "Rihanna", 
- address1: "4444 Sunset Blvd", 
+ address: "4444 Sunset Blvd", 
  email: "mylittepony@gmail.com", 
  city: "Sqwiggletown", 
  state: "Oregon",
-  zip: "99998",
+  zip: 99998,
    password: "deepfriedpizzarolls"
 }
  ]
 
- const users = await Promise.all(userData.map(populateInitialData));
-    // create useful starting data by leveraging your
-    // Model.method() adapters to seed your db, for example:
-  
-  // const user1 = await User.createUser({ ...user info goes here... })
-  console.log("populateInitalData");
-    console.log(users);
-    console.log("Finished creating populateInitalData")
+ const users = await Promise.all(userData.map(createUser))
+
+  console.log("Creating Users");
+
+    console.log("Finished creating populateInitalUsers")
   } catch (error) {
+    console.error("Error Creating Users");
     throw error;
   }
 }
@@ -123,29 +124,29 @@ async function populateProductData() {
       { name: "Rocket",
         description: "TrashPanda",
         picture: "png",
-        price: "$55.00"
+        price: 55
     },
 
     {name: "Gamora",
       description: "GreenbuttoxPanda",
       pictures: "png" ,
-      price: "$150.00"
+      price: 150
     },
 
 {name: "Groot" ,
   description: "Cursed Wooden Pnada",
   pictures: "png" ,
-  price: "place a bid" 
+  price: 1000000 
 }
  ]
 
- const products = await Promise.all(productData.map(populateProductData));
+//  const products = await Promise.all(productData.map(populateProductData));
     // create useful starting data by leveraging your
     // Model.method() adapters to seed your db, for example:
   
   // const user1 = await User.createUser({ ...user info goes here... })
   console.log("populateProductData");
-    console.log(products);
+    // console.log(products);
     console.log("Finished creating populateProductData")
   } catch (error) {
     throw error;
@@ -158,19 +159,11 @@ async function populateProductData() {
 async function buildTables() {
   try {
     client.connect();
-    console.log("client has been contected")
+    console.log("client has been connected")
     await dropTables();
     await createTables();
-    await populateInitialData();
-    await populateProductData();
+    // await populateProductData();
    
-
-
-
-
-    // drop tables in correct order
-
-    // build tables in correct order
   } catch (error) {
     throw error;
   }
@@ -178,7 +171,7 @@ async function buildTables() {
 
 
 buildTables()
-  .then(populateInitialData)
+  .then(populateInitialUsers)
   .catch(console.error)
   .finally(() => client.end());
 
@@ -186,6 +179,4 @@ buildTables()
     buildTables,
     createTables,
     dropTables,
-
-
   }
