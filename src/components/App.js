@@ -7,6 +7,7 @@ import { getAPIHealth } from "../axios-services";
 import "../style/App.css";
 import Footer from "./Footer";
 import Header from "./Header";
+import ProductScreen from "./ProductScreen";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -79,6 +80,7 @@ const App = () => {
         <Route path="/user"> </Route>
       </BrowserRouter>
       <p>API Status: {APIHealth}</p>
+      <ProductScreen/>
       <Footer />
     </div>
   );
