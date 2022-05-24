@@ -35,7 +35,7 @@ const addProductsToCart = async ({ userId, productId, price, quantity }) => {
 };
 
 
-const updateProductInCart = async (productId, fields = { price, quantity }) => {
+const updateProductInCart = async (fields = { price, quantity }) => {
 	const setString = Object.keys(fields).map((key, index) => `"${key}"=$${index + 1}`).join(', ');
 
 	try {
@@ -44,7 +44,7 @@ const updateProductInCart = async (productId, fields = { price, quantity }) => {
 				`    
               UPDATE cartProducts
               SET ${setString}
-              WHERE id= ${productId} 
+              WHERE id= ${fields.id} 
               RETURNING *;
             `,
 				Object.values(fields)

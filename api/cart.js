@@ -11,9 +11,13 @@ cartRouter.use((req, res, next) => {
     next();
 });
 
+//the below path was tested and returns the cart.
+
 cartRouter.post('/', async (req, res, next) => {
+    
     try {
       const newCart = await addProductsToCart(req.body);
+      console.log(req.body, newCart);
       res.send(newCart);
     } catch (error) {
       next(error);
@@ -22,8 +26,10 @@ cartRouter.post('/', async (req, res, next) => {
   
 
   cartRouter.get('/:cartId', async (req,res,next) => {
+    console.log("I'm inside the cartId route")
       try {
         const { cartId } = req.params;
+        console.log(cartId)
         const cart = await getCartById(cartId);
         res.send(cart);
           
@@ -32,18 +38,50 @@ cartRouter.post('/', async (req, res, next) => {
       }
   })
 
-  cartRouter.patch('/:cartId/productId', async (req, res, next) => {
-    try {
-      const newCart = await updateProductInCart(productId);
-      res.send(newCart);
-    } catch (error) {
-      next(error);
-    }
+  cartRouter.patch('/:cartId', async (req, res, next) => {
+   
+    const { cartId } = req.params;
+	const { price, quantity } = req.body;
+
+	const updateFields = {
+		id: cartId
+	};
+
+	if (price) {
+		updateFields.price = price;
+	}
+	if (quantity) {
+		updateFields.quantity = quantity;
+	}
+
+	try {
+		const originalCart = await getCartById(cartId);
+
+		if (originalCart) {
+			const updateCart = await updateProductInCart(updateFields);
+
+			res.send(updateCart);
+		} else {
+			next({
+				name: 'noCart',
+				message: 'There is no cart to update!'
+			});
+		}
+	} catch ({ name, message }) {
+		next({
+			name,
+			message
+		});
+	}
+
+
+
   })
 
   cartRouter.delete('/:cartId', async (req, res, next) => {
+    const { cartId } = req.params;
     try {
-      const newCart = await deleteProductInCart(productId);
+      const newCart = await deleteProductInCart(cartId);
       res.send(newCart);
     } catch (error) {
       next(error);

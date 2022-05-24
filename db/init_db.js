@@ -105,7 +105,7 @@ async function buildTables() {
         "userId" INTEGER REFERENCES users(id) ON DELETE CASCADE,
         "productId" INTEGER REFERENCES products(id),
         price INTEGER,
-        quantity INTEGER, 
+        quantity INTEGER
         UNIQUE("userId","productId")
       );
 
