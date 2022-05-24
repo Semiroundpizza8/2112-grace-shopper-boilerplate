@@ -106,11 +106,19 @@ async function populateInitialUsers() {
 }
  ]
 
+
  const users = await Promise.all(userData.map(createUser))
 
   console.log("Creating Users");
 
     console.log("Finished creating populateInitalUsers")
+
+//  const users = await Promise.all(userData.map(populateInitialData));
+    // create useful starting data by leveraging your
+    // Model.method() adapters to seed your db, for example:
+  
+  // const user1 = await User.createUser({ ...user info goes here... })
+
   } catch (error) {
     console.error("Error Creating Users");
     throw error;
@@ -162,7 +170,6 @@ async function buildTables() {
     console.log("client has been connected")
     await dropTables();
     await createTables();
-    // await populateProductData();
    
   } catch (error) {
     throw error;
