@@ -1,6 +1,5 @@
 const express = require("express");
 const apiRouter = express.Router();
-
 const jwt = require("jsonwebtoken");
 const { getUserById } = require("../db");
 const { JWT_SECRET } = process.env;
@@ -12,6 +11,7 @@ apiRouter.get('/', (req, res, next) => {
 });
 
 apiRouter.get('/health', (req, res, next) => {
+  console.log("IN HEALTH")
   res.send({
     healthy: true,
   });
@@ -46,7 +46,8 @@ apiRouter.use(async (req, res, next) => {
 });
 
 const usersRouter = require("./users");
-apiRouter.use("/users", usersRouter);
+usersRouter.get("/users", usersRouter);
+
 
 // const cart_productRouter = require("./cart_product");
 // apiRouter.use("/cart_product", cart_productRouter);
