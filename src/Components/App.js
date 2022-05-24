@@ -59,12 +59,17 @@ const App = () => {
                      <Route path="/register"> </Route>
  
                      <Route path="/user"> </Route> 
+
+                     
  
              </BrowserRouter>
              <p>API Status: {APIHealth}</p>
              <ProductScreen />
+             <h1>Footer Section</h1>
     </div>
   );
 }
 
 export default App;
+
+//react router has Link, (same as useHistory hook)

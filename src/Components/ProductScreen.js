@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getProductById } from '../axios-services/productScreen';
+import { getAllProducts, getProductById } from '../axios-services/productScreen';
 
 
 const ProductScreen = (props) => {
@@ -7,8 +7,9 @@ const ProductScreen = (props) => {
     const [singleProduct, setSingleProduct] = useState("");
     
     
-    useEffect(async (id) => {
-        const oneProduct = await getProductById(id);
+    useEffect(async () => {
+        const oneProduct = await getProductById(1);
+        console.log("single",oneProduct);
         setSingleProduct(oneProduct);
     }, []);
 
