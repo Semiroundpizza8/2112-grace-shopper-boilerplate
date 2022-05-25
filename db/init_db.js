@@ -2,9 +2,39 @@ const {
   client,
   // declare your model imports here
   // for example, User
-} = require('./');
+ }= require('./');
 
-const { createUser,getUserById, GetUser } = require('./models')
+const {
+  createUser,
+  getUser,
+  getUserById,
+} = require("./models/users");
+
+
+const {
+  // getCart_ProductById,
+  // addProductToCart,
+  // updateCart_Product,
+  // destroyCart_Product,
+  createCartProduct,
+} = require("./models/cart_product");
+
+
+const {
+  // getCartById,
+  createCart,
+  // updateCart,
+} = require("./models/cart");
+
+
+
+
+const {
+  createProducts,
+  getProductById,
+  getAllProducts,
+} = require("./models/product");
+
 
 
 
@@ -45,9 +75,9 @@ async function createTables() {
     );  
     CREATE TABLE product (
       id SERIAL PRIMARY KEY,
-      name varchar(255)  NOT NULL,
+      name varchar(255) NOT NULL,
       description varchar(255) NOT NULL,
-      pictures varchar(255)  NOT NULL,
+      pictures varchar(255) NOT NULL,
       price INTEGER NOT NULL
     ); 
     CREATE TABLE cart (
@@ -131,7 +161,7 @@ async function populateProductData() {
     const productData = [
       { name: "Rocket",
         description: "TrashPanda",
-        picture: "png",
+        pictures: "png",
         price: 55
     },
 
@@ -147,21 +177,79 @@ async function populateProductData() {
   price: 1000000 
 }
  ]
-
-//  const products = await Promise.all(productData.map(populateProductData));
+ 
     // create useful starting data by leveraging your
     // Model.method() adapters to seed your db, for example:
   
   // const user1 = await User.createUser({ ...user info goes here... })
   console.log("populateProductData");
     // console.log(products);
+  const products = await Promise.all(productData.map(createProducts)) 
     console.log("Finished creating populateProductData")
   } catch (error) {
+    console.error("Error Creating Products")
+    throw error;
+  }
+}
+async function populateCartData () {
+  try{
+    const cartData = [
+      { userId : 1,
+        price: 55,        
+        isPayFor: true
+    },
+    { userId : 2,
+      price: 109,        
+      isPayFor: false
+  },
+  { userId : 3,
+    price: 98,        
+    isPayFor: true
+  }
+ ]
+
+    console.log("populatecartData");
+    // console.log(products);
+  const carts = await Promise.all(cartData.map(createCart)) 
+    console.log("Finished creating CartData")
+  }catch(error){
+    console.error("error Building Cart Data")
     throw error;
   }
 }
 
-
+async function populateCartProductData(){
+  try{
+    const cartProductData = [
+      { productId : 1,
+        cartId: 1,        
+        quantity: 10,
+        price: 5500
+    },
+    { productId : 1,
+      cartId: 2,        
+      quantity: 32,
+      price: 1760
+    },
+    { productId : 3,
+      cartId: 2,        
+      quantity: 1,
+      price: 1000000
+    },
+    { productId : 2,
+      cartId: 3,        
+      quantity: 130,
+      price: 19500
+    }
+ ]
+ console.log("Creating cart_product table!")
+const cartProducts = await Promise.all(cartProductData.map(createCartProduct)) 
+  console.log("finished creating cart_Product table!")
+  }catch(error){
+    console.error("error Building Cart_Product")
+    throw error;
+  }
+}
 
 
 async function buildTables() {
@@ -179,6 +267,9 @@ async function buildTables() {
 
 buildTables()
   .then(populateInitialUsers)
+  .then(populateProductData)
+  .then(populateCartData)
+  .then(populateCartProductData)
   .catch(console.error)
   .finally(() => client.end());
 
