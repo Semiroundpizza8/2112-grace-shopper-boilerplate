@@ -3,8 +3,8 @@ const usersRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const {
   createUser,
-  getUserByUsername,
   getUser,
+  getUserById,
 } = require("../db");
 
 usersRouter.use((req, res, next) => {
