@@ -36,7 +36,7 @@ async function dropTables() {
     DROP TABLE IF EXISTS orders CASCADE;
     DROP TABLE IF EXISTS products CASCADE;
     DROP TABLE IF EXISTS users CASCADE;
-    DROP TABLE IF EXISTS creditcard CASCADE;
+    DROP TABLE IF EXISTS creditCard CASCADE;
     DROP TYPE status;
 		
         
