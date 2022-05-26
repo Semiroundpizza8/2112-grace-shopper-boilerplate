@@ -13,6 +13,7 @@ import Products from "./Products";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
+  
 
   // const[user, setUser] = useState();
   // const [username, setUsername] = useState('');
@@ -51,7 +52,7 @@ const App = () => {
             <Route exact path={"/"}>
               <Home />
             </Route>
-            <Route exact path={"/ProductScreen"}>
+            <Route path="/products/:id">
               <ProductScreen />
             </Route>
             <Route exact path={"/Shop"}>
