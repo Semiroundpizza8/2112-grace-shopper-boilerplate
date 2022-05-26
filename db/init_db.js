@@ -20,6 +20,7 @@ const {
 const addProductsToOrder = require('./models/order_products');
 const addProductsToCart = require('./models/cart_product');
 
+//CREATE TYPE orderStatus AS ENUM ('purchased','inProgress');
 
 async function dropTables() {
 	console.log('Dropping All Tables...');
@@ -37,7 +38,7 @@ async function dropTables() {
     DROP TABLE IF EXISTS products CASCADE;
     DROP TABLE IF EXISTS users CASCADE;
     DROP TABLE IF EXISTS creditcard CASCADE;
-		
+   
         
       `);
 
@@ -55,7 +56,7 @@ async function buildTables() {
 
     // build tables in correct order
     await client.query(`
-    CREATE TABLE users(
+    CREATE TABLE users (
         id SERIAL PRIMARY KEY,
         username VARCHAR(255) UNIQUE NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
@@ -76,9 +77,9 @@ async function buildTables() {
         reviewstars INTEGER
       );
 
-
-      CREATE TABLE orders (
-        
+     
+      
+      CREATE TABLE orders ( 
         id SERIAL PRIMARY KEY,
         "userId" INTEGER REFERENCES users(id) ON DELETE CASCADE, 
         email VARCHAR(255)  NOT NULL,
@@ -87,26 +88,15 @@ async function buildTables() {
         zipcode VARCHAR(255) NOT NULL,
         country VARCHAR(255) NOT NULL,
         phone VARCHAR(255) NOT NULL,
-        orderStatus ENUM("purchased", "inProgress")
-
-      );
-
-      CREATE TABLE orderProducts (
-        id SERIAL PRIMARY KEY, 
-        "orderId" INTEGER REFERENCES orders(id) ON DELETE CASCADE,
-        "productId" INTEGER REFERENCES products(id),
-        price INTEGER,
-        quantity INTEGER, 
-        UNIQUE("orderId","productId")
+        current_orderStatus orderStatus
       );
 
       CREATE TABLE cartProducts (
-        id SERIAL PRIMARY KEY, 
-        "userId" INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        id SERIAL PRIMARY KEY,
         "productId" INTEGER REFERENCES products(id),
         price INTEGER,
-        quantity INTEGER
-        UNIQUE("userId","productId")
+        quantity INTEGER,
+        UNIQUE("productId")
       );
 
       CREATE TABLE creditCard (

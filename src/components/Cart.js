@@ -16,7 +16,7 @@
 //     const [editOpen, setEditOpen] = useState(false);
 //     const [addOpen, setAddOpen] = useState(false);
 
-
+//add all carts as objects to an array
 
 // useEffect(() => { (async () => {
 //   const getMyCart = await getMyCart();

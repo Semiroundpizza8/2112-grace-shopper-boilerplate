@@ -14,7 +14,16 @@ export const addToCart = async ({productId, price, quantity}) => {
                                 )
                     })
     const addedToCart = await response.json()
-    localStorage.setItem('cartId', json.id);
+    let cartArray = [];
+    let retrievedArray = localStorage.getItem('cartArray')
+    let cartId = json.id;
+    if(!retrievedArray){
+   cartArray.push(cartId); 
+    localStorage.setItem('cartArray', JSON.stringify(cartArray));
+} else { 
+    cartArray = retrievedArray;
+    cartArray.push(cartId);
+}
      return addedToCart;
             } catch (error) {
                  console.log("error in adding product to cart!")
@@ -24,10 +33,12 @@ export const addToCart = async ({productId, price, quantity}) => {
 
                     
      export const getMyCart = async () => {
-        const cartId = localStorage.getItem('cartId');
+        const cartArray = localStorage.getItem('cartArray');
         let response;
+        let fullArray = [];
+        for(i=0; i<cartArray.length; i++) {
         try { 
-            response = await fetch(`${baseUrl}/cart/${cartId}`, {
+            response = await fetch(`${baseUrl}/cart/${cartArray[i]}`, {
             method: "GET",
             headers: {
                     'Content-Type': 'application/json',
@@ -35,13 +46,14 @@ export const addToCart = async ({productId, price, quantity}) => {
                                 
                             })
         const json = await response.json()
-        return json;
+        fullArray.push(json);
+        return fullArray;
                         } catch (error) {
                             console.log("error in getting my cart!")
                             throw [error];
                         }
                         
-                    };
+                    };}
 
 
 
