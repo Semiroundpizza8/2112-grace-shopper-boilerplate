@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../axios-services/productScreen";
-import Product from "./Product";
+ import Product from "./Product";
 
-const AllProducts = (products) => {
+const AllProducts = () => {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
     (async () => {
       const products = await getAllProducts();
       console.log("Testing Grabing All Products", products);
-      setProductList(products.products);
+      setProductList(products);
     })();
   }, []);
 
