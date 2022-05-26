@@ -49,14 +49,14 @@ const usersRouter = require("./users");
 apiRouter.use("/users", usersRouter);
 
 
-// const cart_productRouter = require("./cart_product");
-// apiRouter.use("/cart_product", cart_productRouter);
+//  const cart_productRouter = require("./cart_product");
+//  apiRouter.use("/cart_product", cart_productRouter);
 
 // const cartRouter = require("./cart");
 // apiRouter.use("/cart", cartRouter);
 
-// const productRouter = require("./product");
-// apiRouter.use("/product", productRouter);
+ const productRouter = require("./product");
+ apiRouter.use("/product", productRouter);
 
 
 
