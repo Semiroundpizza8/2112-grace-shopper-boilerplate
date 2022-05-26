@@ -2,7 +2,7 @@ const productsToAdd = [
   {
     name: 'interdum.',
     description: 'amet nulla. Donec non justo. Proin non massa non ante',
-    image: "https://www.google.com/aclk?sa=l&ai=DChcSEwiRzKbL6vv3AhX0bG8EHfesA3wYABADGgJqZg&sig=AOD64_2bQXBdyfsNfYqYPl2yng1j6NDzEQ&adurl&ctype=5&ved=2ahUKEwjZ85fL6vv3AhUVg2oFHdMGDvEQvhd6BAgBEG0",
+    image: "../assets/Living Room Set.jpg",
     stock: 11,
     price: 494,
     reviewStars: 3,
@@ -11,7 +11,7 @@ const productsToAdd = [
   {
     name: 'mi.',
     description: 'sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo.',
-    image: 'src/Assets/Coconut Furniture Logo.png',
+    image: '../assets/Living Room Set.jpg',
     stock: 5,
     price: 383,
     reviewStars: 2,
@@ -146,7 +146,7 @@ const productsToAdd = [
   {
     name: 'at',
     description: 'Aenean gravida nunc sed pede. Cum sociis natoque penatibus et',
-    image: '/assets/End Table.jpg',
+    image: '../assets/Stylish End Table Sets.jpg',
     stock: 25,
     price: 147,
     reviewStars: 2,
@@ -155,7 +155,7 @@ const productsToAdd = [
   {
     name: 'ligula.',
     description: 'magnis dis parturient montes, nascetur ridiculus mus. Proin vel arcu',
-    image: '/assets/End Table.jpg',
+    image: '../assets/Stylish End Table Sets.jpg',
     stock: 26,
     price: 323,
     reviewStars: 1,
@@ -164,7 +164,7 @@ const productsToAdd = [
   {
     name: 'tincidunt',
     description: 'ornare tortor at risus. Nunc ac sem ut dolor dapibus',
-    image: '/assets/End Table.jpg',
+    image: '../assets/Stylish End Table Sets.jpg',
     stock: 27,
     price: 7,
     reviewStars: 3,
@@ -173,7 +173,7 @@ const productsToAdd = [
   {
     name: 'dui.',
     description: 'pede et risus. Quisque libero lacus, varius et, euismod et,',
-    image: '/assets/End Table.jpg',
+    image: '../assets/Stylish End Table Sets.jpg',
     stock: 14,
     price: 196,
     reviewStars: 0,
@@ -182,7 +182,7 @@ const productsToAdd = [
   {
     name: 'turpis.',
     description: 'nec, leo. Morbi neque tellus, imperdiet non, vestibulum nec, euismod',
-    image: '/assets/End Table.jpg',
+    image: '../assets/Stylish End Table Sets.jpg',
     stock: 15,
     price: 437,
     reviewStars: 2,
@@ -191,7 +191,7 @@ const productsToAdd = [
   {
     name: 'rutrum',
     description: 'massa non ante bibendum ullamcorper. Duis cursus, diam at pretium',
-    image: '/assets/End Table.jpg',
+    image: '../assets/Stylish End Table Sets.jpg',
     stock: 24,
     price: 401,
     reviewStars: 4,
@@ -200,7 +200,7 @@ const productsToAdd = [
   {
     name: 'nec',
     description: 'dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc',
-    image: '/assets/End Table.jpg',
+    image: '../assets/Stylish End Table Sets.jpg',
     stock: 14,
     price: 110,
     reviewStars: 1,
@@ -209,7 +209,7 @@ const productsToAdd = [
   {
     name: 'convallis,',
     description: 'sit amet risus. Donec egestas. Aliquam nec enim. Nunc ut',
-    image: '/assets/End Table.jpg',
+    image: '../assets/Stylish End Table Sets.jpg',
     stock: 4,
     price: 118,
     reviewStars: 2,
@@ -218,7 +218,7 @@ const productsToAdd = [
   {
     name: 'vel,',
     description: 'eget varius ultrices, mauris ipsum porta elit, a feugiat tellus',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 15,
     price: 123,
     reviewStars: 2,
@@ -227,7 +227,7 @@ const productsToAdd = [
   {
     name: 'varius',
     description: 'dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl.',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 1,
     price: 290,
     reviewStars: 3,
@@ -236,7 +236,7 @@ const productsToAdd = [
   {
     name: 'erat.',
     description: 'luctus aliquet odio. Etiam ligula tortor, dictum eu, placerat eget,',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 22,
     price: 73,
     reviewStars: 0,
@@ -245,7 +245,7 @@ const productsToAdd = [
   {
     name: 'sodales',
     description: 'Nunc sed orci lobortis augue scelerisque mollis. Phasellus libero mauris,',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 11,
     price: 48,
     reviewStars: 3,
@@ -254,7 +254,7 @@ const productsToAdd = [
   {
     name: 'interdum',
     description: 'lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus. Aliquam',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 29,
     price: 354,
     reviewStars: 4,
@@ -263,7 +263,7 @@ const productsToAdd = [
   {
     name: 'Integer',
     description: 'egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 6,
     price: 218,
     reviewStars: 0,
@@ -272,7 +272,7 @@ const productsToAdd = [
   {
     name: 'Fusce',
     description: 'adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 28,
     price: 40,
     reviewStars: 4,
@@ -281,7 +281,7 @@ const productsToAdd = [
   {
     name: 'metus',
     description: 'ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 24,
     price: 345,
     reviewStars: 2,
@@ -290,7 +290,7 @@ const productsToAdd = [
   {
     name: 'Mauris',
     description: 'dui, in sodales elit erat vitae risus. Duis a mi',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 23,
     price: 378,
     reviewStars: 4,
@@ -299,7 +299,7 @@ const productsToAdd = [
   {
     name: 'at',
     description: 'placerat. Cras dictum ultricies ligula. Nullam enim. Sed nulla ante,',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 11,
     price: 448,
     reviewStars: 0,
@@ -308,7 +308,7 @@ const productsToAdd = [
   {
     name: 'convallis,',
     description: 'cursus. Integer mollis. Integer tincidunt aliquam arcu. Aliquam ultrices iaculis',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 20,
     price: 418,
     reviewStars: 1,
@@ -317,7 +317,7 @@ const productsToAdd = [
   {
     name: 'massa.',
     description: 'purus, in molestie tortor nibh sit amet orci. Ut sagittis',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 25,
     price: 293,
     reviewStars: 4,
@@ -326,7 +326,7 @@ const productsToAdd = [
   {
     name: 'tempor',
     description: 'consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque, tellus',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 6,
     price: 78,
     reviewStars: 5,
@@ -335,7 +335,7 @@ const productsToAdd = [
   {
     name: 'Aliquam',
     description: 'a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 4,
     price: 387,
     reviewStars: 4,
@@ -344,7 +344,7 @@ const productsToAdd = [
   {
     name: 'mauris',
     description: 'scelerisque scelerisque dui. Suspendisse ac metus vitae velit egestas lacinia.',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 9,
     price: 39,
     reviewStars: 4,
@@ -353,7 +353,7 @@ const productsToAdd = [
   {
     name: 'egestas',
     description: 'montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 10,
     price: 70,
     reviewStars: 1,
@@ -362,7 +362,7 @@ const productsToAdd = [
   {
     name: 'sodales',
     description: 'id ante dictum cursus. Nunc mauris elit, dictum eu, eleifend',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 14,
     price: 139,
     reviewStars: 3,
@@ -371,7 +371,7 @@ const productsToAdd = [
   {
     name: 'placerat',
     description: 'elit. Curabitur sed tortor. Integer aliquam adipiscing lacus. Ut nec',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 12,
     price: 12,
     reviewStars: 1,
@@ -380,7 +380,7 @@ const productsToAdd = [
   {
     name: 'luctus',
     description: 'fermentum convallis ligula. Donec luctus aliquet odio. Etiam ligula tortor,',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 6,
     price: 109,
     reviewStars: 3,
@@ -389,7 +389,7 @@ const productsToAdd = [
   {
     name: 'tincidunt',
     description: 'Morbi quis urna. Nunc quis arcu vel quam dignissim pharetra.',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 14,
     price: 443,
     reviewStars: 4,
@@ -398,7 +398,7 @@ const productsToAdd = [
   {
     name: 'Phasellus',
     description: 'sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 5,
     price: 76,
     reviewStars: 2,
@@ -407,7 +407,7 @@ const productsToAdd = [
   {
     name: 'tincidunt.',
     description: 'Nulla facilisi. Sed neque. Sed eget lacus. Mauris non dui',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 1,
     price: 219,
     reviewStars: 3,
@@ -416,7 +416,7 @@ const productsToAdd = [
   {
     name: 'pharetra.',
     description: 'eu, odio. Phasellus at augue id ante dictum cursus. Nunc',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 15,
     price: 142,
     reviewStars: 1,
@@ -425,7 +425,7 @@ const productsToAdd = [
   {
     name: 'Nullam',
     description: 'nisi. Mauris nulla. Integer urna. Vivamus molestie dapibus ligula. Aliquam',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 25,
     price: 409,
     reviewStars: 1,
@@ -434,7 +434,7 @@ const productsToAdd = [
   {
     name: 'mauris',
     description: 'sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis',
-    image:'/assets/Sofa.jpg',
+    image:'../assets/Sofa.jpg',
     stock: 26,
     price: 100,
     reviewStars: 4,
@@ -443,7 +443,7 @@ const productsToAdd = [
   {
     name: 'erat.',
     description: 'vestibulum nec, euismod in, dolor. Fusce feugiat. Lorem ipsum dolor',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 3,
     price: 472,
     reviewStars: 1,
@@ -452,7 +452,7 @@ const productsToAdd = [
   {
     name: 'in,',
     description: 'lorem, auctor quis, tristique ac, eleifend vitae, erat. Vivamus nisi.',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 14,
     price: 419,
     reviewStars: 1,
@@ -461,7 +461,7 @@ const productsToAdd = [
   {
     name: 'eu',
     description: 'cursus purus. Nullam scelerisque neque sed sem egestas blandit. Nam',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 1,
     price: 118,
     reviewStars: 4,
@@ -470,7 +470,7 @@ const productsToAdd = [
   {
     name: 'libero',
     description: 'enim non nisi. Aenean eget metus. In nec orci. Donec',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 25,
     price: 420,
     reviewStars: 2,
@@ -479,7 +479,7 @@ const productsToAdd = [
   {
     name: 'ac',
     description: 'sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 0,
     price: 83,
     reviewStars: 3,
@@ -488,7 +488,7 @@ const productsToAdd = [
   {
     name: 'hendrerit',
     description: 'aptent taciti sociosqu ad litora torquent per conubia nostra, per',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 15,
     price: 460,
     reviewStars: 3,
@@ -497,7 +497,7 @@ const productsToAdd = [
   {
     name: 'Vivamus',
     description: 'purus, in molestie tortor nibh sit amet orci. Ut sagittis',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 7,
     price: 47,
     reviewStars: 4,
@@ -506,7 +506,7 @@ const productsToAdd = [
   {
     name: 'sagittis',
     description: 'Nam interdum enim non nisi. Aenean eget metus. In nec',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 1,
     price: 293,
     reviewStars: 2,
@@ -515,7 +515,7 @@ const productsToAdd = [
   {
     name: 'in,',
     description: 'a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 18,
     price: 278,
     reviewStars: 1,
@@ -524,7 +524,7 @@ const productsToAdd = [
   {
     name: 'nulla',
     description: 'sit amet, consectetuer adipiscing elit. Aliquam auctor, velit eget laoreet',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 26,
     price: 350,
     reviewStars: 5,
@@ -533,7 +533,7 @@ const productsToAdd = [
   {
     name: 'scelerisque',
     description: 'at lacus. Quisque purus sapien, gravida non, sollicitudin a, malesuada',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 27,
     price: 241,
     reviewStars: 1,
@@ -542,7 +542,7 @@ const productsToAdd = [
   {
     name: 'amet',
     description: 'ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate,',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 21,
     price: 178,
     reviewStars: 2,
@@ -551,7 +551,7 @@ const productsToAdd = [
   {
     name: 'quam',
     description: 'nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 2,
     price: 318,
     reviewStars: 2,
@@ -560,7 +560,7 @@ const productsToAdd = [
   {
     name: 'ornare,',
     description: 'Fusce fermentum fermentum arcu. Vestibulum ante ipsum primis in faucibus',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 15,
     price: 368,
     reviewStars: 5,
@@ -569,7 +569,7 @@ const productsToAdd = [
   {
     name: 'eu,',
     description: 'justo eu arcu. Morbi sit amet massa. Quisque porttitor eros',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 10,
     price: 298,
     reviewStars: 4,
@@ -578,7 +578,7 @@ const productsToAdd = [
   {
     name: 'amet',
     description: 'ultrices sit amet, risus. Donec nibh enim, gravida sit amet,',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 20,
     price: 355,
     reviewStars: 2,
@@ -587,7 +587,7 @@ const productsToAdd = [
   {
     name: 'dictum',
     description: 'dui. Cras pellentesque. Sed dictum. Proin eget odio. Aliquam vulputate',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 29,
     price: 376,
     reviewStars: 3,
@@ -596,7 +596,7 @@ const productsToAdd = [
   {
     name: 'eros',
     description: 'Donec est mauris, rhoncus id, mollis nec, cursus a, enim.',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 1,
     price: 241,
     reviewStars: 5,
@@ -605,7 +605,7 @@ const productsToAdd = [
   {
     name: 'nonummy',
     description: 'dui. Fusce diam nunc, ullamcorper eu, euismod ac, fermentum vel,',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 20,
     price: 158,
     reviewStars: 5,
@@ -614,7 +614,7 @@ const productsToAdd = [
   {
     name: 'Donec',
     description: 'lorem vitae odio sagittis semper. Nam tempor diam dictum sapien.',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 14,
     price: 362,
     reviewStars: 4,
@@ -623,7 +623,7 @@ const productsToAdd = [
   {
     name: 'cursus,',
     description: 'nunc ac mattis ornare, lectus ante dictum mi, ac mattis',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 22,
     price: 368,
     reviewStars: 2,
@@ -632,7 +632,7 @@ const productsToAdd = [
   {
     name: 'ornare.',
     description: 'Aliquam adipiscing lobortis risus. In mi pede, nonummy ut, molestie',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 21,
     price: 340,
     reviewStars: 1,
@@ -641,7 +641,7 @@ const productsToAdd = [
   {
     name: 'Donec',
     description: 'malesuada vel, venenatis vel, faucibus id, libero. Donec consectetuer mauris',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 25,
     price: 241,
     reviewStars: 1,
@@ -650,7 +650,7 @@ const productsToAdd = [
   {
     name: 'elementum',
     description: 'pharetra nibh. Aliquam ornare, libero at auctor ullamcorper, nisl arcu',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 15,
     price: 260,
     reviewStars: 2,
@@ -659,7 +659,7 @@ const productsToAdd = [
   {
     name: 'nunc',
     description: 'et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat,',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 8,
     price: 285,
     reviewStars: 2,
@@ -668,7 +668,7 @@ const productsToAdd = [
   {
     name: 'lobortis',
     description: 'Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 18,
     price: 329,
     reviewStars: 3,
@@ -677,7 +677,7 @@ const productsToAdd = [
   {
     name: 'Quisque',
     description: 'arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing.',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 18,
     price: 221,
     reviewStars: 1,
@@ -686,7 +686,7 @@ const productsToAdd = [
   {
     name: 'vitae',
     description: 'adipiscing, enim mi tempor lorem, eget mollis lectus pede et',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 14,
     price: 261,
     reviewStars: 5,
@@ -695,7 +695,7 @@ const productsToAdd = [
   {
     name: 'nec',
     description: 'velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem ac risus.',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 4,
     price: 492,
     reviewStars: 1,
@@ -704,7 +704,7 @@ const productsToAdd = [
   {
     name: 'felis.',
     description: 'eleifend egestas. Sed pharetra, felis eget varius ultrices, mauris ipsum',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 6,
     price: 405,
     reviewStars: 1,
@@ -713,7 +713,7 @@ const productsToAdd = [
   {
     name: 'magnis',
     description: 'Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate,',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 10,
     price: 43,
     reviewStars: 4,
@@ -722,7 +722,7 @@ const productsToAdd = [
   {
     name: 'mauris',
     description: 'quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 12,
     price: 417,
     reviewStars: 1,
@@ -731,7 +731,7 @@ const productsToAdd = [
   {
     name: 'mollis',
     description: 'orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 27,
     price: 28,
     reviewStars: 0,
@@ -740,7 +740,7 @@ const productsToAdd = [
   {
     name: 'Sed',
     description: 'enim. Nunc ut erat. Sed nunc est, mollis non, cursus',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 14,
     price: 488,
     reviewStars: 1,
@@ -749,7 +749,7 @@ const productsToAdd = [
   {
     name: 'odio',
     description: 'non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh.',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 29,
     price: 35,
     reviewStars: 5,
@@ -758,7 +758,7 @@ const productsToAdd = [
   {
     name: 'metus',
     description: 'Aenean massa. Integer vitae nibh. Donec est mauris, rhoncus id,',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 4,
     price: 129,
     reviewStars: 1,
@@ -767,7 +767,7 @@ const productsToAdd = [
   {
     name: 'nibh.',
     description: 'non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh.',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 3,
     price: 257,
     reviewStars: 4,
@@ -776,7 +776,7 @@ const productsToAdd = [
   {
     name: 'dictum',
     description: 'nec tempus scelerisque, lorem ipsum sodales purus, in molestie tortor',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 5,
     price: 415,
     reviewStars: 1,
@@ -785,7 +785,7 @@ const productsToAdd = [
   {
     name: 'amet,',
     description: 'sodales. Mauris blandit enim consequat purus. Maecenas libero est, congue',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 13,
     price: 290,
     reviewStars: 0,
@@ -794,7 +794,7 @@ const productsToAdd = [
   {
     name: 'Donec',
     description: 'ac turpis egestas. Fusce aliquet magna a neque. Nullam ut',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 27,
     price: 403,
     reviewStars: 4,
@@ -803,7 +803,7 @@ const productsToAdd = [
   {
     name: 'Integer',
     description: 'Duis dignissim tempor arcu. Vestibulum ut eros non enim commodo',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 23,
     price: 417,
     reviewStars: 2,
@@ -812,7 +812,7 @@ const productsToAdd = [
   {
     name: 'ligula.',
     description: 'ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 5,
     price: 46,
     reviewStars: 1,
@@ -821,7 +821,7 @@ const productsToAdd = [
   {
     name: 'interdum',
     description: 'felis purus ac tellus. Suspendisse sed dolor. Fusce mi lorem,',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 21,
     price: 170,
     reviewStars: 5,
@@ -830,7 +830,7 @@ const productsToAdd = [
   {
     name: 'hendrerit',
     description: 'torquent per conubia nostra, per inceptos hymenaeos. Mauris ut quam',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 20,
     price: 85,
     reviewStars: 3,
@@ -839,7 +839,7 @@ const productsToAdd = [
   {
     name: 'sem',
     description: 'placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 30,
     price: 43,
     reviewStars: 0,
@@ -848,7 +848,7 @@ const productsToAdd = [
   {
     name: 'a,',
     description: 'neque non quam. Pellentesque habitant morbi tristique senectus et netus',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 23,
     price: 200,
     reviewStars: 1,
@@ -857,7 +857,7 @@ const productsToAdd = [
   {
     name: 'sollicitudin',
     description: 'Donec nibh enim, gravida sit amet, dapibus id, blandit at,',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 9,
     price: 283,
     reviewStars: 2,
@@ -866,7 +866,7 @@ const productsToAdd = [
   {
     name: 'aliquet.',
     description: 'ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et,',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 2,
     price: 32,
     reviewStars: 0,
@@ -875,7 +875,7 @@ const productsToAdd = [
   {
     name: 'eget',
     description: 'dui, in sodales elit erat vitae risus. Duis a mi',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 12,
     price: 49,
     reviewStars: 2,
@@ -884,7 +884,7 @@ const productsToAdd = [
   {
     name: 'libero',
     description: 'sit amet, faucibus ut, nulla. Cras eu tellus eu augue',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 19,
     price: 403,
     reviewStars: 1,
@@ -893,7 +893,7 @@ const productsToAdd = [
   {
     name: 'dictum',
     description: 'Vivamus sit amet risus. Donec egestas. Aliquam nec enim. Nunc',
-    image:'/assets/Child Wooden Night Stand.jpg',
+    image:'../assets/Child Wooden Night Stand.jpg',
     stock: 23,
     price: 336,
     reviewStars: 5,
