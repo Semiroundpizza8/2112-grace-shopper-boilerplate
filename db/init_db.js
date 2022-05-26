@@ -2,7 +2,39 @@ const {
   client,
   // declare your model imports here
   // for example, User
-} = require('./');
+ }= require('./');
+
+const {
+  createUser,
+  getUser,
+  getUserById,
+} = require("./models/users");
+
+
+const {
+  // getCart_ProductById,
+  // addProductToCart,
+  // updateCart_Product,
+  // destroyCart_Product,
+  createCartProduct,
+} = require("./models/cart_product");
+
+
+const {
+  // getCartById,
+  createCart,
+  // updateCart,
+} = require("./models/cart");
+
+
+
+
+const {
+  createProducts,
+  getProductById,
+  getAllProducts,
+} = require("./models/product");
+
 
 
 
@@ -13,7 +45,7 @@ async function dropTables() {
   // drop all tables, in the correct order
   try {
     await client.query(`
-    
+      DROP TABLE IF EXISTS cart_product;
       DROP TABLE IF EXISTS cart;
       DROP TABLE IF EXISTS product;
       DROP TABLE IF EXISTS users;
@@ -34,6 +66,7 @@ async function createTables() {
     CREATE TABLE users (
       id SERIAL PRIMARY KEY,
       username varchar(255) NOT NULL,
+      address varchar(255) NOT NULL,
       email varchar(255) UNIQUE NOT NULL,
       city varchar(255) NOT NULL,
       state varchar(255) NOT NULL,
@@ -42,9 +75,9 @@ async function createTables() {
     );  
     CREATE TABLE product (
       id SERIAL PRIMARY KEY,
-      name varchar(255)  NOT NULL,
+      name varchar(255) NOT NULL,
       description varchar(255) NOT NULL,
-      pictures varchar(255)  NOT NULL,
+      pictures varchar(255) NOT NULL,
       price INTEGER NOT NULL
     ); 
     CREATE TABLE cart (
@@ -72,46 +105,52 @@ async function createTables() {
 }
 
 
-async function populateInitialData() {
+async function populateInitialUsers() {
   try {
     const userData = [
       { username: "tony", 
-       address1: "8525 PandaBear Lane", 
+       address: "8525 PandaBear Lane", 
        email: "imacuddlePanada@gmail.com", 
        city: "Pandaville", 
        state: "california",
-        zip: "75214",
+        zip: 75214,
          password: "blackandwhitealltheway"
     },
 
     { username: "Sandra", 
-     address1: "3311 Bamboo Street", 
+     address: "3311 Bamboo Street", 
      email: "IeatPanadasBamboo@gmail.com", 
      city: "bejing", 
      state: "china",
-      zip: "84217",
+      zip: 84217,
        password: "bamboofarts"
 },
 
 {username: "Rihanna", 
- address1: "4444 Sunset Blvd", 
+ address: "4444 Sunset Blvd", 
  email: "mylittepony@gmail.com", 
  city: "Sqwiggletown", 
  state: "Oregon",
-  zip: "99998",
+  zip: 99998,
    password: "deepfriedpizzarolls"
 }
  ]
+
+
+ const users = await Promise.all(userData.map(createUser))
+
+  console.log("Creating Users");
+
+    console.log("Finished creating populateInitalUsers")
 
 //  const users = await Promise.all(userData.map(populateInitialData));
     // create useful starting data by leveraging your
     // Model.method() adapters to seed your db, for example:
   
   // const user1 = await User.createUser({ ...user info goes here... })
-  console.log("populateInitalData");
-    // console.log(users);
-    console.log("Finished creating populateInitalData")
+
   } catch (error) {
+    console.error("Error Creating Users");
     throw error;
   }
 }
@@ -122,7 +161,7 @@ async function populateProductData() {
     const productData = [
       { name: "Rocket",
         description: "TrashPanda",
-        picture: "png",
+        pictures: "png",
         price: 55
     },
 
@@ -138,39 +177,88 @@ async function populateProductData() {
   price: 1000000 
 }
  ]
-
-//  const products = await Promise.all(productData.map(populateProductData));
+ 
     // create useful starting data by leveraging your
     // Model.method() adapters to seed your db, for example:
   
   // const user1 = await User.createUser({ ...user info goes here... })
   console.log("populateProductData");
     // console.log(products);
+  const products = await Promise.all(productData.map(createProducts)) 
     console.log("Finished creating populateProductData")
   } catch (error) {
+    console.error("Error Creating Products")
+    throw error;
+  }
+}
+async function populateCartData () {
+  try{
+    const cartData = [
+      { userId : 1,
+        price: 55,        
+        isPayFor: true
+    },
+    { userId : 2,
+      price: 109,        
+      isPayFor: false
+  },
+  { userId : 3,
+    price: 98,        
+    isPayFor: true
+  }
+ ]
+
+    console.log("populatecartData");
+    // console.log(products);
+  const carts = await Promise.all(cartData.map(createCart)) 
+    console.log("Finished creating CartData")
+  }catch(error){
+    console.error("error Building Cart Data")
+    throw error;
+  }
+}
+
+async function populateCartProductData(){
+  try{
+    const cartProductData = [
+      { productId : 1,
+        cartId: 1,        
+        quantity: 10,
+        price: 5500
+    },
+    { productId : 1,
+      cartId: 2,        
+      quantity: 32,
+      price: 1760
+    },
+    { productId : 3,
+      cartId: 2,        
+      quantity: 1,
+      price: 1000000
+    },
+    { productId : 2,
+      cartId: 3,        
+      quantity: 130,
+      price: 19500
+    }
+ ]
+ console.log("Creating cart_product table!")
+const cartProducts = await Promise.all(cartProductData.map(createCartProduct)) 
+  console.log("finished creating cart_Product table!")
+  }catch(error){
+    console.error("error Building Cart_Product")
     throw error;
   }
 }
 
 
-
-
 async function buildTables() {
   try {
     client.connect();
-    console.log("client has been contected")
+    console.log("client has been connected")
     await dropTables();
     await createTables();
-    // await populateInitialData();
-    // await populateProductData();
    
-
-
-
-
-    // drop tables in correct order
-
-    // build tables in correct order
   } catch (error) {
     throw error;
   }
@@ -178,7 +266,10 @@ async function buildTables() {
 
 
 buildTables()
-  .then(populateInitialData)
+  .then(populateInitialUsers)
+  .then(populateProductData)
+  .then(populateCartData)
+  .then(populateCartProductData)
   .catch(console.error)
   .finally(() => client.end());
 
@@ -186,6 +277,4 @@ buildTables()
     buildTables,
     createTables,
     dropTables,
-
-
   }
