@@ -22,11 +22,6 @@ const App = () => {
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
 
-<<<<<<< HEAD
- // const commerce = "data";
-=======
-  // const commerce = "data";
->>>>>>> f1dc2e37e903aad9726366129ff1c9adb9af5036
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
