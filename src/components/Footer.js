@@ -1,8 +1,6 @@
 import React from "react";
 import "../../src/style/Footer.css";
 import Logo from "../Assets/Coconut Furniture Logo.png";
-import SearchIcon from "@mui/icons-material/Search";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 
 const Footer = () => {
   return (

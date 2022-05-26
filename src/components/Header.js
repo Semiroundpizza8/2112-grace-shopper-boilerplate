@@ -3,11 +3,16 @@ import "../../src/style/Header.css";
 import Logo from "../Assets/Coconut Furniture Logo.png";
 import SearchIcon from "@mui/icons-material/Search";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import { BrowserRouter, Link } from "react-router-dom";
 
 function Header() {
   return (
     <div className="header">
-      <img className="header_logo" src={Logo} alt="Coconut Logo" />
+      <BrowserRouter>
+        <Link to="/">
+          <img className="header_logo" src={Logo} alt="Coconut Logo" />
+        </Link>
+      </BrowserRouter>
 
       <div className="header_search">
         <input className="header_searchInput" type="text"></input>

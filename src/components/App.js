@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 // getAPIHealth is defined in our axios-services directory index.js
 // you can think of that directory as a collection of api adapters
 // where each adapter fetches specific info from our express server's /api route
@@ -8,6 +8,8 @@ import "../style/App.css";
 import Footer from "./Footer";
 import Header from "./Header";
 import ProductScreen from "./ProductScreen";
+import Home from "./Home";
+import Products from "./Products";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -44,44 +46,21 @@ const App = () => {
     <div className="app-container">
       <Header />
       <BrowserRouter>
-        <div id="header">
-          <h1 className="header">The furniture store</h1>
-          <div id="routeBox">
-            {!loggedIn ? (
-              <>
-                <button className="button">
-                  <Link id="link" to="/login">
-                    Login
-                  </Link>
-                </button>
-                <button className="button">
-                  <Link id="link" to="/register">
-                    SignUp
-                  </Link>
-                </button>
-              </>
-            ) : (
-              <>
-                <button className="button">
-                  {" "}
-                  <Link id="link" to="/user">
-                    User
-                  </Link>
-                </button>{" "}
-              </>
-            )}{" "}
-          </div>
+        <div className="content">
+          <Switch>
+            <Route exact path={"/"}>
+              <Home />
+            </Route>
+            <Route exact path={"/ProductScreen"}>
+              <ProductScreen />
+            </Route>
+            <Route exact path={"/Shop"}>
+              <Products />
+            </Route>
+          </Switch>
         </div>
-
-        <Route path="/login"> </Route>
-
-        <Route path="/register"> </Route>
-
-        <Route path="/user"> </Route>
+        <Footer />
       </BrowserRouter>
-      <p>API Status: {APIHealth}</p>
-      <ProductScreen/>
-      <Footer />
     </div>
   );
 };

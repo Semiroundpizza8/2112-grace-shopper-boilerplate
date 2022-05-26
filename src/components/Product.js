@@ -3,7 +3,7 @@ import "../style/Product.css";
 
 function Product({ id, title, image, price, rating, alt }) {
   return (
-    <div className="product">
+    <div className="product" key={id}>
       <div className="product__info">
         <p>{title}</p>
         <p className="product__price">
