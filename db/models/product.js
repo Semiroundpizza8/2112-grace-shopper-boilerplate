@@ -28,7 +28,24 @@ async function getAllProducts() {
   }
 }
 
-
+async function createProduct({ name, description }) {
+  try {
+    const {
+      rows: [product],
+    } = await client.query(
+      `
+            INSERT INTO product (name, description)
+            VALUES($1, $2)
+            ON CONFLICT (name) DO NOTHING
+            RETURNING *;
+        `,
+      [name, description]
+    );
+    return product;
+  } catch (error) {
+    throw error;
+  }
+}
 
 // async function updateProduct({ id, name, description }) {
 //   try {
@@ -50,5 +67,6 @@ async function getAllProducts() {
 module.exports = {
   getProductById,
   getAllProducts,
+  createProduct
 //   updateProduct
 };
