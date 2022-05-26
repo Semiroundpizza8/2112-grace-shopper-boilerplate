@@ -8,9 +8,11 @@ import "../style/App.css";
 import Footer from "./Footer";
 import Header from "./Header";
 import ProductScreen from "./ProductScreen";
+import Products from "./Product";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
+  const [products, setProducts] = useState([]);
 
   // const[user, setUser] = useState();
   // const [username, setUsername] = useState('');
@@ -42,10 +44,11 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <Header />
       <BrowserRouter>
-        <div id="header">
+          <Header />
+          <div id="header">
           <h1 className="header">The furniture store</h1>
+          
           <div id="routeBox">
             {!loggedIn ? (
               <>
@@ -72,17 +75,30 @@ const App = () => {
             )}{" "}
           </div>
         </div>
+        <Link id = "products" to = "/products">
+      Products
+      </Link>
+
+      <Link to = "/products/:productId">
+        Single Product
+        </Link>
 
         <Route path="/login"> </Route>
 
         <Route path="/register"> </Route>
 
         <Route path="/user"> </Route>
+        
+        <Route path="/products">
+          <Products products = {products} setProducts = {setProducts}/>
+		    </Route> 
+      
+        <Route path="/products/:productId">
+            <ProductScreen/>
+		    </Route> 
+        <Footer />
       </BrowserRouter>
-      <p>API Status: {APIHealth}</p>
-      <ProductScreen/>
-      <Footer />
-    </div>
+      </div>
   );
 };
 

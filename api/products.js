@@ -20,7 +20,8 @@ productRouter.post('/', async (req, res, next) => {
   productRouter.get('/', async (req, res, next) => {
     try {
       const products = await getAllProducts();
-      res.send({products});
+      console.log("productsinsiderouter",products);
+      res.send(products);
     } catch (error){
       next(error);
     }

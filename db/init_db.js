@@ -18,7 +18,7 @@ const {
   usersToCreate,
 } = require("./seedData");
 const addProductsToOrder = require('./models/order_products');
-const addProductsToCart = require('./models/cart_product');
+const {addProductsToCart} = require('./models/cart_product');
 
 
 async function dropTables() {
@@ -37,6 +37,7 @@ async function dropTables() {
     DROP TABLE IF EXISTS products CASCADE;
     DROP TABLE IF EXISTS users CASCADE;
     DROP TABLE IF EXISTS creditcard CASCADE;
+    DROP TYPE status;
 		
         
       `);
@@ -54,6 +55,7 @@ async function buildTables() {
     console.log('Starting to build tables...');
 
     // build tables in correct order
+
     await client.query(`
     CREATE TABLE users(
         id SERIAL PRIMARY KEY,
@@ -77,6 +79,7 @@ async function buildTables() {
       );
 
 
+      CREATE TYPE status AS ENUM ('inProgress', 'Purchased');
       CREATE TABLE orders (
         
         id SERIAL PRIMARY KEY,
@@ -87,7 +90,7 @@ async function buildTables() {
         zipcode VARCHAR(255) NOT NULL,
         country VARCHAR(255) NOT NULL,
         phone VARCHAR(255) NOT NULL,
-        orderStatus ENUM("purchased", "inProgress")
+        currentorder status
 
       );
 

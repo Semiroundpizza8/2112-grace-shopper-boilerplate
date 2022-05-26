@@ -2,6 +2,7 @@ const productsToAdd = [
   {
     name: 'interdum.',
     description: 'amet nulla. Donec non justo. Proin non massa non ante',
+    image: "https://www.google.com/aclk?sa=l&ai=DChcSEwiRzKbL6vv3AhX0bG8EHfesA3wYABADGgJqZg&sig=AOD64_2bQXBdyfsNfYqYPl2yng1j6NDzEQ&adurl&ctype=5&ved=2ahUKEwjZ85fL6vv3AhUVg2oFHdMGDvEQvhd6BAgBEG0",
     stock: 11,
     price: 494,
     reviewStars: 3,
@@ -10,6 +11,7 @@ const productsToAdd = [
   {
     name: 'mi.',
     description: 'sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo.',
+    image: 'src/Assets/Coconut Furniture Logo.png',
     stock: 5,
     price: 383,
     reviewStars: 2,
@@ -18,6 +20,7 @@ const productsToAdd = [
   {
     name: 'tempor',
     description: 'amet nulla. Donec non justo. Proin non massa non ante',
+    image: '../assets/Living Room Set.jpg',
     stock: 23,
     price: 118,
     reviewStars: 3,
@@ -26,6 +29,7 @@ const productsToAdd = [
   {
     name: 'eget',
     description: 'urna. Vivamus molestie dapibus ligula. Aliquam erat volutpat. Nulla dignissim.',
+    image: '../assets/Sofa.jpg',
     stock: 5,
     price: 303,
     reviewStars: 1,
@@ -34,6 +38,7 @@ const productsToAdd = [
   {
     name: 'in',
     description: 'quam. Pellentesque habitant morbi tristique senectus et netus et malesuada',
+    image: '../assets/Stylish End Table Sets.jpg',
     stock: 6,
     price: 477,
     reviewStars: 1,
@@ -42,6 +47,7 @@ const productsToAdd = [
   {
     name: 'scelerisque',
     description: 'quis lectus. Nullam suscipit, est ac facilisis facilisis, magna tellus',
+    image: '../assets/Stylish End Table Sets.jpg',
     stock: 0,
     price: 53,
     reviewStars: 5,
@@ -50,6 +56,7 @@ const productsToAdd = [
   {
     name: 'ac',
     description: 'ante dictum mi, ac mattis velit justo nec ante. Maecenas',
+    image: '../assets/Stylish End Table Sets.jpg',
     stock: 11,
     price: 216,
     reviewStars: 2,
@@ -58,6 +65,7 @@ const productsToAdd = [
   {
     name: 'sed',
     description: 'libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet',
+    image: '../assets/Stylish End Table Sets.jpg',
     stock: 20,
     price: 241,
     reviewStars: 2,
@@ -66,6 +74,7 @@ const productsToAdd = [
   {
     name: 'gravida',
     description: 'sit amet, risus. Donec nibh enim, gravida sit amet, dapibus',
+    image: '../assets/Stylish End Table Sets.jpg',
     stock: 10,
     price: 433,
     reviewStars: 4,
@@ -74,6 +83,7 @@ const productsToAdd = [
   {
     name: 'metus',
     description: 'metus. In nec orci. Donec nibh. Quisque nonummy ipsum non',
+    image: '../assets/Stylish End Table Sets.jpg',
     stock: 28,
     price: 318,
     reviewStars: 1,
@@ -82,6 +92,7 @@ const productsToAdd = [
   {
     name: 'scelerisque',
     description: 'ac tellus. Suspendisse sed dolor. Fusce mi lorem, vehicula et,',
+    image: '../assets/End Table.jpg',
     stock: 12,
     price: 161,
     reviewStars: 2,
@@ -90,6 +101,7 @@ const productsToAdd = [
   {
     name: 'ad',
     description: 'malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit.',
+    image: '../assets/End Table.jpg',
     stock: 18,
     price: 12,
     reviewStars: 5,
@@ -98,6 +110,7 @@ const productsToAdd = [
   {
     name: 'convallis,',
     description: 'amet lorem semper auctor. Mauris vel turpis. Aliquam adipiscing lobortis',
+    image: '../assets/End Table.jpg',
     stock: 25,
     price: 410,
     reviewStars: 5,
@@ -106,6 +119,7 @@ const productsToAdd = [
   {
     name: 'ultrices,',
     description: 'blandit at, nisi. Cum sociis natoque penatibus et magnis dis',
+    image: '../assets/End Table.jpg',
     stock: 28,
     price: 455,
     reviewStars: 4,
@@ -114,6 +128,7 @@ const productsToAdd = [
   {
     name: 'sed',
     description: 'a, auctor non, feugiat nec, diam. Duis mi enim, condimentum',
+    image: '../assets/End Table.jpg',
     stock: 30,
     price: 482,
     reviewStars: 5,
@@ -122,6 +137,7 @@ const productsToAdd = [
   {
     name: 'diam.',
     description: 'penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean',
+    image: '../assets/End Table.jpg',
     stock: 9,
     price: 119,
     reviewStars: 1,
@@ -130,6 +146,7 @@ const productsToAdd = [
   {
     name: 'at',
     description: 'Aenean gravida nunc sed pede. Cum sociis natoque penatibus et',
+    image: '/assets/End Table.jpg',
     stock: 25,
     price: 147,
     reviewStars: 2,
@@ -138,6 +155,7 @@ const productsToAdd = [
   {
     name: 'ligula.',
     description: 'magnis dis parturient montes, nascetur ridiculus mus. Proin vel arcu',
+    image: '/assets/End Table.jpg',
     stock: 26,
     price: 323,
     reviewStars: 1,
@@ -146,6 +164,7 @@ const productsToAdd = [
   {
     name: 'tincidunt',
     description: 'ornare tortor at risus. Nunc ac sem ut dolor dapibus',
+    image: '/assets/End Table.jpg',
     stock: 27,
     price: 7,
     reviewStars: 3,
@@ -154,6 +173,7 @@ const productsToAdd = [
   {
     name: 'dui.',
     description: 'pede et risus. Quisque libero lacus, varius et, euismod et,',
+    image: '/assets/End Table.jpg',
     stock: 14,
     price: 196,
     reviewStars: 0,
@@ -162,6 +182,7 @@ const productsToAdd = [
   {
     name: 'turpis.',
     description: 'nec, leo. Morbi neque tellus, imperdiet non, vestibulum nec, euismod',
+    image: '/assets/End Table.jpg',
     stock: 15,
     price: 437,
     reviewStars: 2,
@@ -170,6 +191,7 @@ const productsToAdd = [
   {
     name: 'rutrum',
     description: 'massa non ante bibendum ullamcorper. Duis cursus, diam at pretium',
+    image: '/assets/End Table.jpg',
     stock: 24,
     price: 401,
     reviewStars: 4,
@@ -178,6 +200,7 @@ const productsToAdd = [
   {
     name: 'nec',
     description: 'dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc',
+    image: '/assets/End Table.jpg',
     stock: 14,
     price: 110,
     reviewStars: 1,
@@ -186,6 +209,7 @@ const productsToAdd = [
   {
     name: 'convallis,',
     description: 'sit amet risus. Donec egestas. Aliquam nec enim. Nunc ut',
+    image: '/assets/End Table.jpg',
     stock: 4,
     price: 118,
     reviewStars: 2,
@@ -194,6 +218,7 @@ const productsToAdd = [
   {
     name: 'vel,',
     description: 'eget varius ultrices, mauris ipsum porta elit, a feugiat tellus',
+    image:'/assets/Sofa.jpg',
     stock: 15,
     price: 123,
     reviewStars: 2,
@@ -202,6 +227,7 @@ const productsToAdd = [
   {
     name: 'varius',
     description: 'dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl.',
+    image:'/assets/Sofa.jpg',
     stock: 1,
     price: 290,
     reviewStars: 3,
@@ -210,6 +236,7 @@ const productsToAdd = [
   {
     name: 'erat.',
     description: 'luctus aliquet odio. Etiam ligula tortor, dictum eu, placerat eget,',
+    image:'/assets/Sofa.jpg',
     stock: 22,
     price: 73,
     reviewStars: 0,
@@ -218,6 +245,7 @@ const productsToAdd = [
   {
     name: 'sodales',
     description: 'Nunc sed orci lobortis augue scelerisque mollis. Phasellus libero mauris,',
+    image:'/assets/Sofa.jpg',
     stock: 11,
     price: 48,
     reviewStars: 3,
@@ -226,6 +254,7 @@ const productsToAdd = [
   {
     name: 'interdum',
     description: 'lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus. Aliquam',
+    image:'/assets/Sofa.jpg',
     stock: 29,
     price: 354,
     reviewStars: 4,
@@ -234,6 +263,7 @@ const productsToAdd = [
   {
     name: 'Integer',
     description: 'egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie',
+    image:'/assets/Sofa.jpg',
     stock: 6,
     price: 218,
     reviewStars: 0,
@@ -242,6 +272,7 @@ const productsToAdd = [
   {
     name: 'Fusce',
     description: 'adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc',
+    image:'/assets/Sofa.jpg',
     stock: 28,
     price: 40,
     reviewStars: 4,
@@ -250,6 +281,7 @@ const productsToAdd = [
   {
     name: 'metus',
     description: 'ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper',
+    image:'/assets/Sofa.jpg',
     stock: 24,
     price: 345,
     reviewStars: 2,
@@ -258,6 +290,7 @@ const productsToAdd = [
   {
     name: 'Mauris',
     description: 'dui, in sodales elit erat vitae risus. Duis a mi',
+    image:'/assets/Sofa.jpg',
     stock: 23,
     price: 378,
     reviewStars: 4,
@@ -266,6 +299,7 @@ const productsToAdd = [
   {
     name: 'at',
     description: 'placerat. Cras dictum ultricies ligula. Nullam enim. Sed nulla ante,',
+    image:'/assets/Sofa.jpg',
     stock: 11,
     price: 448,
     reviewStars: 0,
@@ -274,6 +308,7 @@ const productsToAdd = [
   {
     name: 'convallis,',
     description: 'cursus. Integer mollis. Integer tincidunt aliquam arcu. Aliquam ultrices iaculis',
+    image:'/assets/Sofa.jpg',
     stock: 20,
     price: 418,
     reviewStars: 1,
@@ -282,6 +317,7 @@ const productsToAdd = [
   {
     name: 'massa.',
     description: 'purus, in molestie tortor nibh sit amet orci. Ut sagittis',
+    image:'/assets/Sofa.jpg',
     stock: 25,
     price: 293,
     reviewStars: 4,
@@ -290,6 +326,7 @@ const productsToAdd = [
   {
     name: 'tempor',
     description: 'consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque, tellus',
+    image:'/assets/Sofa.jpg',
     stock: 6,
     price: 78,
     reviewStars: 5,
@@ -298,6 +335,7 @@ const productsToAdd = [
   {
     name: 'Aliquam',
     description: 'a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed',
+    image:'/assets/Sofa.jpg',
     stock: 4,
     price: 387,
     reviewStars: 4,
@@ -306,6 +344,7 @@ const productsToAdd = [
   {
     name: 'mauris',
     description: 'scelerisque scelerisque dui. Suspendisse ac metus vitae velit egestas lacinia.',
+    image:'/assets/Sofa.jpg',
     stock: 9,
     price: 39,
     reviewStars: 4,
@@ -314,6 +353,7 @@ const productsToAdd = [
   {
     name: 'egestas',
     description: 'montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc',
+    image:'/assets/Sofa.jpg',
     stock: 10,
     price: 70,
     reviewStars: 1,
@@ -322,6 +362,7 @@ const productsToAdd = [
   {
     name: 'sodales',
     description: 'id ante dictum cursus. Nunc mauris elit, dictum eu, eleifend',
+    image:'/assets/Sofa.jpg',
     stock: 14,
     price: 139,
     reviewStars: 3,
@@ -330,6 +371,7 @@ const productsToAdd = [
   {
     name: 'placerat',
     description: 'elit. Curabitur sed tortor. Integer aliquam adipiscing lacus. Ut nec',
+    image:'/assets/Sofa.jpg',
     stock: 12,
     price: 12,
     reviewStars: 1,
@@ -338,6 +380,7 @@ const productsToAdd = [
   {
     name: 'luctus',
     description: 'fermentum convallis ligula. Donec luctus aliquet odio. Etiam ligula tortor,',
+    image:'/assets/Sofa.jpg',
     stock: 6,
     price: 109,
     reviewStars: 3,
@@ -346,6 +389,7 @@ const productsToAdd = [
   {
     name: 'tincidunt',
     description: 'Morbi quis urna. Nunc quis arcu vel quam dignissim pharetra.',
+    image:'/assets/Sofa.jpg',
     stock: 14,
     price: 443,
     reviewStars: 4,
@@ -354,6 +398,7 @@ const productsToAdd = [
   {
     name: 'Phasellus',
     description: 'sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor',
+    image:'/assets/Sofa.jpg',
     stock: 5,
     price: 76,
     reviewStars: 2,
@@ -362,6 +407,7 @@ const productsToAdd = [
   {
     name: 'tincidunt.',
     description: 'Nulla facilisi. Sed neque. Sed eget lacus. Mauris non dui',
+    image:'/assets/Sofa.jpg',
     stock: 1,
     price: 219,
     reviewStars: 3,
@@ -370,6 +416,7 @@ const productsToAdd = [
   {
     name: 'pharetra.',
     description: 'eu, odio. Phasellus at augue id ante dictum cursus. Nunc',
+    image:'/assets/Sofa.jpg',
     stock: 15,
     price: 142,
     reviewStars: 1,
@@ -378,6 +425,7 @@ const productsToAdd = [
   {
     name: 'Nullam',
     description: 'nisi. Mauris nulla. Integer urna. Vivamus molestie dapibus ligula. Aliquam',
+    image:'/assets/Sofa.jpg',
     stock: 25,
     price: 409,
     reviewStars: 1,
@@ -386,6 +434,7 @@ const productsToAdd = [
   {
     name: 'mauris',
     description: 'sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis',
+    image:'/assets/Sofa.jpg',
     stock: 26,
     price: 100,
     reviewStars: 4,
@@ -394,6 +443,7 @@ const productsToAdd = [
   {
     name: 'erat.',
     description: 'vestibulum nec, euismod in, dolor. Fusce feugiat. Lorem ipsum dolor',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 3,
     price: 472,
     reviewStars: 1,
@@ -402,6 +452,7 @@ const productsToAdd = [
   {
     name: 'in,',
     description: 'lorem, auctor quis, tristique ac, eleifend vitae, erat. Vivamus nisi.',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 14,
     price: 419,
     reviewStars: 1,
@@ -410,6 +461,7 @@ const productsToAdd = [
   {
     name: 'eu',
     description: 'cursus purus. Nullam scelerisque neque sed sem egestas blandit. Nam',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 1,
     price: 118,
     reviewStars: 4,
@@ -418,6 +470,7 @@ const productsToAdd = [
   {
     name: 'libero',
     description: 'enim non nisi. Aenean eget metus. In nec orci. Donec',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 25,
     price: 420,
     reviewStars: 2,
@@ -426,6 +479,7 @@ const productsToAdd = [
   {
     name: 'ac',
     description: 'sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 0,
     price: 83,
     reviewStars: 3,
@@ -434,6 +488,7 @@ const productsToAdd = [
   {
     name: 'hendrerit',
     description: 'aptent taciti sociosqu ad litora torquent per conubia nostra, per',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 15,
     price: 460,
     reviewStars: 3,
@@ -442,6 +497,7 @@ const productsToAdd = [
   {
     name: 'Vivamus',
     description: 'purus, in molestie tortor nibh sit amet orci. Ut sagittis',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 7,
     price: 47,
     reviewStars: 4,
@@ -450,6 +506,7 @@ const productsToAdd = [
   {
     name: 'sagittis',
     description: 'Nam interdum enim non nisi. Aenean eget metus. In nec',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 1,
     price: 293,
     reviewStars: 2,
@@ -458,6 +515,7 @@ const productsToAdd = [
   {
     name: 'in,',
     description: 'a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 18,
     price: 278,
     reviewStars: 1,
@@ -466,6 +524,7 @@ const productsToAdd = [
   {
     name: 'nulla',
     description: 'sit amet, consectetuer adipiscing elit. Aliquam auctor, velit eget laoreet',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 26,
     price: 350,
     reviewStars: 5,
@@ -474,6 +533,7 @@ const productsToAdd = [
   {
     name: 'scelerisque',
     description: 'at lacus. Quisque purus sapien, gravida non, sollicitudin a, malesuada',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 27,
     price: 241,
     reviewStars: 1,
@@ -482,6 +542,7 @@ const productsToAdd = [
   {
     name: 'amet',
     description: 'ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate,',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 21,
     price: 178,
     reviewStars: 2,
@@ -490,6 +551,7 @@ const productsToAdd = [
   {
     name: 'quam',
     description: 'nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 2,
     price: 318,
     reviewStars: 2,
@@ -498,6 +560,7 @@ const productsToAdd = [
   {
     name: 'ornare,',
     description: 'Fusce fermentum fermentum arcu. Vestibulum ante ipsum primis in faucibus',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 15,
     price: 368,
     reviewStars: 5,
@@ -506,6 +569,7 @@ const productsToAdd = [
   {
     name: 'eu,',
     description: 'justo eu arcu. Morbi sit amet massa. Quisque porttitor eros',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 10,
     price: 298,
     reviewStars: 4,
@@ -514,6 +578,7 @@ const productsToAdd = [
   {
     name: 'amet',
     description: 'ultrices sit amet, risus. Donec nibh enim, gravida sit amet,',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 20,
     price: 355,
     reviewStars: 2,
@@ -522,6 +587,7 @@ const productsToAdd = [
   {
     name: 'dictum',
     description: 'dui. Cras pellentesque. Sed dictum. Proin eget odio. Aliquam vulputate',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 29,
     price: 376,
     reviewStars: 3,
@@ -530,6 +596,7 @@ const productsToAdd = [
   {
     name: 'eros',
     description: 'Donec est mauris, rhoncus id, mollis nec, cursus a, enim.',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 1,
     price: 241,
     reviewStars: 5,
@@ -538,6 +605,7 @@ const productsToAdd = [
   {
     name: 'nonummy',
     description: 'dui. Fusce diam nunc, ullamcorper eu, euismod ac, fermentum vel,',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 20,
     price: 158,
     reviewStars: 5,
@@ -546,6 +614,7 @@ const productsToAdd = [
   {
     name: 'Donec',
     description: 'lorem vitae odio sagittis semper. Nam tempor diam dictum sapien.',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 14,
     price: 362,
     reviewStars: 4,
@@ -554,6 +623,7 @@ const productsToAdd = [
   {
     name: 'cursus,',
     description: 'nunc ac mattis ornare, lectus ante dictum mi, ac mattis',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 22,
     price: 368,
     reviewStars: 2,
@@ -562,6 +632,7 @@ const productsToAdd = [
   {
     name: 'ornare.',
     description: 'Aliquam adipiscing lobortis risus. In mi pede, nonummy ut, molestie',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 21,
     price: 340,
     reviewStars: 1,
@@ -570,6 +641,7 @@ const productsToAdd = [
   {
     name: 'Donec',
     description: 'malesuada vel, venenatis vel, faucibus id, libero. Donec consectetuer mauris',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 25,
     price: 241,
     reviewStars: 1,
@@ -578,6 +650,7 @@ const productsToAdd = [
   {
     name: 'elementum',
     description: 'pharetra nibh. Aliquam ornare, libero at auctor ullamcorper, nisl arcu',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 15,
     price: 260,
     reviewStars: 2,
@@ -586,6 +659,7 @@ const productsToAdd = [
   {
     name: 'nunc',
     description: 'et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat,',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 8,
     price: 285,
     reviewStars: 2,
@@ -594,6 +668,7 @@ const productsToAdd = [
   {
     name: 'lobortis',
     description: 'Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 18,
     price: 329,
     reviewStars: 3,
@@ -602,6 +677,7 @@ const productsToAdd = [
   {
     name: 'Quisque',
     description: 'arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing.',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 18,
     price: 221,
     reviewStars: 1,
@@ -610,6 +686,7 @@ const productsToAdd = [
   {
     name: 'vitae',
     description: 'adipiscing, enim mi tempor lorem, eget mollis lectus pede et',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 14,
     price: 261,
     reviewStars: 5,
@@ -618,6 +695,7 @@ const productsToAdd = [
   {
     name: 'nec',
     description: 'velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem ac risus.',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 4,
     price: 492,
     reviewStars: 1,
@@ -626,6 +704,7 @@ const productsToAdd = [
   {
     name: 'felis.',
     description: 'eleifend egestas. Sed pharetra, felis eget varius ultrices, mauris ipsum',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 6,
     price: 405,
     reviewStars: 1,
@@ -634,6 +713,7 @@ const productsToAdd = [
   {
     name: 'magnis',
     description: 'Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate,',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 10,
     price: 43,
     reviewStars: 4,
@@ -642,6 +722,7 @@ const productsToAdd = [
   {
     name: 'mauris',
     description: 'quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 12,
     price: 417,
     reviewStars: 1,
@@ -650,6 +731,7 @@ const productsToAdd = [
   {
     name: 'mollis',
     description: 'orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 27,
     price: 28,
     reviewStars: 0,
@@ -658,6 +740,7 @@ const productsToAdd = [
   {
     name: 'Sed',
     description: 'enim. Nunc ut erat. Sed nunc est, mollis non, cursus',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 14,
     price: 488,
     reviewStars: 1,
@@ -666,6 +749,7 @@ const productsToAdd = [
   {
     name: 'odio',
     description: 'non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh.',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 29,
     price: 35,
     reviewStars: 5,
@@ -674,6 +758,7 @@ const productsToAdd = [
   {
     name: 'metus',
     description: 'Aenean massa. Integer vitae nibh. Donec est mauris, rhoncus id,',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 4,
     price: 129,
     reviewStars: 1,
@@ -682,6 +767,7 @@ const productsToAdd = [
   {
     name: 'nibh.',
     description: 'non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh.',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 3,
     price: 257,
     reviewStars: 4,
@@ -690,6 +776,7 @@ const productsToAdd = [
   {
     name: 'dictum',
     description: 'nec tempus scelerisque, lorem ipsum sodales purus, in molestie tortor',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 5,
     price: 415,
     reviewStars: 1,
@@ -698,6 +785,7 @@ const productsToAdd = [
   {
     name: 'amet,',
     description: 'sodales. Mauris blandit enim consequat purus. Maecenas libero est, congue',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 13,
     price: 290,
     reviewStars: 0,
@@ -706,6 +794,7 @@ const productsToAdd = [
   {
     name: 'Donec',
     description: 'ac turpis egestas. Fusce aliquet magna a neque. Nullam ut',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 27,
     price: 403,
     reviewStars: 4,
@@ -714,6 +803,7 @@ const productsToAdd = [
   {
     name: 'Integer',
     description: 'Duis dignissim tempor arcu. Vestibulum ut eros non enim commodo',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 23,
     price: 417,
     reviewStars: 2,
@@ -722,6 +812,7 @@ const productsToAdd = [
   {
     name: 'ligula.',
     description: 'ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 5,
     price: 46,
     reviewStars: 1,
@@ -730,6 +821,7 @@ const productsToAdd = [
   {
     name: 'interdum',
     description: 'felis purus ac tellus. Suspendisse sed dolor. Fusce mi lorem,',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 21,
     price: 170,
     reviewStars: 5,
@@ -738,6 +830,7 @@ const productsToAdd = [
   {
     name: 'hendrerit',
     description: 'torquent per conubia nostra, per inceptos hymenaeos. Mauris ut quam',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 20,
     price: 85,
     reviewStars: 3,
@@ -746,6 +839,7 @@ const productsToAdd = [
   {
     name: 'sem',
     description: 'placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 30,
     price: 43,
     reviewStars: 0,
@@ -754,6 +848,7 @@ const productsToAdd = [
   {
     name: 'a,',
     description: 'neque non quam. Pellentesque habitant morbi tristique senectus et netus',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 23,
     price: 200,
     reviewStars: 1,
@@ -762,6 +857,7 @@ const productsToAdd = [
   {
     name: 'sollicitudin',
     description: 'Donec nibh enim, gravida sit amet, dapibus id, blandit at,',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 9,
     price: 283,
     reviewStars: 2,
@@ -770,6 +866,7 @@ const productsToAdd = [
   {
     name: 'aliquet.',
     description: 'ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et,',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 2,
     price: 32,
     reviewStars: 0,
@@ -778,6 +875,7 @@ const productsToAdd = [
   {
     name: 'eget',
     description: 'dui, in sodales elit erat vitae risus. Duis a mi',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 12,
     price: 49,
     reviewStars: 2,
@@ -786,6 +884,7 @@ const productsToAdd = [
   {
     name: 'libero',
     description: 'sit amet, faucibus ut, nulla. Cras eu tellus eu augue',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 19,
     price: 403,
     reviewStars: 1,
@@ -794,6 +893,7 @@ const productsToAdd = [
   {
     name: 'dictum',
     description: 'Vivamus sit amet risus. Donec egestas. Aliquam nec enim. Nunc',
+    image:'/assets/Child Wooden Night Stand.jpg',
     stock: 23,
     price: 336,
     reviewStars: 5,
@@ -803,8 +903,7 @@ const productsToAdd = [
 
 const ordersToCreate = [
   {
-    firstname: 'Lee',
-    lastname: 'Shannon',
+    
     email: 'ipsum.porta.elit@protonmail.ca',
     street: 'Ap #677-2045 Dictum. Ave',
     city: 'Murcia',
@@ -812,12 +911,10 @@ const ordersToCreate = [
     country: 'Vietnam',
     phone: '(378) 713-2327',
     price: 113,
-    role: 'inProgress',
     userId: 10
   },
   {
-    firstname: 'Kelsey',
-    lastname: 'Willis',
+    
     email: 'mauris.vel.turpis@protonmail.org',
     street: 'P.O. Box 869, 5322 Duis Avenue',
     city: 'Sungei Kadut',
@@ -825,12 +922,10 @@ const ordersToCreate = [
     country: 'South Korea',
     phone: '1-886-415-3523',
     price: 198,
-    role: 'purchaised',
     userId: 3
   },
   {
-    firstname: 'Julian',
-    lastname: 'James',
+    
     email: 'vel.arcu.eu@hotmail.edu',
     street: '548 Iaculis Rd.',
     city: 'Kapolei',
@@ -838,12 +933,10 @@ const ordersToCreate = [
     country: 'Sweden',
     phone: '(259) 814-1832',
     price: 39,
-    role: 'purchaised',
     userId: 14
   },
   {
-    firstname: 'Vielka',
-    lastname: 'Mitchell',
+   
     email: 'eleifend.non.dapibus@aol.com',
     street: '8505 Enim Rd.',
     city: 'Nizip',
@@ -851,12 +944,10 @@ const ordersToCreate = [
     country: 'China',
     phone: '1-343-573-5247',
     price: 412,
-    role: 'purchaised',
     userId: 4
   },
   {
-    firstname: 'Galvin',
-    lastname: 'Walter',
+    
     email: 'sed@protonmail.couk',
     street: '6871 Pede. Rd.',
     city: 'Haren',
@@ -864,12 +955,10 @@ const ordersToCreate = [
     country: 'Peru',
     phone: '(844) 855-3575',
     price: 10,
-    role: 'purchaised',
     userId: 4
   },
   {
-    firstname: 'Thomas',
-    lastname: 'Gutierrez',
+    
     email: 'malesuada@yahoo.couk',
     street: '9700 Nunc St.',
     city: 'Los Vilos',
@@ -877,12 +966,10 @@ const ordersToCreate = [
     country: 'Austria',
     phone: '(330) 461-6184',
     price: 447,
-    role: 'inProgress',
     userId: 6
   },
   {
-    firstname: 'Cadman',
-    lastname: 'Morrison',
+    
     email: 'dolor.donec.fringilla@yahoo.org',
     street: '284 Vel, Street',
     city: 'Aparecida de Goiânia',
@@ -890,12 +977,10 @@ const ordersToCreate = [
     country: 'Spain',
     phone: '(945) 751-2560',
     price: 262,
-    role: 'inProgress',
     userId: 12
   },
   {
-    firstname: 'Chastity',
-    lastname: 'Howe',
+    
     email: 'eget.ipsum@aol.com',
     street: '582 Lacus Rd.',
     city: 'Chancay',
@@ -903,12 +988,10 @@ const ordersToCreate = [
     country: 'Belgium',
     phone: '(977) 545-5035',
     price: 19,
-    role: 'purchaised',
     userId: 6
   },
   {
-    firstname: 'Thane',
-    lastname: 'Mays',
+   
     email: 'ornare.placerat@yahoo.couk',
     street: 'P.O. Box 766, 8262 Eu Av.',
     city: 'Port Nolloth',
@@ -916,12 +999,10 @@ const ordersToCreate = [
     country: 'Vietnam',
     phone: '(864) 486-1513',
     price: 92,
-    role: 'purchaised',
     userId: 4
   },
   {
-    firstname: 'Paula',
-    lastname: 'Ross',
+    
     email: 'lorem.ipsum@google.com',
     street: '6351 Luctus St.',
     city: 'Guizhou',
@@ -929,12 +1010,10 @@ const ordersToCreate = [
     country: 'Spain',
     phone: '(368) 112-2658',
     price: 496,
-    role: 'inProgress',
     userId: 3
   },
   {
-    firstname: 'Jackson',
-    lastname: 'Hudson',
+   
     email: 'pede.malesuada.vel@outlook.edu',
     street: '551-2290 Varius. Avenue',
     city: 'Seloignes',
@@ -942,12 +1021,10 @@ const ordersToCreate = [
     country: 'United States',
     phone: '(355) 719-7074',
     price: 254,
-    role: 'purchaised',
     userId: 10
   },
   {
-    firstname: 'Halla',
-    lastname: 'Joyce',
+    
     email: 'at.pede@hotmail.org',
     street: '611-9564 Vestibulum Avenue',
     city: 'Sokoto',
@@ -955,12 +1032,10 @@ const ordersToCreate = [
     country: 'Sweden',
     phone: '1-678-478-2363',
     price: 250,
-    role: 'inProgress',
     userId: 7
   },
   {
-    firstname: 'Quail',
-    lastname: 'May',
+    
     email: 'nam@yahoo.couk',
     street: '336-5191 Ante St.',
     city: 'General Santos',
@@ -968,12 +1043,10 @@ const ordersToCreate = [
     country: 'Belgium',
     phone: '(746) 365-6148',
     price: 455,
-    role: 'inProgress',
     userId: 15
   },
   {
-    firstname: 'Cheryl',
-    lastname: 'Gordon',
+    
     email: 'lobortis.mauris.suspendisse@aol.net',
     street: 'P.O. Box 881, 7575 Diam St.',
     city: 'Dubno',
@@ -981,12 +1054,10 @@ const ordersToCreate = [
     country: 'Canada',
     phone: '(777) 423-1597',
     price: 8,
-    role: 'purchaised',
     userId: 0
   },
   {
-    firstname: 'Ulla',
-    lastname: 'Colon',
+    
     email: 'rhoncus.id.mollis@outlook.edu',
     street: '825-5678 Volutpat. Street',
     city: 'Emalahleni',
@@ -994,12 +1065,10 @@ const ordersToCreate = [
     country: 'Nigeria',
     phone: '1-280-992-5537',
     price: 462,
-    role: 'inProgress',
     userId: 10
   },
   {
-    firstname: 'Selma',
-    lastname: 'Barron',
+    
     email: 'consectetuer.adipiscing.elit@aol.edu',
     street: '950-9572 Sit Street',
     city: 'Kirkintilloch',
@@ -1007,12 +1076,10 @@ const ordersToCreate = [
     country: 'Brazil',
     phone: '1-964-345-1420',
     price: 424,
-    role: 'inProgress',
     userId: 2
   },
   {
-    firstname: 'Camilla',
-    lastname: 'Cantu',
+    
     email: 'vulputate@protonmail.edu',
     street: 'Ap #701-679 Eget, Rd.',
     city: 'Recife',
@@ -1020,12 +1087,10 @@ const ordersToCreate = [
     country: 'Canada',
     phone: '(861) 484-3844',
     price: 14,
-    role: 'purchaised',
     userId: 7
   },
   {
-    firstname: 'Nash',
-    lastname: 'Torres',
+   
     email: 'egestas.hendrerit@yahoo.couk',
     street: '233-9628 Ipsum. Street',
     city: 'Monfumo',
@@ -1033,12 +1098,10 @@ const ordersToCreate = [
     country: 'China',
     phone: '1-442-311-6831',
     price: 408,
-    role: 'inProgress',
     userId: 10
   },
   {
-    firstname: 'Merritt',
-    lastname: 'Acevedo',
+    
     email: 'tincidunt@icloud.ca',
     street: '681-3680 Mauris Av.',
     city: 'Liaoning',
@@ -1046,12 +1109,10 @@ const ordersToCreate = [
     country: 'Russian Federation',
     phone: '1-354-477-4566',
     price: 491,
-    role: 'purchaised',
     userId: 19
   },
   {
-    firstname: 'Aristotle',
-    lastname: 'Hickman',
+   
     email: 'non.egestas@hotmail.edu',
     street: '835-8352 Odio. Av.',
     city: 'Newton',
@@ -1059,12 +1120,10 @@ const ordersToCreate = [
     country: 'Vietnam',
     phone: '1-889-569-3426',
     price: 83,
-    role: 'inProgress',
     userId: 0
   },
   {
-    firstname: 'Clark',
-    lastname: 'Fernandez',
+    
     email: 'magna.nam@yahoo.couk',
     street: 'Ap #136-206 Donec Road',
     city: 'Iloilo City',
@@ -1072,12 +1131,10 @@ const ordersToCreate = [
     country: 'Peru',
     phone: '(775) 308-2306',
     price: 218,
-    role: 'purchaised',
     userId: 5
   },
   {
-    firstname: 'Walter',
-    lastname: 'Gould',
+    
     email: 'diam.luctus@yahoo.com',
     street: '163-8937 Lacus. Av.',
     city: 'Belfast',
@@ -1085,12 +1142,10 @@ const ordersToCreate = [
     country: 'Canada',
     phone: '1-408-781-1284',
     price: 69,
-    role: 'purchaised',
     userId: 2
   },
   {
-    firstname: 'Susan',
-    lastname: 'Dale',
+    
     email: 'sed.pede@icloud.org',
     street: 'Ap #393-2879 Non, Street',
     city: 'Ipiales',
@@ -1098,12 +1153,10 @@ const ordersToCreate = [
     country: 'Netherlands',
     phone: '1-790-617-3665',
     price: 266,
-    role: 'inProgress',
     userId: 20
   },
   {
-    firstname: 'Flynn',
-    lastname: 'Randall',
+    
     email: 'a.scelerisque@outlook.couk',
     street: 'P.O. Box 742, 3180 Diam St.',
     city: 'Calapan',
@@ -1111,12 +1164,10 @@ const ordersToCreate = [
     country: 'Germany',
     phone: '(223) 242-2793',
     price: 226,
-    role: 'inProgress',
     userId: 12
   },
   {
-    firstname: 'Finn',
-    lastname: 'Donovan',
+    
     email: 'metus@google.ca',
     street: '752-1109 Lacus. Road',
     city: 'Lleida',
@@ -1124,12 +1175,10 @@ const ordersToCreate = [
     country: 'Belgium',
     phone: '(782) 303-3521',
     price: 27,
-    role: 'purchaised',
     userId: 3
   },
   {
-    firstname: 'Harriet',
-    lastname: 'Combs',
+    
     email: 'luctus@hotmail.edu',
     street: '557-9080 Morbi Av.',
     city: 'Tarnów',
@@ -1137,12 +1186,10 @@ const ordersToCreate = [
     country: 'Vietnam',
     phone: '1-425-705-4448',
     price: 181,
-    role: 'purchaised',
     userId: 17
   },
   {
-    firstname: 'Jerome',
-    lastname: 'Harris',
+    
     email: 'interdum.ligula@hotmail.ca',
     street: '977-6275 Lacus Rd.',
     city: 'Bo‘lhe',
@@ -1150,12 +1197,10 @@ const ordersToCreate = [
     country: 'Sweden',
     phone: '(589) 481-7642',
     price: 480,
-    role: 'inProgress',
     userId: 20
   },
   {
-    firstname: 'Melyssa',
-    lastname: 'Ferrell',
+    
     email: 'suspendisse.dui.fusce@outlook.net',
     street: 'Ap #820-6049 Semper Road',
     city: 'Jhang',
@@ -1163,12 +1208,10 @@ const ordersToCreate = [
     country: 'Netherlands',
     phone: '(552) 631-1771',
     price: 271,
-    role: 'inProgress',
     userId: 20
   },
   {
-    firstname: 'Conan',
-    lastname: 'Burris',
+    
     email: 'donec.tincidunt.donec@icloud.org',
     street: 'Ap #226-9492 Nunc Rd.',
     city: 'Skövde',
@@ -1176,12 +1219,10 @@ const ordersToCreate = [
     country: 'Italy',
     phone: '1-876-692-3470',
     price: 278,
-    role: 'inProgress',
     userId: 18
   },
   {
-    firstname: 'Clio',
-    lastname: 'Cox',
+    
     email: 'aliquam.vulputate@aol.edu',
     street: '356-6178 Ac Rd.',
     city: 'Darbhanga',
@@ -1189,12 +1230,10 @@ const ordersToCreate = [
     country: 'Costa Rica',
     phone: '1-576-774-5204',
     price: 161,
-    role: 'inProgress',
     userId: 19
   },
   {
-    firstname: 'Shea',
-    lastname: 'Spears',
+    
     email: 'morbi.tristique.senectus@google.couk',
     street: '467-6965 Interdum Avenue',
     city: 'Rodgau',
@@ -1202,7 +1241,6 @@ const ordersToCreate = [
     country: 'Australia',
     phone: '(693) 481-8573',
     price: 131,
-    role: 'purchaised',
     userId: 20
   }
 ]
@@ -1225,7 +1263,7 @@ const usersToCreate = [
     email: "ramses@gmail.com",
     firstname: "Ramses",
     lastname: "Angles",
-    role: "admin",
+    orderStatus: "admin",
   },
   {
     username: "HPS76LC",
@@ -1233,7 +1271,7 @@ const usersToCreate = [
     password: "JIS22JDU0VX",
     firstname: "Shea",
     lastname: "Spears",
-    role: "user",
+    orderStatus: "user",
   },
   {
     username: "IUB22IP",
@@ -1241,7 +1279,7 @@ const usersToCreate = [
     password: "MEB53FOU6PR",
     firstname: "Clio",
     lastname: "Cox",
-    role: "user",
+    orderStatus: "user",
   },
   {
     username: "TOF38MY",
@@ -1249,7 +1287,7 @@ const usersToCreate = [
     password: "IFQ77QTI0BR",
     firstname: "Conan",
     lastname: "Burris",
-    role: "admin",
+    orderStatus: "admin",
   },
   {
     username: "EPJ35JN",
@@ -1257,7 +1295,7 @@ const usersToCreate = [
     password: "XYG71QYZ8IH",
     firstname: "Vernon",
     lastname: "Kidd",
-    role: "admin",
+    orderStatus: "admin",
   },
   {
     username: "KNL86FH",
@@ -1265,7 +1303,7 @@ const usersToCreate = [
     password: "CXS18BTJ8BF",
     firstname: "Kato",
     lastname: "Black",
-    role: "admin",
+    orderStatus: "admin",
   },
   {
     username: "XBY77WQ",
@@ -1273,7 +1311,7 @@ const usersToCreate = [
     password: "JUG94FVJ9DV",
     firstname: "Cassandra",
     lastname: "Keith",
-    role: "user",
+    orderStatus: "user",
   },
   {
     username: "EXU91HW",
@@ -1281,7 +1319,7 @@ const usersToCreate = [
     password: "DOX63WRV4OY",
     firstname: "Nero",
     lastname: "Morales",
-    role: "admin",
+    orderStatus: "admin",
   },
   {
     username: "XEZ38EF",
@@ -1289,7 +1327,7 @@ const usersToCreate = [
     password: "SKB63JZI5BH",
     firstname: "Maryam",
     lastname: "Jimenez",
-    role: "admin",
+    orderStatus: "admin",
   },
   {
     username: "TBC84DN",
@@ -1297,7 +1335,7 @@ const usersToCreate = [
     password: "HOR46LHW2PO",
     firstname: "Leigh",
     lastname: "Miranda",
-    role: "user",
+    orderStatus: "user",
   },
   {
     username: "ULI30WX",
@@ -1305,7 +1343,7 @@ const usersToCreate = [
     password: "VOT64GES0DU",
     firstname: "Amal",
     lastname: "Patrick",
-    role: "user",
+    orderStatus: "user",
   },
   {
     username: "HVQ84QT",
@@ -1313,7 +1351,7 @@ const usersToCreate = [
     password: "GBL81OWZ1FT",
     firstname: "Cyrus",
     lastname: "Whitehead",
-    role: "admin",
+    orderStatus: "admin",
   },
   {
     username: "NUF77QX",
@@ -1321,7 +1359,7 @@ const usersToCreate = [
     password: "BQK38YYH0BB",
     firstname: "Bethany",
     lastname: "Solomon",
-    role: "admin",
+    orderStatus: "admin",
   },
   {
     username: "JVY17GM",
@@ -1329,7 +1367,7 @@ const usersToCreate = [
     password: "FSK16GUY8XX",
     firstname: "Rhona",
     lastname: "Estrada",
-    role: "admin",
+    orderStatus: "admin",
   },
   {
     username: "FQB86XC",
@@ -1337,7 +1375,7 @@ const usersToCreate = [
     password: "LGN55OGN9NN",
     firstname: "Erin",
     lastname: "Duffy",
-    role: "admin",
+    orderStatus: "admin",
   },
   {
     username: "QTX82PK",
@@ -1345,7 +1383,7 @@ const usersToCreate = [
     password: "KDG63BEB6ZB",
     firstname: "Clinton",
     lastname: "Dillard",
-    role: "user",
+    orderStatus: "user",
   },
   {
     username: "SJO44OE",
@@ -1353,7 +1391,7 @@ const usersToCreate = [
     password: "LLP38NCH6BL",
     firstname: "Judah",
     lastname: "Schroeder",
-    role: "admin",
+    orderStatus: "admin",
   },
   {
     username: "QKP02TJ",
@@ -1361,7 +1399,7 @@ const usersToCreate = [
     password: "FHG03IBK3BK",
     firstname: "Solomon",
     lastname: "Bradley",
-    role: "user",
+    orderStatus: "user",
   },
   {
     username: "CEG78DE",
@@ -1369,7 +1407,7 @@ const usersToCreate = [
     password: "PJC66OIH8FI",
     firstname: "Justin",
     lastname: "Daniel",
-    role: "user",
+    orderStatus: "user",
   },
   {
     username: "QQS69SY",
@@ -1377,7 +1415,7 @@ const usersToCreate = [
     password: "IWF41GQX7BC",
     firstname: "Chanda",
     lastname: "Oneil",
-    role: "admin",
+    orderStatus: "admin",
   },
 ];
 

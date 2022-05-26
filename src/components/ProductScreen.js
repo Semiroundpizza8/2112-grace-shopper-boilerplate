@@ -6,13 +6,16 @@ const ProductScreen = (props) => {
     
     const [singleProduct, setSingleProduct] = useState("");
     
+
+      useEffect(() => {
+        (async () => {
+            const oneProduct = await getProductById(1);
+            setSingleProduct(oneProduct);
+            console.log("single",oneProduct);
+            setSingleProduct(oneProduct);
+        })();
+    }, []);
     
-    useEffect(() => { (async () => {
-        const oneProduct = await getProductById(1);
-        console.log("single",oneProduct);
-        setSingleProduct(oneProduct);
-      })();
-      }, []);
     
     return (
         
