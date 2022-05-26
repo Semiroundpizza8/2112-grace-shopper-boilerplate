@@ -1,0 +1,17 @@
+.footer {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    background-color: rgb(218, 206, 158);
+    position: relative;
+    top: 0;
+    z-index: 100;
+}
+
+.footer_logo {
+    width: 230px;
+        object-fit: contain;
+        margin: 0 20px;
+        margin-top: 18px;
+        margin-bottom: 18px;
+}
