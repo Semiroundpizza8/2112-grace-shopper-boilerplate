@@ -8,6 +8,7 @@ import "../style/App.css";
 import Footer from "./Footer";
 import Header from "./Header";
 import ProductScreen from "./ProductScreen";
+import Register from "./Register";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -55,7 +56,7 @@ const App = () => {
                   </Link>
                 </button>
                 <button className="button">
-                  <Link id="link" to="/register">
+                  <Link id="link" to="/Register">
                     SignUp
                   </Link>
                 </button>
@@ -75,7 +76,7 @@ const App = () => {
 
         <Route path="/login"> </Route>
 
-        <Route path="/register"> </Route>
+        <Route path="/Register"> </Route>
 
         <Route path="/user"> </Route>
       </BrowserRouter>
