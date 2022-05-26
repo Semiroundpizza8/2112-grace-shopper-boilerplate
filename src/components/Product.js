@@ -1,5 +1,6 @@
 import React from "react";
 import "../style/Product.css";
+import {Link} from 'react-router-dom'
 
 function Product({ id, title, image, price, rating, alt }) {
   return (
@@ -20,6 +21,7 @@ function Product({ id, title, image, price, rating, alt }) {
       </div>
 
       <img src={image} alt={alt} />
+      
 
       <button>Add to Cart</button>
     </div>

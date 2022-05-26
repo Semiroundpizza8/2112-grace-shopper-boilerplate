@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios'
 export const apiUrl = "http://localhost:4000";
 
 export const getAllProducts = async () => {
@@ -13,6 +13,7 @@ export const getAllProducts = async () => {
     if (response.statusText !== "OK") {
       throw new Error(response.data.message);
     }
+    console.log("getAllProducts",response);
     return response.data;
   } catch (err) {
     console.log(err);
