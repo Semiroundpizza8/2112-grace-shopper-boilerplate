@@ -1,6 +1,22 @@
 const client  = require("../client");
 
-const getCartById = async (cartId) => {
+
+const getAllCartProducts = async () => {
+	try {
+		const { rows } = await client.query(
+			`
+            SELECT *
+                FROM cartProducts
+            `
+		);
+
+		return cart_products;
+	} catch (error) {
+		throw error;
+	}
+};
+
+const getCartProductById = async (cartId) => {
 	try {
 		const { rows: [ cart_products ] } = await client.query(
 			`
@@ -17,7 +33,7 @@ const getCartById = async (cartId) => {
 	}
 };
 
-const getCartByUserId = async (userId) => {
+const getCartProductByUserId = async (userId) => {
 	try {
 		const { rows: [ cart_products ] } = await client.query(
 			`
@@ -34,11 +50,11 @@ const getCartByUserId = async (userId) => {
 	}
 };
 
-const addProductsToCart = async ({ userId, productId, price, quantity }) => {
+const addProductsToCartProduct = async ({ userId, productId, price, quantity }) => {
 	try {
 		const { rows:  cart_products  } = await client.query(
 			`
-            INSERT INTO cartProducts("productId", price, quantity)
+            INSERT INTO cartProducts("UserId", "productId", price, quantity)
             VALUES ($1, $2, $3, $4)
             RETURNING *;
         `,
@@ -52,7 +68,7 @@ const addProductsToCart = async ({ userId, productId, price, quantity }) => {
 };
 
 
-const updateProductInCart = async (fields = { price, quantity }) => {
+const updateProductInCartProduct = async (fields = { price, quantity }) => {
 	const setString = Object.keys(fields).map((key, index) => `"${key}"=$${index + 1}`).join(', ');
 
 	try {
@@ -76,7 +92,7 @@ const updateProductInCart = async (fields = { price, quantity }) => {
 
 
 
-const deleteProductInCart = async (id) => {
+const deleteCartProduct = async (id) => {
 	try {
 		const { rows: [product] } = await client.query(
 			`
@@ -101,4 +117,4 @@ const deleteProductInCart = async (id) => {
 
 
 
-module.exports = {addProductsToCart, updateProductInCart, deleteProductInCart, getCartById, getCartByUserId}
+module.exports = {getAllCartProducts, addProductsToCartProduct, updateProductInCartProduct, deleteCartProduct, getCartProductById, getCartProductByUserId}

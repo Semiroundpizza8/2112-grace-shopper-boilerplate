@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import { addToCart, deleteCart, patchCart, getMyCart } from '../axios-services/cart';
 
-const MyCart = () => {
+const Cart = () => {
 
     const [quantity, setQuantity] = useState("");
     const [price, setPrice] = useState("");
@@ -19,7 +19,7 @@ const MyCart = () => {
     const [addOpen, setAddOpen] = useState(false);
 
     const userId = localStorage.getItem('userId');
-    setCartIdArray(localStorage.getItem('cartArray'));
+    // setCartIdArray(localStorage.getItem('cartArray'));
 
 
 useEffect(() => { (async () => {
@@ -51,20 +51,30 @@ console.log("creating a new item in the cart");
       }
   }
 
+
     const handlePriceChange = (event) => {
+
       event.preventDefault();
+      try{
         setPrice(event.target.value);
+    }catch(error){
+        throw error
+    }
     }
 
     const handleQuantityChange = (event) => {
       event.preventDefault();
+      try{
         setQuantity(event.target.value);
+    }catch(error){
+        throw error
+    }
     }
 
-    const handleEditCart = (event) => {
-        event.preventDefault();
-          setQuantity(event.target.value);
-      }
+    // const handleEditCart = (event) => {
+    //     event.preventDefault();
+    //       setQuantity(event.target.value);
+    //   }
 
   
 
@@ -73,7 +83,7 @@ console.log("creating a new item in the cart");
         return (<div> 
         <div> <h2> Here all the items in your cart: </h2> 
 
-        <div>{!myCartList? <div> Nothing to show, yet! Add a products to your cart! </div> : <div> {myCartList.map(cart =>
+        {/* <div>{!myCartList? <div> Nothing to show, yet! Add a products to your cart! </div> : <div> {myCartList.map(cart =>
                 <div className="products" key={cart.id}> 
                     <div>{myCartList.map(item => <div key ={item.id}>
                       <p>product name:{item.name}</p>
@@ -91,10 +101,10 @@ console.log("creating a new item in the cart");
                    
                     {<button onClick={(id, event) => { handleDeleteCart(id, event) }}>Delete</button>}
                 </div>
-            ) }</div> }</div>
+            ) }</div> }</div> */}
         </div>
         </div>)
 }
 
 
-export default MyCart;
+export default Cart;

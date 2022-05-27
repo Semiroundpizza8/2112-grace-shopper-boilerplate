@@ -44,6 +44,7 @@ const App = () => {
   return (
     <div className="app-container">
       <Header />
+      
       <BrowserRouter>
         <div id="header">
           <h1 className="header">The furniture store</h1>
@@ -61,9 +62,8 @@ const App = () => {
                   </Link>
                 </button>
                 <button className="button">
-                  <Cart id="link" to="/cart">
-                    Cart
-                  </Cart>
+                  <Link id="link" to="/cart">
+                  Cart</Link>
                 </button>
               </>
             ) : (
@@ -75,9 +75,8 @@ const App = () => {
                   </Link>
                 </button>{" "}
                 <button className="button">
-                  <Cart id="link" to="/cart">
-                    Cart
-                  </Cart>
+                  <Link id="link" to="/cart">
+                  Cart</Link>
                 </button>
               </>
             )}{" "}
@@ -89,13 +88,12 @@ const App = () => {
         <Route path="/register"> </Route>
 
         <Route path="/user"> </Route>
-        <Route path="/cart"> </Route>
-        <Route path="/cart">
-                        <Cart/>   
-                    </Route>
+        <Route path="/cart"> <Cart/></Route>
+        <Route path="/product"><ProductScreen/> </Route>
       </BrowserRouter>
       <p>API Status: {APIHealth}</p>
-      <ProductScreen/>
+    
+      
       <Footer />
     </div>
   );

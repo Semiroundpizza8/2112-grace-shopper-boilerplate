@@ -1,6 +1,7 @@
 const express = require("express");
 const cartRouter = express.Router();
-const {addProductsToCart, updateProductInCart, deleteProductInCart, getCartById, getCartByUserId} = require('../db/models/cart_product');
+const {addProductsToCartProduct, updateProductInCartProduct, deleteCartProduct, getCartProductById, getCartProductByUserId} = require('../db/models/"cart_product"');
+const {addCartProductsToCart, deleteCart, getCartById, getCartByUserId} = require('../db/models/cart');
 const jwt = require("jsonwebtoken");
 
 
@@ -12,10 +13,10 @@ cartRouter.use((req, res, next) => {
 
 //the below path was tested and returns the cart.
 
-cartRouter.post('/', async (req, res, next) => {
+cartRouter.post('/:cartId', async (req, res, next) => {
     
     try {
-      const newCart = await addProductsToCart(req.body);
+      const newCart = await addProductsToCartProduct(req.body);
       console.log(req.body, newCart);
       res.send(newCart);
     } catch (error) {
@@ -28,7 +29,7 @@ cartRouter.post('/', async (req, res, next) => {
     console.log("I'm inside the cartId route")
       try {
         const { cartId } = req.params;
-        const cart = await getCartById(cartId);
+        const cart = await getCartProductById(cartId);
         res.send(cart);
           
       } catch (error) {
@@ -41,7 +42,7 @@ cartRouter.post('/', async (req, res, next) => {
     console.log("I'm inside the userId to get a cart route")
       try {
         const { userId } = req.params;
-        const cart = await getCartByUserId(userId);
+        const cart = await getCartProductByUserId(userId);
         res.send(cart);
           
       } catch (error) {
@@ -67,10 +68,10 @@ cartRouter.post('/', async (req, res, next) => {
 	}
 
 	try {
-		const originalCart = await getCartById(cartId);
+		const originalCart = await getCartProductById(cartId);
 
 		if (originalCart) {
-			const updateCart = await updateProductInCart(updateFields);
+			const updateCart = await updateProductInCartProduct(updateFields);
 
 			res.send(updateCart);
 		} else {
@@ -93,7 +94,7 @@ cartRouter.post('/', async (req, res, next) => {
   cartRouter.delete('/:cartId', async (req, res, next) => {
     const { cartId } = req.params;
     try {
-      const newCart = await deleteProductInCart(cartId);
+      const newCart = await deleteCartProduct(cartId);
       res.send(newCart);
     } catch (error) {
       next(error);

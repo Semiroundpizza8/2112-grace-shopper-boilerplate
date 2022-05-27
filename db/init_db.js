@@ -1,6 +1,8 @@
 
 const client= require('./client');
 const { createOrder, getAllOrders } = require('./models/orders');
+const { getAllCartProducts, addProductsToCartProduct } = require('./models/cart_product');
+const { getAllCarts, addCartProductsToCart } = require('./models/cart');
 
 
 const {
@@ -31,6 +33,7 @@ async function dropTables() {
 		// have to make sure to drop in correct order
 		await client.query(`
         
+    DROP TABLE IF EXISTS cart CASCADE;
     DROP TABLE IF EXISTS cartProducts CASCADE;
     DROP TABLE IF EXISTS orderProducts CASCADE;
     DROP TABLE IF EXISTS orders CASCADE;
@@ -75,8 +78,6 @@ async function buildTables() {
         category VARCHAR(255),
         reviewstars INTEGER
       );
-
-     
       
       CREATE TABLE orders ( 
         id SERIAL PRIMARY KEY,
@@ -88,6 +89,12 @@ async function buildTables() {
         country VARCHAR(255) NOT NULL,
         phone VARCHAR(255) NOT NULL,
         current_orderStatus orderStatus
+      );
+
+      CREATE TABLE cart (
+        id SERIAL PRIMARY KEY,
+        "userId" INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        "cartProductId" INTEGER REFERENCES cartProducts(id),
       );
 
       CREATE TABLE cartProducts (
@@ -248,9 +255,9 @@ async function createInitialOrderProducts() {
 	}
 }
 
-async function createInitialCarts() {
+async function createInitialCartProducts() {
   try {
-    console.log('starting to create cart...');
+    console.log('starting to create cart product...');
     console.log("getAllUsers",await getAllUsers());
     console.log("getAllProducts", await getAllProducts());
 		
@@ -313,6 +320,67 @@ async function createInitialCarts() {
 				price: 10,
 				quantity: 5
 			}
+		];
+		const productsToCart = await Promise.all(cartProductsToCreate.map(addProductsToCartProduct));
+		console.log('cart products created: ', productsToCart);
+		console.log('Finished creating cart!');
+	} catch (error) {
+		throw error;
+	}
+}
+
+async function createInitialCarts() {
+  try {
+    console.log('starting to create cart...');
+    console.log("getAllUsers",await getAllUsers());
+    console.log("getAllCartProducts", await getAllCartProducts());
+		
+		const [ user1, user2, user3, user4 ] = await getAllUsers();
+    const [ cartProduct1, cartProduct2, cartProduct3, cartProduct4 ] = await getAllCartProducts();
+    
+
+		const cartProductsToCreate = [
+			{
+				userId: user1.id,
+				cartProductId: cartProduct1.id,
+			},
+      {
+				userId: user1.id,
+				cartProductId: cartProduct2.id,
+			},
+      {
+				userId: user1.id,
+				cartProductId: cartProduct3.id,
+			},
+      {
+				userId: user1.id,
+				cartProductId: cartProduct4.id,
+			},
+      {
+				userId: user2.id,
+				cartProductId: cartProduct1.id,
+			},
+      {
+				userId: user3.id,
+				cartProductId: cartProduct1.id,
+			},
+      {
+				userId: user4.id,
+				cartProductId: cartProduct1.id,
+			},
+      {
+				userId: user4.id,
+				cartProductId: cartProduct4.id,
+			},
+      {
+				userId: user4.id,
+				cartProductId: cartProduct3.id,
+			},
+      {
+				userId: user2.id,
+				cartProductId: cartProduct3.id,
+			}
+			
 		];
 		const productsToCart = await Promise.all(cartProductsToCreate.map(addProductsToCart));
 		console.log('cart products created: ', productsToCart);
