@@ -16,6 +16,7 @@ async function createUser({ username, address, email, city, state, zip, password
       [username, address, email, city, state, zip, hashedPassword]
     );
     delete password;
+    
     return user;
   } catch (error) {
     throw error;

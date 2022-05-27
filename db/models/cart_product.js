@@ -7,6 +7,7 @@ async function createCartProduct({productId, cartId, quantity, price}){
       VALUES ($1, $2, $3, $4)
       RETURNING *;
     `, [productId, cartId, quantity, price])
+    return cartProduct;
   }catch(error){
     throw error;
   }
@@ -61,17 +62,17 @@ async function addProductToCart({
   }
 }
 
-async function updateCart_Product({ productId, cartId, id }) {
+async function updateCart_Product({ productId, cartId, price, id }) {
   try {
     const {
       rows: [cart_product],
     } = await client.query(
       `
         UPDATE cart_product
-        SET productId=$1, cartId=$2
-        WHERE id=$3
+        SET productId=$1, cartId=$2, price = $3,
+        WHERE id=$4
         RETURNING *
-      `, [productId, cartId, id]);
+      `, [productId, cartId, price, id]);
       return cart_product;
   } catch (error) {
     throw error;
@@ -91,6 +92,23 @@ async function destroyCart_Product(id) {
   }
 }
 
+async function getTotalCartProductPrice(){
+  try{
+    const { rows: [ totalPrice ] } = await client.query(`
+    SELECT price
+    FROM product;
+    RETURNING *;
+    `)
+
+    const totalCartPrice = 0;
+
+    totalPrice.map(price => totalCartPrice+=price)
+
+    return totalCartPrice;
+  }catch(error){
+    throw error;
+  }
+}
 
 module.exports = {
   getCart_ProductById,

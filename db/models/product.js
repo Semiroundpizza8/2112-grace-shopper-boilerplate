@@ -38,8 +38,20 @@ async function getAllProducts() {
   } catch (error) {
     throw error;
   }
-}
+};
+async function getProductPriceById(productId){
+  try{
+    const { rows: [ product ] } = await client.query(`
+      SELECT price
+      from product
+      WHERE id = $1;
+    `, [productId]);
 
+    return price;
+  }catch(error){
+    throw error;
+  }
+};
 
 
 // async function updateProduct({ id, name, description }) {
@@ -63,5 +75,6 @@ module.exports = {
   getProductById,
   getAllProducts,
   createProducts,
+  getProductPriceById
 //   updateProduct
 };

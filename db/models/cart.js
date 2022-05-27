@@ -34,12 +34,6 @@ async function getCartById(cartId) {
 //   }
 // }
 
-
-
-
-
-
-
 async function createCart({ userId, isPayFor, price }) {
   try {
     const {
@@ -59,9 +53,7 @@ async function createCart({ userId, isPayFor, price }) {
 }
 
 async function updateCart({ id, isPayFor, name, price }) {
-  //find the routine with id equal to the passed in id
-  //dont update the routine id but do update the isPublic status, name, or goal as necessary
-  //return updated routine
+
   try {
     const fields = {};
     if (name){
