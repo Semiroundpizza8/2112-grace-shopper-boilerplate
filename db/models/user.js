@@ -77,6 +77,16 @@ const getUserById = async (id) => {
 	return user;
 };
 
+const getAdmin = async (id) => {
+	const { rows: [ user ] } = await client.query(
+		`
+    SELECT * FROM users 
+    where role = $1`,
+		[ admin ]
+	);
+
+	return user;
+};
 
 const getUserByUsername = async (username) => {
 	try {
@@ -94,4 +104,4 @@ const getUserByUsername = async (username) => {
 	}
 };
 
-module.exports = { createUser, getUser, getUserById, getUserByUsername, getAllUsers };
+module.exports = { createUser, getUser, getUserById, getUserByUsername, getAllUsers, getAdmin };

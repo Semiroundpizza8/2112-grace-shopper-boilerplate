@@ -55,7 +55,7 @@ const addCartProductsToCart = async ({ userId, cartProductId }) => {
 	try {
 		const { rows:  [cart]  } = await client.query(
 			`
-            INSERT INTO cart("productId", "cartProductId")
+            INSERT INTO cart("userId", "cartProductId")
             VALUES ($1, $2)
             RETURNING *;
         `,
