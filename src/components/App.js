@@ -7,6 +7,7 @@ import { getAPIHealth } from "../axios-services";
 import "../style/App.css";
 import Footer from "./Footer";
 import Header from "./Header";
+import Cart from "./Cart";
 import ProductScreen from "./ProductScreen";
 import Home from "./Home";
 import Products from "./Products";
@@ -46,6 +47,7 @@ const App = () => {
   return (
     <div className="app-container">
       <Header />
+      
       <BrowserRouter>
         <div className="content">
           <Switch>

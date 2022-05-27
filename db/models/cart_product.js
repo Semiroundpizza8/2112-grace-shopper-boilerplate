@@ -1,6 +1,22 @@
 const client  = require("../client");
 
-const getCartById = async (cartId) => {
+
+const getAllCartProducts = async () => {
+	try {
+		const { rows } = await client.query(
+			`
+            SELECT *
+                FROM cartProducts
+            `
+		);
+
+		return cart_products;
+	} catch (error) {
+		throw error;
+	}
+};
+
+const getCartProductById = async (cartId) => {
 	try {
 		const { rows: [ cart_products ] } = await client.query(
 			`
@@ -17,15 +33,32 @@ const getCartById = async (cartId) => {
 	}
 };
 
-const addProductsToCart = async ({ productId, price, quantity }) => {
+const getCartProductByUserId = async (userId) => {
+	try {
+		const { rows: [ cart_products ] } = await client.query(
+			`
+            SELECT *
+                FROM cartProducts
+                WHERE "userId"=$1;
+            `,
+			[ userId ]
+		);
+
+		return cart_products;
+	} catch (error) {
+		throw error;
+	}
+};
+
+const addProductsToCartProduct = async ({ userId, productId, price, quantity }) => {
 	try {
 		const { rows:  cart_products  } = await client.query(
 			`
-            INSERT INTO cartProducts("productId", price, quantity)
-            VALUES ($1, $2, $3)
+            INSERT INTO cartProducts("UserId", "productId", price, quantity)
+            VALUES ($1, $2, $3, $4)
             RETURNING *;
         `,
-	        [ productId, price, quantity ]
+	        [ userId, productId, price, quantity ]
 		);
         console.log("inside cart_products",cart_products);
 		return cart_products;
@@ -35,7 +68,7 @@ const addProductsToCart = async ({ productId, price, quantity }) => {
 };
 
 
-const updateProductInCart = async (fields = { price, quantity }) => {
+const updateProductInCartProduct = async (fields = { price, quantity }) => {
 	const setString = Object.keys(fields).map((key, index) => `"${key}"=$${index + 1}`).join(', ');
 
 	try {
@@ -59,7 +92,7 @@ const updateProductInCart = async (fields = { price, quantity }) => {
 
 
 
-const deleteProductInCart = async (id) => {
+const deleteCartProduct = async (id) => {
 	try {
 		const { rows: [product] } = await client.query(
 			`
@@ -84,4 +117,4 @@ const deleteProductInCart = async (id) => {
 
 
 
-module.exports = {addProductsToCart, updateProductInCart, deleteProductInCart, getCartById}
+module.exports = {getAllCartProducts, addProductsToCartProduct, updateProductInCartProduct, deleteCartProduct, getCartProductById, getCartProductByUserId}

@@ -1,7 +1,7 @@
 export const baseUrl = 'http://localhost:4000/api';
 
 
-export const addToCart = async ({productId, price, quantity}) => {
+export const addToCart = async ({userId, productId, price, quantity}) => {
     let response;
         try {
             response = await fetch(`${baseUrl}/cart`, {
@@ -10,24 +10,38 @@ export const addToCart = async ({productId, price, quantity}) => {
                         'Content-Type': 'application/json',
                             },
             body: JSON.stringify(
-                     {productId: productId, price: price, quantity: quantity}
+                     {userId: userId, productId: productId, price: price, quantity: quantity}
                                 )
-                    })
+                    }) 
+                } catch (error) {
+                    console.log("error in adding product to cart!")
+                   throw error;
+                }
     const addedToCart = await response.json()
-    localStorage.setItem('cartId', json.id);
+    let cartArray = [];
+    let retrievedArray = localStorage.getItem('cartArray')
+    let cart = addedToCart;
+    if(!retrievedArray){
+   cartArray.push(cart); 
+    } else { 
+    cartArray = retrievedArray;
+    cartArray.push(cart);
+}
+localStorage.setItem('cartArray', JSON.stringify(cartArray));
      return addedToCart;
-            } catch (error) {
-                 console.log("error in adding product to cart!")
-                throw error;
-                        }
-                    }
+            } 
+                   
+                
 
                     
      export const getMyCart = async () => {
-        const cartId = localStorage.getItem('cartId');
+        const userId = localStorage.getItem('userId');
+        const cartArray = localStorage.getItem('cartArray');
         let response;
+        let fullArray = [];
+        if (!userId){
         try { 
-            response = await fetch(`${baseUrl}/cart/${cartId}`, {
+            response = await fetch(`${baseUrl}/cart/${cartArray}`, {
             method: "GET",
             headers: {
                     'Content-Type': 'application/json',
@@ -35,21 +49,41 @@ export const addToCart = async ({productId, price, quantity}) => {
                                 
                             })
         const json = await response.json()
-        return json;
+        fullArray.push(json);
+        return fullArray;
                         } catch (error) {
                             console.log("error in getting my cart!")
                             throw [error];
                         }
-                        
-                    };
+                } else {
+                
+                        try { 
+                            response = await fetch(`${baseUrl}/cart/user/${userId}`, {
+                            method: "GET",
+                            headers: {
+                                    'Content-Type': 'application/json',
+                                                }
+                                                
+                                            })
+                        const json = await response.json()
+                        fullArray.push(json);
+                        return fullArray;
+                                        } catch (error) {
+                                            console.log("error in getting my cart!")
+                                            throw [error];
+                                        }
+                                    
+                
+                }
+
+            }
 
 
 
-
-
- export const patchCart = async (price, quantity) => {
-    const cartId = localStorage.getItem('cartId');
+ export const patchCart = async (cartId, price, quantity) => {
+    
     let response;
+    
         try {
             response = await fetch(`${baseUrl}/cart/${cartId}`, {
             method: "PATCH",
@@ -68,8 +102,7 @@ export const addToCart = async ({productId, price, quantity}) => {
                             }
                         }
                         
-export const deleteCart = async () => {
-    const cartId = localStorage.getItem('cartId');
+export const deleteCart = async (cartId) => {
         let response;
     try {
         response = await fetch(`${baseUrl}/cart/${cartId}`, {
