@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { registerUser } from '..axios-services/user';
+import { registerUser } from '../axios-services/user';
 
 const Register = (props) => {
-    const { isLoggedIn, setIsLoggedIn } = props;
+    const { loggedIn, setLoggedIn } = props;
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -18,7 +18,8 @@ const Register = (props) => {
         //console.log(localStorage.getItem(token));
         setUserName('');
         setPassword('');
-        setIsLoggedIn(!!localStorage.getItem("token"))
+        setEmail('');
+        setLoggedIn(!!localStorage.getItem("token"))
     };
     const updateUserName = (event) => {
         setUserName(event.target.value)
@@ -26,12 +27,16 @@ const Register = (props) => {
     const updatePassword = (event) => {
         setPassword(event.target.value)
     };
+    const updateEmail =(event) => {
+        setEmail(event.target.value)
+    }
 
     return (
         <div>
             <form onSubmit={ handleSubmit }>
                 <input type = 'text' placeholder = "Register Username" value = {userName} onChange = {updateUserName} />
                 <input type = 'text' placeholder = "Register Password" value = {password} onChange = {updatePassword} />
+                <input type = 'text' placeholder = "Register Email" value = {email} onChange = {updateEmail} />
                 <button> Register </button>
             </form>
         </div>

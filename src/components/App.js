@@ -9,6 +9,8 @@ import Footer from "./Footer";
 import Header from "./Header";
 import ProductScreen from "./ProductScreen";
 import Register from "./Register";
+import LoggedIn from "./LoggedIn";
+import Logout from "./Logout";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -19,7 +21,7 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    setLoggedIn(!!localStorage.getItem("UserToken"));
+    setLoggedIn(!!localStorage.getItem("token"));
   }, []);
 
   //  const logOut = () => {
@@ -48,33 +50,22 @@ const App = () => {
         <div id="header">
           <h1 className="header">The furniture store</h1>
           <div id="routeBox">
-            {!loggedIn ? (
-              <>
-                <button className="button">
-                  <Link id="link" to="/login">
-                    Login
-                  </Link>
-                </button>
-                <button className="button">
-                  <Link id="link" to="/Register">
-                    SignUp
-                  </Link>
-                </button>
-              </>
-            ) : (
-              <>
-                <button className="button">
-                  {" "}
-                  <Link id="link" to="/user">
-                    User
-                  </Link>
-                </button>{" "}
-              </>
-            )}{" "}
+
+        <Route path ='/'>        
+        {loggedIn ? <Logout loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/> :
+        <LoggedIn loggedIn = {loggedIn } setLoggedIn = {setLoggedIn}/>
+        }
+        {loggedIn ?<p></p> :<Link to = '/Register'>Register Here!</Link>}
+        </Route >
+        <Route path = '/Register'>
+        {loggedIn? <user /> :<Register loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/>}
+        </Route>
+
+
           </div>
         </div>
 
-        <Route path="/login"> </Route>
+        <Route path="/LoggedIn"> </Route>
 
         <Route path="/Register"> </Route>
 
