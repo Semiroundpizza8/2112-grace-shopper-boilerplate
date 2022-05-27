@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react";
 import { getProductById } from "../axios-services/productScreen";
 import {useParams, useHistory} from 'react-router-dom';
 import { Link } from "react-router-dom";
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 
 const ProductScreen = () => {
@@ -21,15 +27,30 @@ useEffect(() => {
 
   return (
     <div className="product">
+        <Card>
+            <CardMedia
+            component="img"
+            height="140"
+            image={singleProduct.image}
+            alt={singleProduct.name}
+            />
         
-        <img src = {singleProduct.image} alt={singleProduct.name}></img>
-        <h1>Name : {singleProduct.name}</h1>
-        <p>Description : {singleProduct.description}</p>
-        <strong> Price : {singleProduct.price}</strong>
-        <p> {singleProduct.stock > 0 ? 'In Stock' : 'Out Of Stock'}</p>
-        
+        <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+            <h2>{singleProduct.name}</h2>
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+            <h3> Description : {singleProduct.description}</h3>
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+            <strong> Price : ${singleProduct.price} </strong>
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+            <h4> Availability : {singleProduct.stock > 0 ? 'In Stock' : 'Out Of Stock'} </h4>
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
         <label>
-            Quantity 
+            <strong>Quantity</strong> 
         </label>
 
         <select 
@@ -41,13 +62,21 @@ useEffect(() => {
                 </option>
             ))}
         </select>
+        </Typography>
+        </CardContent>
+        <CardActions>
+        <Typography variant="body2" color="text.secondary">
+            <button>Add to Cart</button>
+        </Typography>
 
-        <button>Add to Cart</button>
-        <Link to = "/Shop"> Go Back to Home Page </Link>
-        
+        <Typography variant="body2" color="text.secondary">
+            <Link to = "/Shop"> Go Back to Home Page </Link>
+        </Typography>
+        </CardActions>
       
-    </div>
-  );
-};
+      </Card>
+      </div>
+  )
+}
 
-export default ProductScreen;
+  export default ProductScreen;
