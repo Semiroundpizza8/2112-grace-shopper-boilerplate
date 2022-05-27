@@ -19,6 +19,21 @@ async function getCartById(cartId) {
   }
 }
 
+async function getCartsByUser(userId){
+  try{
+    const {
+      rows: orderHistory
+    } = await client.query(`
+    SELECT *
+    FROM cart
+    WHERE "userId" = $1 AND "isPayFor" = true;
+    `,[userId]);
+
+    return orderHistory;
+  }catch(error){
+    throw error
+  }
+}
 
 
 // async function getAllcarts() {
