@@ -1,8 +1,7 @@
 const express = require("express");
 const cartRouter = express.Router();
-const {addProductsToCart, updateProductInCart, deleteProductInCart, getCartById} = require('../db/models/cart_product');
+const {addProductsToCart, updateProductInCart, deleteProductInCart, getCartById, getCartByUserId} = require('../db/models/cart_product');
 const jwt = require("jsonwebtoken");
-
 
 
 
@@ -29,7 +28,6 @@ cartRouter.post('/', async (req, res, next) => {
     console.log("I'm inside the cartId route")
       try {
         const { cartId } = req.params;
-        console.log(cartId)
         const cart = await getCartById(cartId);
         res.send(cart);
           
@@ -37,6 +35,20 @@ cartRouter.post('/', async (req, res, next) => {
           next(error);
       }
   })
+
+
+  cartRouter.get('/user/:userId', async (req,res,next) => {
+    console.log("I'm inside the userId to get a cart route")
+      try {
+        const { userId } = req.params;
+        const cart = await getCartByUserId(userId);
+        res.send(cart);
+          
+      } catch (error) {
+          next(error);
+      }
+  })
+
 
   cartRouter.patch('/:cartId', async (req, res, next) => {
    

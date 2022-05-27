@@ -7,6 +7,7 @@ import { getAPIHealth } from "../axios-services";
 import "../style/App.css";
 import Footer from "./Footer";
 import Header from "./Header";
+import Cart from "./Cart";
 import ProductScreen from "./ProductScreen";
 
 const App = () => {
@@ -59,6 +60,11 @@ const App = () => {
                     SignUp
                   </Link>
                 </button>
+                <button className="button">
+                  <Cart id="link" to="/cart">
+                    Cart
+                  </Cart>
+                </button>
               </>
             ) : (
               <>
@@ -68,6 +74,11 @@ const App = () => {
                     User
                   </Link>
                 </button>{" "}
+                <button className="button">
+                  <Cart id="link" to="/cart">
+                    Cart
+                  </Cart>
+                </button>
               </>
             )}{" "}
           </div>
@@ -78,6 +89,10 @@ const App = () => {
         <Route path="/register"> </Route>
 
         <Route path="/user"> </Route>
+        <Route path="/cart"> </Route>
+        <Route path="/cart">
+                        <Cart/>   
+                    </Route>
       </BrowserRouter>
       <p>API Status: {APIHealth}</p>
       <ProductScreen/>

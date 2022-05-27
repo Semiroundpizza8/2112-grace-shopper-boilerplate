@@ -20,7 +20,6 @@ const {
 const addProductsToOrder = require('./models/order_products');
 const addProductsToCart = require('./models/cart_product');
 
-//CREATE TYPE orderStatus AS ENUM ('purchased','inProgress');
 
 async function dropTables() {
 	console.log('Dropping All Tables...');
@@ -93,6 +92,7 @@ async function buildTables() {
 
       CREATE TABLE cartProducts (
         id SERIAL PRIMARY KEY,
+        "userId" INTEGER REFERENCES users(id) ON DELETE CASCADE,
         "productId" INTEGER REFERENCES products(id),
         price INTEGER,
         quantity INTEGER,
@@ -339,6 +339,7 @@ async function createInitialCarts() {
 async function rebuildDB() {
   try {
     client.connect();
+
     await dropTables();
     await buildTables();
     await createInitialUsers();

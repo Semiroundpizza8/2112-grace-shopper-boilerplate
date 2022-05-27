@@ -17,15 +17,32 @@ const getCartById = async (cartId) => {
 	}
 };
 
-const addProductsToCart = async ({ productId, price, quantity }) => {
+const getCartByUserId = async (userId) => {
+	try {
+		const { rows: [ cart_products ] } = await client.query(
+			`
+            SELECT *
+                FROM cartProducts
+                WHERE "userId"=$1;
+            `,
+			[ userId ]
+		);
+
+		return cart_products;
+	} catch (error) {
+		throw error;
+	}
+};
+
+const addProductsToCart = async ({ userId, productId, price, quantity }) => {
 	try {
 		const { rows:  cart_products  } = await client.query(
 			`
             INSERT INTO cartProducts("productId", price, quantity)
-            VALUES ($1, $2, $3)
+            VALUES ($1, $2, $3, $4)
             RETURNING *;
         `,
-	        [ productId, price, quantity ]
+	        [ userId, productId, price, quantity ]
 		);
         console.log("inside cart_products",cart_products);
 		return cart_products;
@@ -84,4 +101,4 @@ const deleteProductInCart = async (id) => {
 
 
 
-module.exports = {addProductsToCart, updateProductInCart, deleteProductInCart, getCartById}
+module.exports = {addProductsToCart, updateProductInCart, deleteProductInCart, getCartById, getCartByUserId}
