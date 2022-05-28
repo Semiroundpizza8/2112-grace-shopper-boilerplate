@@ -45,10 +45,6 @@ async function getAllOrders() {
   }
 }
 
-
-
-
-
 module.exports = {
   createOrder,
   getAllOrders,
