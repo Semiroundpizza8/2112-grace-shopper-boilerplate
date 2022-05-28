@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch,Link } from "react-router-dom";
 // getAPIHealth is defined in our axios-services directory index.js
 // you can think of that directory as a collection of api adapters
 // where each adapter fetches specific info from our express server's /api route
@@ -15,8 +15,11 @@ import Logout from "./Logout";
 import Home from "./Home";
 import Products from "./Products";
 
+
+
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
+  const [cart, setCart] = useState([])
   
 
   // const[user, setUser] = useState();
@@ -80,11 +83,12 @@ const App = () => {
             <Route exact path={"/"}>
               <Home />
             </Route>
-            <Route path="/products/:id">
-              <ProductScreen />
-            </Route>
+            
             <Route exact path={"/Shop"}>
               <Products />
+            </Route>
+            <Route path="/products/:id">
+              <ProductScreen />
             </Route>
           </Switch>
         </div>
