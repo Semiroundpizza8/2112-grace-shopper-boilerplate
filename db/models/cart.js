@@ -21,18 +21,18 @@ async function getCartById(cartId) {
 
 
 
-// async function getAllcarts() {
-//   try {
-//     const { rows: cart } = await client.query(`
-//         SELECT cart.*, users.username AS "creatorName"
-//         FROM cart
-//         JOIN users ON users.id=cart."creatorId";
-//       `);
-//     return cart;
-//   } catch (error) {
-//     throw error;
-//   }
-// }
+async function getAllcarts() {
+  try {
+    const { rows: cart } = await client.query(`
+        SELECT cart.*, users.username AS "creatorName"
+        FROM cart
+        JOIN users ON users.id=cart."creatorId";
+      `);
+    return cart;
+  } catch (error) {
+    throw error;
+  }
+}
 
 
 
@@ -59,25 +59,21 @@ async function createCart({ userId, isPayFor, price }) {
 }
 
 async function updateCart({ id, isPayFor, name, price }) {
-  //find the routine with id equal to the passed in id
-  //dont update the routine id but do update the isPublic status, name, or goal as necessary
-  //return updated routine
+
   try {
     const fields = {};
     if (name){
       fields.name = name
     }
-    if (goal){
-      fields.goal = goal
+    if (price){
+      fields.price = price
     }
-    if (typeof isPublic === "boolean"){
-      fields.isPublic = isPublic
+    if (typeof isPayFor === "boolean"){
+      fields.isPayFor = isPayFor
     }
-
     const setString = Object.keys(fields).map(
       (key, index) => `"${ key }"=$${ index + 1 }`
     ).join(', ');
-
     const {
       rows: [cart],
     } = await client.query(
@@ -94,19 +90,50 @@ async function updateCart({ id, isPayFor, name, price }) {
 }
 
 
-// async function updateCartPrice({}){
+async function getTotalCartItemPrice(){
+  try{
+    const { rows: [ totalPrice ] } = await client.query(`
+    SELECT price
+    FROM product;
+    RETURNING *;
+    `)
+
+    const totalCartPrice = 0;
+
+    totalPrice.map(price => totalCartPrice+=price)
+
+    return totalCartPrice;
+  }catch(error){
+    throw error;
+  }
+}
 
 
+async function getCartsByUser(userId){
+  try{
+    const {
+      rows: orderHistory
+    } = await client.query(`
+    SELECT *
+    FROM cart
+    WHERE "userId" = $1 AND "isPayFor" = true;
+    `,[userId]);
 
-// }
+    return orderHistory;
+  }catch(error){
+    throw error
+  }
+}
 
 
 
 module.exports = {
-  getCartById,
+  // getCartById,
 //   getAllCarts,
   createCart,
-  updateCart,
+  // updateCart,
 //   updateCartPrice,
+// getTotalCartItemPrice,
+// getCartsByUser
   
 };
