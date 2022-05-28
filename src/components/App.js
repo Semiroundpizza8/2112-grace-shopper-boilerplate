@@ -11,9 +11,11 @@ import Cart from "./Cart";
 import ProductScreen from "./ProductScreen";
 import Home from "./Home";
 import Products from "./Products";
+import CartScreen from "./CartScreen";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
+
   
 
   // const[user, setUser] = useState();
@@ -54,12 +56,14 @@ const App = () => {
             <Route exact path={"/"}>
               <Home />
             </Route>
-            <Route path="/products/:id">
-              <ProductScreen />
-            </Route>
+            
             <Route exact path={"/Shop"}>
               <Products />
             </Route>
+            <Route path="/products/:id">
+              <ProductScreen />
+            </Route>
+            
           </Switch>
         </div>
         <Footer />
