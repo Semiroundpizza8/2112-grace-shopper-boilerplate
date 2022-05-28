@@ -25,6 +25,7 @@ export const getAllUsers = async (username, password) => {
 
     export const registerUser = async (user) => {
         const url = `${apiUrl}/user/register`;
+        console.log("registeruser Json")
         try {
             const response = await fetch(url,{
                 method:"POST",
@@ -34,20 +35,15 @@ export const getAllUsers = async (username, password) => {
                 body: JSON.stringify(user)
             })
             const json = await response.json();
-            if (!json.user) {
-                return false;
-            } 
-            else {
-                localStorage.setItem('UserToken', json.token);
-                return true;
-            }}
-            catch(error){
-                console.log("this is register user api error", error)
-            }
+            console.log("registeruser Json", json)
+            const token = json.token;
+            localStorage.setItem("token", token);
+            localStorage.setItem("userId", json.user.id);
+            return json;
+        } catch(error){
+            console.log(error);
+        };
     };
-
-
-
 
     export const loginUser = async (user) => {
         const url = `${apiUrl}/user/login`;
@@ -62,7 +58,7 @@ export const getAllUsers = async (username, password) => {
             const json = await response.json();
             const token = json.token;
             localStorage.setItem("token", token);
-            localStorage.setItem("userId", json.id);
+            localStorage.setItem("userId", json.user.id);
             return json;
         } catch(error){
             console.error(error);

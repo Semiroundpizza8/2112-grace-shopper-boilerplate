@@ -36,8 +36,8 @@ localStorage.setItem('cart', JSON.stringify(cart));
  export const createProductCart = async (cartId, productId, price, quantity) => {
  let response;
 let userId = localStorage.getItem('userId')
-// let cart = localStorage.getItem('cart')
-// cartId = cart.id;
+//let cart = localStorage.getItem('cart')
+//cartId = cart.id;
         try {
             response = await fetch(`${baseUrl}/cart/${cartId}`, {
                         method: "POST",
@@ -74,17 +74,6 @@ let cartProductArray = [];
         const userId = localStorage.getItem('userId');
         const cartArray = localStorage.getItem('cartProductArray');
         const cartProductArray = localStorage.getItem('cartProductArray')
-        if(localStorage.getItem('cart') === undefined || null) {
-            //create a cart and assign an id
-            const newCart = addNewCart();
-            
-
-            
-        }
-        const cart = localStorage.getItem('cart')
-        
-        console.log("objectCart",cart);
-        const cartId = cart.id;
         
         let response;
         let fullArray = [];
@@ -92,8 +81,11 @@ let cartProductArray = [];
             console.log("no cart nor userId present")
             return;
         }
-       
-        if (!userId && cartId){
+        const cart = localStorage.getItem('cart')
+        if (!cart){
+            return;
+        }
+        if (!userId && cart.id){
         try { 
             response = await fetch(`${baseUrl}/cart/${cartId}`, {
             method: "GET",

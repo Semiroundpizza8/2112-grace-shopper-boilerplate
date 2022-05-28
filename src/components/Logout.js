@@ -5,6 +5,7 @@ const Logout = (props) => {
 
     const handleClick = () => {
         localStorage.removeItem('token')
+        localStorage.removeItem('userId')
         setLoggedIn (!!localStorage.getItem("token"))
     };
 
