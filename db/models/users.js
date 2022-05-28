@@ -70,8 +70,8 @@ async function getUserById(id) {
 
 module.exports = {
   createUser,
-  getUser,
-  getUserById,
+  // getUser,
+  // getUserById,
   
 };
 

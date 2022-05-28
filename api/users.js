@@ -3,9 +3,11 @@ const usersRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const {
   createUser,
-  getUserByUserId,
   getUser,
+  getUserById,
 } = require("../db");
+
+const { requireUser } = require("./utils");
 
 usersRouter.use((req, res, next) => {
   console.log("A request is being made to /users");
@@ -73,18 +75,18 @@ usersRouter.get("/me", async (req, res, next) => {
   res.send(req.user);
 });
 
-// usersRouter.get("/:username/routines", async (req, res, next) => {
-//   const { username } = req.params;
-//   try {
-//       console.log("got here", username);
-//     const userPublicRoutines = await getPublicRoutinesByUser(
-//       {username: username}
-//     );
-//       console.log(userPublicRoutines)
-//     res.send(userPublicRoutines);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+usersRouter.get("/:username/cart", async (req, res, next) => {
+  const { username } = req.params;
+  try {
+      console.log("got here", username);
+    const usersCart = await getPublicRoutinesByUser(
+      {username: username}
+    );
+      console.log(userPublicRoutines)
+    res.send(userPublicRoutines);
+  } catch (error) {
+    next(error);
+  }
+});
 
-// module.exports = usersRouter;
+module.exports = usersRouter;
