@@ -87,13 +87,10 @@ const App = () => {
             <Route exact path={"/Shop"}>
               <Products />
             </Route>
-<<<<<<< HEAD
             <Route path="/cart"><Cart/></Route>
-=======
             <Route path="/products/:id">
               <ProductScreen />
             </Route>
->>>>>>> 6f29ff56bb6bcf76f710e2bd3544b172e993627d
           </Switch>
         </div>
         <Footer />
