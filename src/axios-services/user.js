@@ -25,6 +25,7 @@ export const getAllUsers = async (username, password) => {
 
     export const registerUser = async (user) => {
         const url = `${apiUrl}/user/register`;
+        console.log("registeruser Json")
         try {
             const response = await fetch(url,{
                 method:"POST",
@@ -34,10 +35,11 @@ export const getAllUsers = async (username, password) => {
                 body: JSON.stringify(user)
             })
             const json = await response.json();
-            console.log(json)
+            console.log("registeruser Json", json)
             const token = json.token;
             localStorage.setItem("token", token);
-            console.log(token)
+            localStorage.setItem("userId", json.user.id);
+            return json;
         } catch(error){
             console.log(error);
         };
@@ -56,7 +58,7 @@ export const getAllUsers = async (username, password) => {
             const json = await response.json();
             const token = json.token;
             localStorage.setItem("token", token);
-            localStorage.setItem("username", json.user.username);
+            localStorage.setItem("userId", json.user.id);
             return json;
         } catch(error){
             console.error(error);

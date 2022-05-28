@@ -10,7 +10,7 @@ const getAllCartProducts = async () => {
             `
 		);
 
-		return cart_products;
+		return rows;
 	} catch (error) {
 		throw error;
 	}
@@ -18,7 +18,7 @@ const getAllCartProducts = async () => {
 
 const getCartProductById = async (cartId) => {
 	try {
-		const { rows: [ cart_products ] } = await client.query(
+		const { rows: [ cartProducts ] } = await client.query(
 			`
             SELECT *
                 FROM cartProducts
@@ -27,7 +27,7 @@ const getCartProductById = async (cartId) => {
 			[ cartId ]
 		);
 
-		return cart_products;
+		return cartProducts;
 	} catch (error) {
 		throw error;
 	}
@@ -35,7 +35,7 @@ const getCartProductById = async (cartId) => {
 
 const getCartProductByUserId = async (userId) => {
 	try {
-		const { rows: [ cart_products ] } = await client.query(
+		const { rows: [ cartProducts ] } = await client.query(
 			`
             SELECT *
                 FROM cartProducts
@@ -44,31 +44,31 @@ const getCartProductByUserId = async (userId) => {
 			[ userId ]
 		);
 
-		return cart_products;
+		return cartProducts;
 	} catch (error) {
 		throw error;
 	}
 };
 
-const addProductsToCartProduct = async ({ userId, productId, price, quantity }) => {
+const createCartProduct = async ({ userId, productId, price, quantity }) => {
 	try {
-		const { rows:  cart_products  } = await client.query(
+		const { rows  } = await client.query(
 			`
-            INSERT INTO cartProducts("UserId", "productId", price, quantity)
+            INSERT INTO cartProducts("userId", "productId", price, quantity)
             VALUES ($1, $2, $3, $4)
             RETURNING *;
         `,
 	        [ userId, productId, price, quantity ]
 		);
-        console.log("inside cart_products",cart_products);
-		return cart_products;
+        
+		return rows;
 	} catch (error) {
 		throw error;
 	}
 };
 
 
-const updateProductInCartProduct = async (fields = { price, quantity }) => {
+const updateCartProduct = async (fields = { price, quantity }) => {
 	const setString = Object.keys(fields).map((key, index) => `"${key}"=$${index + 1}`).join(', ');
 
 	try {
@@ -117,4 +117,4 @@ const deleteCartProduct = async (id) => {
 
 
 
-module.exports = {getAllCartProducts, addProductsToCartProduct, updateProductInCartProduct, deleteCartProduct, getCartProductById, getCartProductByUserId}
+module.exports = {getAllCartProducts, createCartProduct, updateCartProduct, deleteCartProduct, getCartProductById, getCartProductByUserId}
