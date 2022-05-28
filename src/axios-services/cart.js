@@ -72,11 +72,18 @@ let cartProductArray = [];
         const userId = localStorage.getItem('userId');
         const cartArray = localStorage.getItem('cartProductArray');
         const cart = localStorage.getItem('cart')
+        
+        //const userId = 1;
         let response;
         let fullArray = [];
+        if(!userId && !cart){
+            console.log("no userId or cart to show" )
+            return;
+        }
         if (!userId){
         try { 
-            response = await fetch(`${baseUrl}/cart/${cart.id}`, {
+            const cartId = cart.id;
+            response = await fetch(`${baseUrl}/cart/${cartId}`, {
             method: "GET",
             headers: {
                     'Content-Type': 'application/json',
@@ -88,7 +95,7 @@ let cartProductArray = [];
         return fullArray;
                         } catch (error) {
                             console.log("error in getting my cart!")
-                            throw [error];
+                            throw error;
                         }
                 } else {
                 
@@ -105,13 +112,11 @@ let cartProductArray = [];
                         return fullArray;
                                         } catch (error) {
                                             console.log("error in getting my cart!")
-                                            throw [error];
+                                            throw error;
                                         }
                                     
                 
-                }
-
-            }
+                }}
 
 
 

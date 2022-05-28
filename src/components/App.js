@@ -47,7 +47,7 @@ const App = () => {
   return (
     <div className="app-container">
       <Header />
-      
+      <Cart/>
       <BrowserRouter>
         <div className="content">
           <Switch>
@@ -60,6 +60,7 @@ const App = () => {
             <Route exact path={"/Shop"}>
               <Products />
             </Route>
+            <Route path="/cart"><Cart/></Route>
           </Switch>
         </div>
         <Footer />
