@@ -9,6 +9,9 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Cart from "./Cart";
 import ProductScreen from "./ProductScreen";
+import Register from "./Register";
+import LoggedIn from "./LoggedIn";
+import Logout from "./Logout";
 import Home from "./Home";
 import Products from "./Products";
 
@@ -24,7 +27,7 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    setLoggedIn(!!localStorage.getItem("UserToken"));
+    setLoggedIn(!!localStorage.getItem("token"));
   }, []);
 
   //  const logOut = () => {
@@ -51,6 +54,29 @@ const App = () => {
       <Header />
       
       <BrowserRouter>
+        <div id="header">
+          <h1 className="header">The furniture store</h1>
+          <div id="routeBox">
+
+        <Route path ='/'>        
+        {loggedIn ? <Logout loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/> :
+        <LoggedIn loggedIn = {loggedIn } setLoggedIn = {setLoggedIn}/>
+        }
+        {loggedIn ?<p></p> :<Link to = '/Register'>Register Here!</Link>}
+        </Route >
+        <Route path = '/Register'>
+        {loggedIn? <user /> :<Register loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/>}
+        </Route>
+
+
+          </div>
+        </div>
+
+        <Route path="/LoggedIn"> </Route>
+
+        <Route path="/Register"> </Route>
+
+        <Route path="/user"> </Route>
         <div className="content">
           <Switch>
             <Route exact path={"/"}>
