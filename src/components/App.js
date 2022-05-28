@@ -88,7 +88,7 @@ const App = () => {
             <Route exact path={"/Shop"}>
               <Products />
             </Route>
-            {/* <Route path="/cart"><Cart/></Route> */}
+            <Route path="/cart"><Cart/></Route>
             <Route path="/products/:id">
               <ProductScreen />
             </Route>
