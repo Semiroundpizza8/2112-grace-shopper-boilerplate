@@ -21,14 +21,14 @@ const AllProducts = () => {
           const { id, name, image, price, rating } = product;
           return (
             <>
-            <Link to = {`/products/${product.id}`}><Product
+           <Product
               id={id}
               title={name}
               price={price}
               rating={rating}
               image = {image}
-            /></Link>
-          </>
+            />
+            </>
           );
         })}
       </div>
