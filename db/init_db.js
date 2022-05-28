@@ -93,7 +93,11 @@ async function buildTables() {
         zipcode VARCHAR(255) NOT NULL,
         country VARCHAR(255) NOT NULL,
         phone VARCHAR(255) NOT NULL,
+<<<<<<< HEAD
         currentorder STATUS
+=======
+        currentorder status DEFAULT 'inProgress'
+>>>>>>> 9805920e70f816ed848bcc8047fb267fd411dfa8
 
       );
 
