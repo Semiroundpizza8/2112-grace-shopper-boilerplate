@@ -59,14 +59,15 @@ const App = () => {
           <h1 className="header">The furniture store</h1>
           <div id="routeBox">
 
-        <Route path ='/'>        
+        <Route path ='/'>    
+        <Logout />    
         {loggedIn ? <Logout loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/> :
         <LoggedIn loggedIn = {loggedIn } setLoggedIn = {setLoggedIn}/>
         }
-        {loggedIn ?<p></p> :<Link to = '/Register'>Register Here!</Link>}
+        {loggedIn ?<p></p> :<Link to = '/register'>Register Here!</Link>}
         </Route >
         <Route path = '/Register'>
-        {loggedIn? <user /> :<Register loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/>}
+        {loggedIn? null : <Register loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/>}
         </Route>
 
 
@@ -77,7 +78,7 @@ const App = () => {
 
         <Route path="/Register"> </Route>
 
-        <Route path="/user"> </Route>
+        <Route path="/User"> </Route>
         <div className="content">
           <Switch>
             <Route exact path={"/"}>
