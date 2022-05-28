@@ -28,6 +28,11 @@ useEffect(() => {
     })();
   }, []);
 
+  const handleAddToCart = async() => {
+      console.log("product added to cart!");
+      
+  }
+
   
     
 

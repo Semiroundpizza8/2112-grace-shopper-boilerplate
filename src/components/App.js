@@ -11,11 +11,11 @@ import Cart from "./Cart";
 import ProductScreen from "./ProductScreen";
 import Home from "./Home";
 import Products from "./Products";
-import Cart from "./Cart";
+
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
-
+  const [cart, setCart] = useState([])
   
 
   // const[user, setUser] = useState();
@@ -63,7 +63,6 @@ const App = () => {
             <Route path="/products/:id">
               <ProductScreen />
             </Route>
-            <Cart/>
           </Switch>
         </div>
         <Footer />
