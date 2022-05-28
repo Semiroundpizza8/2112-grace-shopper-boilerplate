@@ -53,7 +53,7 @@ const App = () => {
   return (
     <div className="app-container">
       <Header />
-      
+      <Cart/>
       <BrowserRouter>
         <div id="header">
           <h1 className="header">The furniture store</h1>
@@ -87,6 +87,7 @@ const App = () => {
             <Route exact path={"/Shop"}>
               <Products />
             </Route>
+            <Route path="/cart"><Cart/></Route>
             <Route path="/products/:id">
               <ProductScreen />
             </Route>

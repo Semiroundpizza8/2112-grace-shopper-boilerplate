@@ -34,14 +34,20 @@ export const getAllUsers = async (username, password) => {
                 body: JSON.stringify(user)
             })
             const json = await response.json();
-            console.log(json)
-            const token = json.token;
-            localStorage.setItem("token", token);
-            console.log(token)
-        } catch(error){
-            console.log(error);
-        };
+            if (!json.user) {
+                return false;
+            } 
+            else {
+                localStorage.setItem('UserToken', json.token);
+                return true;
+            }}
+            catch(error){
+                console.log("this is register user api error", error)
+            }
     };
+
+
+
 
     export const loginUser = async (user) => {
         const url = `${apiUrl}/user/login`;
@@ -56,7 +62,7 @@ export const getAllUsers = async (username, password) => {
             const json = await response.json();
             const token = json.token;
             localStorage.setItem("token", token);
-            localStorage.setItem("username", json.user.username);
+            localStorage.setItem("userId", json.id);
             return json;
         } catch(error){
             console.error(error);
