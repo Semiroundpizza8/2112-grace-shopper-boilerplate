@@ -1,8 +1,4 @@
 export const baseUrl = 'http://localhost:4000/api';
-
-
-
-
 export const addNewCart = async () => {
     let response;
     let userId = localStorage.getItem('userId')
@@ -77,7 +73,7 @@ let cartProductArray = [];
         
         let response;
         let fullArray = [];
-        if(!userId && !cartProductArray || !cartId) {
+        if(!userId && !cartProductArray || !cart) {
             console.log("no cart nor userId present")
             return;
         }
@@ -87,7 +83,7 @@ let cartProductArray = [];
         }
         if (!userId && cart.id){
         try { 
-            response = await fetch(`${baseUrl}/cart/${cartId}`, {
+            response = await fetch(`${baseUrl}/cart/${cart}`, {
             method: "GET",
             headers: {
                     'Content-Type': 'application/json',
