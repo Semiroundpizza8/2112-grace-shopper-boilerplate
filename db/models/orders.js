@@ -10,18 +10,18 @@ async function createOrder({
     zipcode,
     country,
     phone,
-    total
+    
 }) {
   try {
     const {
       rows: [order],
     } = await client.query(
       `
-                INSERT INTO orders(firstname,lastname,email,street,city,zipcode,country,phone,total)
-                VALUES ($1, $2, $3, $4, $5, $6,$7, $8, $9)
+                INSERT INTO orders(email,street,city,zipcode,country,phone)
+                VALUES ($1, $2, $3, $4, $5, $6)
                 RETURNING *;
             `,
-      [firstname,lastname,email,street,city,zipcode,country,phone,total]
+      [email,street,city,zipcode,country,phone]
     );
     //console.log(product);
     return order;
