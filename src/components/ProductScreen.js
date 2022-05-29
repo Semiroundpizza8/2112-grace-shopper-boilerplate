@@ -16,7 +16,7 @@ const ProductScreen = () => {
 
 const { id } = useParams();
 const [singleProduct, setSingleProduct] = useState({})
-const [qty, setQty] = useState(0);
+const [qty, setQty] = useState([]);
 const [myCart, setMyCart] = useState([]);
 
 const userId = localStorage.getItem('userId');
@@ -33,7 +33,7 @@ useEffect(() => {
   }, []);
 
   const handleAddToCart = async(productId,event) => {
-    event.preventDefault();
+     event.preventDefault();
     let userId = localStorage.getItem('userId')
     let addProdToCart;
     console.log("prod",productId);
