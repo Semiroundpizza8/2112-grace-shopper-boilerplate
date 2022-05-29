@@ -25,7 +25,6 @@ export const getAllUsers = async (username, password) => {
 
     export const registerUser = async (user) => {
         const url = `${apiUrl}/user/register`;
-        console.log("registeruser Json")
         try {
             const response = await fetch(url,{
                 method:"POST",
@@ -35,7 +34,7 @@ export const getAllUsers = async (username, password) => {
                 body: JSON.stringify(user)
             })
             const json = await response.json();
-            console.log("registeruser Json", json)
+            console.log("json response",json);
             const token = json.token;
             localStorage.setItem("token", token);
             localStorage.setItem("userId", json.user.id);
