@@ -21,7 +21,7 @@ async function getCartById(cartId) {
 
 
 
-async function getAllcarts() {
+async function getAllCarts() {
   try {
     const { rows: cart } = await client.query(`
         SELECT cart.*, users.username AS "creatorName"
@@ -128,12 +128,10 @@ async function getCartsByUser(userId){
 
 
 module.exports = {
-  // getCartById,
-//   getAllCarts,
+  getCartById,
+  getAllCarts,
   createCart,
-  // updateCart,
-//   updateCartPrice,
-// getTotalCartItemPrice,
-// getCartsByUser
-  
-};
+  updateCart,
+getTotalCartItemPrice,
+getCartsByUser
+  };
