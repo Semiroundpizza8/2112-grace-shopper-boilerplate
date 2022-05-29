@@ -6,7 +6,7 @@ export const baseUrl = 'http://localhost:4000/api';
 export const addNewCart = async () => {
     let response;
     let userId = localStorage.getItem('userId')
-    let cartProductId = localStorage.getItem('cartProductArray')
+    let cartProduct = localStorage.getItem('cartProductArray')
     
         try {
             response = await fetch(`${baseUrl}/cart`, {
@@ -15,7 +15,7 @@ export const addNewCart = async () => {
                         'Content-Type': 'application/json',
                             },
             body: JSON.stringify(
-                     {userId: userId, cartProductId: cartProductId}
+                     {userId: userId, cartProductId: cartProduct}
                                 )
                     }) 
                 } catch (error) {
@@ -33,9 +33,9 @@ localStorage.setItem('cart', JSON.stringify(cart));
             } 
                    
                 
- export const createProductCart = async (cartId, productId, price, quantity) => {
+ export const createProductCart = async (cartId, userId, productId, price, quantity) => {
  let response;
-let userId = localStorage.getItem('userId')
+//let userId = localStorage.getItem('userId')
 //let cart = localStorage.getItem('cart')
 //cartId = cart.id;
         try {
@@ -53,10 +53,10 @@ let userId = localStorage.getItem('userId')
                                throw error;
                             }
                 const addedToCart = await response.json()
-                let retrievedCart = localStorage.getItem('cart')
+                let retrievedCart = JSON.parse(localStorage.getItem('cart'));
                 retrievedCart.cartProductId.push(addedToCart.id);
             localStorage.setItem('cart', JSON.stringify(retrievedCart));
-            let retrievedCartProductArray = localStorage.getItem('cartProductArray');
+            let retrievedCartProductArray = JSON.parse(localStorage.getItem('cartProductArray'));
 let cartProductArray = [];
             if(!retrievedCartProductArray){
                 cartProductArray.push(addedToCart);

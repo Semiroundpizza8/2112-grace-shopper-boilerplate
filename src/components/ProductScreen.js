@@ -8,7 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { createProductCart } from "../axios-services/cart";
+import { createProductCart, addNewCart } from "../axios-services/cart";
 
 
 
@@ -28,9 +28,16 @@ useEffect(() => {
     })();
   }, []);
 
-  const handleAddToCart = async() => {
-      console.log("product added to cart!");
-      
+  const handleAddToCart = async(productId,event) => {
+    event.preventDefault();
+    console.log("product added to cart!");
+    const newCart = await addNewCart();
+    console.log("new",newCart);
+    console.log("id",newCart.id);
+    const addProdToCart = await createProductCart(newCart.id, productId, singleProduct.price, singleProduct.quantity)
+    console.log("add",addProdToCart)
+    setMyCart(addProdToCart);
+
   }
 
   
