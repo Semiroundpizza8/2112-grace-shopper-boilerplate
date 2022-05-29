@@ -31,7 +31,6 @@ useEffect(() => {
   const handleAddToCart = async(productId,event) => {
     event.preventDefault();
     let userId = localStorage.getItem('userId')
-    console.log("product added to cart!");
     const newCart = await addNewCart();
     console.log("new",newCart);
     console.log("id",newCart.id);
@@ -42,10 +41,6 @@ useEffect(() => {
   }
 
   
-    
-
-    
-
 return (
     <div className="product">
         <Card>
