@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch,Link } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 // getAPIHealth is defined in our axios-services directory index.js
 // you can think of that directory as a collection of api adapters
 // where each adapter fetches specific info from our express server's /api route
@@ -20,7 +20,7 @@ import Products from "./Products";
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
   const [cart, setCart] = useState([])
-  
+
 
   // const[user, setUser] = useState();
   // const [username, setUsername] = useState('');
@@ -52,31 +52,22 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <Header />
+
       {/* <Cart/> */}
       <BrowserRouter>
+        <Header />
         <div id="header">
           <h1 className="header">The furniture store</h1>
           <div id="routeBox">
 
-        <Route path ='/'>    
-        <Logout loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/>    
-        {loggedIn ? <Logout loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/> :
-        <LoggedIn loggedIn = {loggedIn } setLoggedIn = {setLoggedIn}/>
-        }
-        {loggedIn ?<p></p> :<Link to = '/register'>Register Here!</Link>}
-        </Route >
-        <Route path = '/Register'>
-        {loggedIn? null : <Register loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/>}
-        </Route>
+
+
 
 
           </div>
         </div>
 
-        <Route path="/LoggedIn"> </Route>
 
-        <Route path="/Register"> </Route>
 
         <Route path="/User"> </Route>
         <div className="content">
@@ -84,13 +75,25 @@ const App = () => {
             <Route exact path={"/"}>
               <Home />
             </Route>
-            
+
             <Route exact path={"/Shop"}>
               <Products />
             </Route>
-            <Route path="/cart"><Cart/></Route>
+            <Route path="/cart"><Cart /></Route>
             <Route path="/products/:id">
               <ProductScreen />
+            </Route>
+
+            <Route path='/LoggedIn'>
+              {loggedIn ? <Logout loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> :
+                <LoggedIn loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+              }
+            </Route>
+
+
+
+            <Route path='/Register'>
+              {loggedIn ? null : <Register loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
             </Route>
           </Switch>
         </div>

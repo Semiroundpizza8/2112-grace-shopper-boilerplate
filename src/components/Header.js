@@ -9,11 +9,11 @@ import Product from "./Product";
 function Header() {
   return (
     <div className="header">
-      <BrowserRouter>
+   
         <Link to="/">
           <img className="header_logo" src={Logo} alt="Coconut Logo" />
         </Link>
-      </BrowserRouter>
+      
 
       <div className="header_search">
         <input className="header_searchInput" type="text"></input>
@@ -23,7 +23,9 @@ function Header() {
       <div className="header_nav">
         <div className="header_option">
           <span className="header_optionLineOne">Hello Guest</span>
-          <span className="header_optionLineTwo">Sign In</span>
+          <Link to="/LoggedIn">
+          <span className="header_optionLineTwo">Sign In</span> 
+          </Link> 
         </div>
 
         <div className="header_option">

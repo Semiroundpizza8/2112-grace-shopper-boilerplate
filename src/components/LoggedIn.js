@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { loginUser } from '../axios-services/user';
+import { Link } from "react-router-dom";
+
 
 const LoggedIn = (props) => {
     const { loggedIn, setLoggedIn } = props;
@@ -37,6 +39,7 @@ const LoggedIn = (props) => {
                 <input type = 'text' placeholder = "Password" value={password} onChange={updatePassword} />
                 <button>Login</button>
             </form>
+            <Link to = '/register'>Register Here!</Link>
         </div>
     )
 };
