@@ -15,9 +15,9 @@ export const getAllProducts = async () => {
     }
     console.log("getAllProducts",response);
     return response.data;
-  } catch (err) {
-    console.log(err);
-    return { error: err.response.data.message || err.message };
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 };
 

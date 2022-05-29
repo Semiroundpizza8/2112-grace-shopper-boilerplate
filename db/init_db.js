@@ -104,6 +104,7 @@ async function buildTables() {
         price INTEGER,
         quantity INTEGER
       );
+     
 
       CREATE TABLE cart (
         id SERIAL PRIMARY KEY,
