@@ -60,7 +60,7 @@ const App = () => {
           <div id="routeBox">
 
         <Route path ='/'>    
-        <Logout />    
+        <Logout loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/>    
         {loggedIn ? <Logout loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/> :
         <LoggedIn loggedIn = {loggedIn } setLoggedIn = {setLoggedIn}/>
         }

@@ -8,7 +8,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { createProductCart } from "../axios-services/cart";
+import {addNewCart, createProductCart } from "../axios-services/cart";
+
 
 
 
@@ -17,6 +18,7 @@ const ProductScreen = () => {
 const { id } = useParams();
 const [singleProduct, setSingleProduct] = useState({})
 const [qty, setQty] = useState(0);
+const [myCart, setMyCart] = useState([]);
 
 
 
@@ -28,16 +30,20 @@ useEffect(() => {
     })();
   }, []);
 
-  const handleAddToCart = async() => {
-      console.log("product added to cart!");
-      
-  }
+  const handleAddToCart = async(productId,event) => {
+    event.preventDefault();
+    let userId = localStorage.getItem('userId')
+    console.log("product added to cart!");
+    const newCart = await addNewCart();
+    console.log("new",newCart);
+    console.log("id",newCart.id);
+    const addProdToCart = await createProductCart(newCart.id, userId, productId, singleProduct.price, singleProduct.quantity)
+    console.log("add",addProdToCart)
+    setMyCart(addProdToCart);
 
-  
-    
+    }
 
-
-  return (
+return (
     <div className="product">
         <Card>
             <CardMedia
@@ -79,7 +85,7 @@ useEffect(() => {
         <CardActions>
         <Typography variant="body2" color="text.secondary">
             {singleProduct.stock > 0 ? <button onClick={(event) => {
-                handleAddToCart()
+                handleAddToCart(singleProduct.id,event)
             }}>Add to Cart</button> : <p> Product is out of stock </p> }  
         </Typography>
 
@@ -95,4 +101,3 @@ useEffect(() => {
 
   export default ProductScreen;
 
-//   { product.available_quantity > 0 ?

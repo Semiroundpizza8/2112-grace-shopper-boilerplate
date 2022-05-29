@@ -4,6 +4,7 @@ import Logo from "../Assets/Coconut Furniture Logo.png";
 import SearchIcon from "@mui/icons-material/Search";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { BrowserRouter, Link } from "react-router-dom";
+import Product from "./Product";
 
 function Header() {
   return (
@@ -32,7 +33,8 @@ function Header() {
 
         <div className="header_optionBasket">
           <LocalShippingIcon />
-          <span className="header_optionLineTwo header_basketCount">0</span>
+          <span className="header_optionLineTwo header_basketCount">{}</span>
+          
         </div>
       </div>
     </div>

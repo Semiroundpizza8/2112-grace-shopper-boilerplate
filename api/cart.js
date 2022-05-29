@@ -27,12 +27,12 @@ cartRouter.post('/', async (req, res, next) => {
 
 
 
-cartRouter.post('/cartId', async (req, res, next) => {
+cartRouter.post(':/cartId', async (req, res, next) => {
   const { userId, cartId } = req.params;
-  const user = await getuserById(userId);
+  
 
     try {
-      const newCart = await addProductsToCartProduct(req.body);
+      const newCart = await createCartProduct(req.body);
       console.log(req.body, newCart);
       if (newCart.userId = userId || user.role == "admin" ){
       res.send(newCart);

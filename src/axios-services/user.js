@@ -59,6 +59,7 @@ export const getAllUsers = async (username, password) => {
             const token = json.token;
             localStorage.setItem("token", token);
             localStorage.setItem("userId", json.user.id);
+            console.log("jsonuserid",json.user.id)
             return json;
         } catch(error){
             console.error(error);

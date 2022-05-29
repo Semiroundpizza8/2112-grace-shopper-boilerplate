@@ -44,7 +44,8 @@ console.log("creating a new item in the cart");
           const addedCart = await addNewCart()
           const addProductsToCart = await createProductCart({productId, price, quantity})
        let newCart = addedCart.cartProductId.push(addProductsToCart);
-      setMyCart(newCart);}
+      setMyCart(newCart);
+    }
       catch(error){
         console.log(error)
       }
