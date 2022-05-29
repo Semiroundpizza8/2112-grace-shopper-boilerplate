@@ -17,13 +17,17 @@ const ProductScreen = () => {
 const { id } = useParams();
 const [singleProduct, setSingleProduct] = useState({})
 const [qty, setQty] = useState(0);
-const [myCart, setMyCart] = useState();
+const [myCart, setMyCart] = useState([]);
+
+const userId = localStorage.getItem('userId');
+const cartProductArray = JSON.parse(localStorage.getItem('cartProductArray'));
+const cart = JSON.parse(localStorage.getItem('cart'))
 
 
 useEffect(() => {
     (async () => {
         const singleProduct = await getProductById(id);
-        console.log("singleproduct",singleProduct);
+       // console.log("singleproduct",singleProduct);
         setSingleProduct(singleProduct);
     })();
   }, []);
@@ -31,14 +35,25 @@ useEffect(() => {
   const handleAddToCart = async(productId,event) => {
     event.preventDefault();
     let userId = localStorage.getItem('userId')
+    let addProdToCart;
+    console.log("prod",productId);
+    console.log("user",userId);
+    console.log("single",singleProduct);
+    console.log("qty",qty);
+    console.log("price",singleProduct.price)
+    if(!cart){
     const newCart = await addNewCart();
-    console.log("new",newCart);
-    console.log("id",newCart.id);
-    const addProdToCart = await createProductCart(newCart.id, userId, productId, singleProduct.price, singleProduct.quantity)
-    console.log("add",addProdToCart)
+    console.log("new",newCart)
+     addProdToCart = await createProductCart(newCart.id, userId, productId, singleProduct.price, qty)
+} else {
+     addProdToCart = await createProductCart(cart.id, userId, productId, singleProduct.price, qty)
+}
+   
     setMyCart(addProdToCart);
+    localStorage.setItem('activeCart',JSON.stringify(addProdToCart))
 
   }
+
 
   
 return (
@@ -70,7 +85,7 @@ return (
         </label>
 
         <select 
-            value={ qty } 
+            value={ qty }
             onChange={(event) => setQty(event.target.value)}>
             {[...Array(singleProduct.stock).keys()].map((x) => (
                 <option key = {x+1} value={x+1}>
@@ -78,6 +93,8 @@ return (
                 </option>
             ))}
         </select>
+
+           
         </Typography>
         </CardContent>
         <CardActions>
