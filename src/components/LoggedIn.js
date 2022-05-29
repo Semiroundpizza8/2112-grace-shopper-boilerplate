@@ -20,6 +20,7 @@ const LoggedIn = (props) => {
         const localCart = localStorage.getItem('cart');
         if(localCart){
         localCart.userId = localStorage.getItem('userId');
+        
     }
     };
     const updateUserName = (event) => {

@@ -6,7 +6,7 @@ export const baseUrl = 'http://localhost:4000/api';
 export const addNewCart = async () => {
     let response;
     let userId = localStorage.getItem('userId')
-    let cartProduct = localStorage.getItem('cartProductArray')
+    let cartProduct = JSON.parse(localStorage.getItem('cartProductArray'))
     
         try {
             response = await fetch(`${baseUrl}/cart`, {
@@ -15,7 +15,7 @@ export const addNewCart = async () => {
                         'Content-Type': 'application/json',
                             },
             body: JSON.stringify(
-                     {userId: userId, cartProductId: cartProduct}
+                     {userId: userId, cartProduct: cartProduct}
                                 )
                     }) 
                 } catch (error) {
@@ -26,7 +26,7 @@ export const addNewCart = async () => {
     let cart = {
         id : addedCart.id,
         userId : userId,
-        cartProductId : [cartProductId]
+        cartProduct : [cartProduct]
     };
 localStorage.setItem('cart', JSON.stringify(cart));
      return addedCart;
@@ -71,15 +71,15 @@ let cartProductArray = [];
                     
      export const getMyCart = async () => {
         const userId = localStorage.getItem('userId');
-        const cartArray = localStorage.getItem('cartProductArray');
-        const cartProductArray = localStorage.getItem('cartProductArray')
+        const cartArray = JSON.parse(localStorage.getItem('cartProductArray'));
+        const cartProductArray = JSON.parse(localStorage.getItem('cartProductArray'))
         
         let response;
         let fullArray = [];
         if(!userId && !cartProductArray) {
             console.log("no cart nor userId present")
         }
-        const cart = localStorage.getItem('cart')
+        const cart = JSON.parse(localStorage.getItem('cart'))
         if (!cart){
             return;
         }

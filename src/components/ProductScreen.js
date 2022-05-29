@@ -17,7 +17,7 @@ const ProductScreen = () => {
 const { id } = useParams();
 const [singleProduct, setSingleProduct] = useState({})
 const [qty, setQty] = useState(0);
-
+const [myCart, setMyCart] = useState();
 
 
 useEffect(() => {
@@ -30,11 +30,12 @@ useEffect(() => {
 
   const handleAddToCart = async(productId,event) => {
     event.preventDefault();
+    let userId = localStorage.getItem('userId')
     console.log("product added to cart!");
     const newCart = await addNewCart();
     console.log("new",newCart);
     console.log("id",newCart.id);
-    const addProdToCart = await createProductCart(newCart.id, productId, singleProduct.price, singleProduct.quantity)
+    const addProdToCart = await createProductCart(newCart.id, userId, productId, singleProduct.price, singleProduct.quantity)
     console.log("add",addProdToCart)
     setMyCart(addProdToCart);
 
@@ -86,7 +87,7 @@ useEffect(() => {
         <CardActions>
         <Typography variant="body2" color="text.secondary">
             {singleProduct.stock > 0 ? <button onClick={(event) => {
-                handleAddToCart()
+                handleAddToCart(singleProduct.id, event)
             }}>Add to Cart</button> : <p> Product is out of stock </p> }  
         </Typography>
 
