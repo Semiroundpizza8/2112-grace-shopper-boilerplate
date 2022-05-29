@@ -2,7 +2,7 @@ const express = require("express");
 const apiRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const { getUserById } = require("../db");
-const { JWT_SECRET } = process.env;
+const JWT_SECRET = process.env.JWT_SECRET || "removeLater"
 
 apiRouter.get('/', (req, res, next) => {
   res.send({
@@ -33,8 +33,8 @@ apiRouter.use(async (req, res, next) => {
         req.user = await getUserById(id);
         next();
       }
-    } catch ({ name, message }) {
-      next({ name, message });
+    } catch ( error ) {
+      next(error);
     }
     
   } else {

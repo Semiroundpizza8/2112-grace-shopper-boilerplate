@@ -1,10 +1,13 @@
 const express = require("express");
 const usersRouter = express.Router();
 const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.JWT_SECRET || "removeLater"
 const {
   createUser,
   getUser,
   getCartByUser,
+  getUserByUsername,
+  
 } = require("../db");
 
 const { requireUser } = require("./utils");
@@ -48,12 +51,13 @@ usersRouter.post("/login", async (req, res, next) => {
   try {
     const user = await getUser({ username, password });
     if (user) {
+      console.log( JWT_SECRET,"testin secret")
       const token = jwt.sign(
         {
           id: user.id,
           username: username,
         },
-        process.env.JWT_SECRET,
+        JWT_SECRET,
         {
           expiresIn: "1w",
         }

@@ -68,11 +68,11 @@ async function createTables() {
     CREATE TABLE users (
       id SERIAL PRIMARY KEY,
       username varchar(255) NOT NULL,
-      address varchar(255) NOT NULL,
-      email varchar(255) UNIQUE NOT NULL,
-      city varchar(255) NOT NULL,
-      state varchar(255) NOT NULL,
-      zip INTEGER NOT NULL,
+      address varchar(255) ,
+      email varchar(255) UNIQUE ,
+      city varchar(255) ,
+      state varchar(255) ,
+      zip INTEGER ,
       password varchar(255) UNIQUE NOT NULL
     );  
     CREATE TABLE product (
