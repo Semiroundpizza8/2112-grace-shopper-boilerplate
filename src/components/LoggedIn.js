@@ -16,7 +16,12 @@ const LoggedIn = (props) => {
         console.log(localStorage.getItem('token'));
         setUserName('');
         setPassword('');
-        setLoggedIn(!!localStorage.getItem('token'))
+        setLoggedIn(!!localStorage.getItem('token'));
+        const localCart = localStorage.getItem('cart');
+        if(localCart){
+        localCart.userId = localStorage.getItem('userId');
+        
+    }
     };
     const updateUserName = (event) => {
         setUserName(event.target.value)

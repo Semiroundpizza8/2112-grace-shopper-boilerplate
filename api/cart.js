@@ -27,9 +27,9 @@ cartRouter.post('/', async (req, res, next) => {
 
 
 
-cartRouter.post(':/cartId', async (req, res, next) => {
+cartRouter.post('/:cartId', async (req, res, next) => {
   const { userId, cartId } = req.params;
-  
+ // const user = await getuserById(userId);
 
     try {
       const newCart = await createCartProduct(req.body);

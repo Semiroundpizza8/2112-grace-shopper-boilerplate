@@ -8,8 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import {addNewCart, createProductCart } from "../axios-services/cart";
-
+import { createProductCart, addNewCart } from "../axios-services/cart";
 
 
 
@@ -18,8 +17,7 @@ const ProductScreen = () => {
 const { id } = useParams();
 const [singleProduct, setSingleProduct] = useState({})
 const [qty, setQty] = useState(0);
-const [myCart, setMyCart] = useState([]);
-
+const [myCart, setMyCart] = useState();
 
 
 useEffect(() => {
@@ -41,7 +39,12 @@ useEffect(() => {
     console.log("add",addProdToCart)
     setMyCart(addProdToCart);
 
-    }
+  }
+
+  
+    
+
+    
 
 return (
     <div className="product">
@@ -85,7 +88,7 @@ return (
         <CardActions>
         <Typography variant="body2" color="text.secondary">
             {singleProduct.stock > 0 ? <button onClick={(event) => {
-                handleAddToCart(singleProduct.id,event)
+                handleAddToCart(singleProduct.id, event)
             }}>Add to Cart</button> : <p> Product is out of stock </p> }  
         </Typography>
 
