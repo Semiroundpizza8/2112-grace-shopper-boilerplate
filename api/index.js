@@ -2,7 +2,7 @@ const express = require("express");
 const apiRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const { getUserById } = require("../db");
-const { JWT_SECRET } = process.env;
+const JWT_SECRET = process.env.JWT_SECRET || "removeLater"
 
 apiRouter.get('/', (req, res, next) => {
   res.send({
@@ -33,8 +33,8 @@ apiRouter.use(async (req, res, next) => {
         req.user = await getUserById(id);
         next();
       }
-    } catch ({ name, message }) {
-      next({ name, message });
+    } catch ( error ) {
+      next(error);
     }
     
   } else {
@@ -52,11 +52,14 @@ const cartRouter = require("./cart");
 apiRouter.use("/cart", cartRouter);
 
 
-// const cart_productRouter = require("./cart_product");
-// apiRouter.use("/cart_product", cart_productRouter);
+//  const cartItemRouter = require("./cartItem");
+//  apiRouter.use("/cartItem", cartItemRouter);
 
-// const productRouter = require("./product");
-// apiRouter.use("/product", productRouter);
+// const cartRouter = require("./cart");
+// apiRouter.use("/cart", cartRouter);
+
+ const productRouter = require("./product");
+ apiRouter.use("/product", productRouter);
 
 
 

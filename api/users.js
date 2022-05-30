@@ -1,11 +1,16 @@
 const express = require("express");
 const usersRouter = express.Router();
 const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.JWT_SECRET || "removeLater"
 const {
   createUser,
   getUser,
-  getUserById,
+  getCartByUser,
+  getUserByUsername,
+  
 } = require("../db");
+
+const { requireUser } = require("./utils");
 
 usersRouter.use((req, res, next) => {
   console.log("A request is being made to /users");
@@ -46,12 +51,13 @@ usersRouter.post("/login", async (req, res, next) => {
   try {
     const user = await getUser({ username, password });
     if (user) {
+      console.log( JWT_SECRET,"testin secret")
       const token = jwt.sign(
         {
           id: user.id,
           username: username,
         },
-        process.env.JWT_SECRET,
+        JWT_SECRET,
         {
           expiresIn: "1w",
         }
@@ -73,15 +79,15 @@ usersRouter.get("/me", async (req, res, next) => {
   res.send(req.user);
 });
 
-usersRouter.get("/:username/routines", async (req, res, next) => {
+usersRouter.get("/:username/cart", async (req, res, next) => {
   const { username } = req.params;
   try {
       console.log("got here", username);
-    const userPublicRoutines = await getPublicRoutinesByUser(
+    const usersCart = await getCartByUser(
       {username: username}
     );
-      console.log(userPublicRoutines)
-    res.send(userPublicRoutines);
+      console.log(usersCart)
+    res.send(usersCart);
   } catch (error) {
     next(error);
   }

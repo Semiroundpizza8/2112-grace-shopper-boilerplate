@@ -1,17 +1,7 @@
 const client = require("../client");
 
 
-async function createProducts({name, description, pictures, price}){
-  try{
 
-    const  {rows : [ product ] } = await client.query(`
-      INSERT INTO product (name, description, pictures, price)
-      VALUES ($1, $2, $3, $4);
-    `, [name, description, pictures, price])
-  }catch(error){
-    throw error;
-  }
-}
 async function getProductById(id) {
 
     try {
@@ -38,43 +28,40 @@ async function getAllProducts() {
   } catch (error) {
     throw error;
   }
-};
-async function getProductPriceById(productId){
-  try{
-    const { rows: [ product ] } = await client.query(`
-      SELECT price
-      from product
-      WHERE id = $1;
-    `, [productId]);
+}
 
-    return price;
+async function createProducts({name, description, pictures, price}){
+  try{
+
+    const  {rows : [ product ] } = await client.query(`
+      INSERT INTO product (name, description, pictures, price)
+      VALUES ($1, $2, $3, $4);
+    `, [name, description, pictures, price])
   }catch(error){
     throw error;
   }
-};
+}
 
-
-// async function updateProduct({ id, name, description }) {
-//   try {
-//     const {
-//       rows: [product],
-//     } = await client.query(
-//       `
-//         UPDATE product
-//         SET name=$1, description=$2
-//         WHERE id=$3
-//         RETURNING *
-//       `, [name, description, id])
-//       return product;
-//   } catch (error) {
-//     throw error;
-//   }
-// }
+async function updateProduct({ id, name, description }) {
+  try {
+    const {
+      rows: [product],
+    } = await client.query(
+      `
+        UPDATE product
+        SET name=$1, description=$2
+        WHERE id=$3
+        RETURNING *
+      `, [name, description, id])
+      return product;
+  } catch (error) {
+    throw error;
+  }
+}
 
 module.exports = {
   getProductById,
   getAllProducts,
-  createProducts,
-  getProductPriceById
-//   updateProduct
+  updateProduct,
+  createProducts
 };

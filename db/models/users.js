@@ -28,11 +28,7 @@ async function getUser({ username, password }) {
   const passwordsMatch = await bcrypt.compare(password, hashedPassword);
 
     try {
-      const { rows: [user]  } = await client.query(`
-        SELECT *
-        FROM users
-        WHERE username=$1
-      `, [username]);
+  
       if (!user) {
         return null
       }
@@ -67,12 +63,28 @@ async function getUserById(id) {
   }
 }
 
+async function getUserByUsername(username){
+  try{
+    const {rows: [user]} = await client.query(`
+      SELECT *
+      FROM users
+      WHERE username=$1
+    `, [username]);
+    if (!user) {
+      return null
+    }
+      return user;
+    } catch (error) {
+      throw error;
+    }
+}
 
 
 module.exports = {
   createUser,
   getUser,
   getUserById,
+  getUserByUsername,
   
   
 };

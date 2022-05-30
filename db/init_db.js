@@ -6,18 +6,18 @@ const {
 
 const {
   createUser,
-  getUser,
-  getUserById,
+  // getUser,
+  // getUserById,
 } = require("./models/users");
 
 
 const {
-  // getCart_ProductById,
+  // getCartItemById,
   // addProductToCart,
-  // updateCart_Product,
-  // destroyCart_Product,
-  createCartProduct,
-} = require("./models/cart_product");
+  // updateCartItem,
+  // destroyCartItem,
+  createCartItem
+} = require("./models/cartItem");
 
 
 const {
@@ -30,9 +30,9 @@ const {
 
 
 const {
-  createProducts,
   getProductById,
   getAllProducts,
+  createProducts,
 } = require("./models/product");
 
 
@@ -45,11 +45,13 @@ async function dropTables() {
   // drop all tables, in the correct order
   try {
     await client.query(`
-      DROP TABLE IF EXISTS cart_product;
+     
+      DROP TABLE IF EXISTS cart_item;
       DROP TABLE IF EXISTS cart;
       DROP TABLE IF EXISTS product;
       DROP TABLE IF EXISTS users;
     `);
+    
   } catch (error) {
     console.error("Error dropping tables!");
     throw error;
@@ -66,19 +68,19 @@ async function createTables() {
     CREATE TABLE users (
       id SERIAL PRIMARY KEY,
       username varchar(255) NOT NULL,
-      address varchar(255) NOT NULL,
-      email varchar(255) UNIQUE NOT NULL,
-      city varchar(255) NOT NULL,
-      state varchar(255) NOT NULL,
-      zip INTEGER NOT NULL,
+      address varchar(255) ,
+      email varchar(255) UNIQUE ,
+      city varchar(255) ,
+      state varchar(255) ,
+      zip INTEGER ,
       password varchar(255) UNIQUE NOT NULL
     );  
     CREATE TABLE product (
       id SERIAL PRIMARY KEY,
-      name varchar(255) NOT NULL,
-      description varchar(255) NOT NULL,
-      pictures varchar(255) NOT NULL,
-      price INTEGER NOT NULL
+      name varchar(255),
+      description varchar(255),
+      pictures varchar(255),
+      price INTEGER
     ); 
     CREATE TABLE cart (
       id SERIAL PRIMARY KEY,
@@ -87,7 +89,7 @@ async function createTables() {
       "isPayFor" BOOLEAN DEFAULT false
     
     );
-    CREATE TABLE cart_product (
+    CREATE TABLE cart_item (
       id SERIAL PRIMARY KEY,
       "productId" INTEGER REFERENCES product(id),
       "cartId" INTEGER REFERENCES cart(id),
@@ -218,9 +220,9 @@ async function populateCartData () {
   }
 }
 
-async function populateCartProductData(){
+async function populateCartItemData(){
   try{
-    const cartProductData = [
+    const cartItemData = [
       { productId : 1,
         cartId: 1,        
         quantity: 10,
@@ -242,11 +244,11 @@ async function populateCartProductData(){
       price: 19500
     }
  ]
- console.log("Creating cart_product table!")
-const cartProducts = await Promise.all(cartProductData.map(createCartProduct)) 
-  console.log("finished creating cart_Product table!")
+ console.log("Creating cart_item table!")
+const cartItem = await Promise.all(cartItemData.map(createCartItem)) 
+  console.log("finished creating cart_item table!")
   }catch(error){
-    console.error("error Building Cart_Product")
+    console.error("error Building cart_item")
     throw error;
   }
 }
@@ -269,7 +271,7 @@ buildTables()
   .then(populateInitialUsers)
   .then(populateProductData)
   .then(populateCartData)
-  .then(populateCartProductData)
+  .then(populateCartItemData)
   .catch(console.error)
   .finally(() => client.end());
 
