@@ -41,7 +41,7 @@ async function getAllCarts() {
     const { rows: cart } = await client.query(`
         SELECT cart.*, users.username AS "creatorName"
         FROM cart
-        JOIN users ON users.id=cart."creatorId";
+        JOIN users ON users.id=cart."userId";
       `);
     return cart;
   } catch (error) {
@@ -52,7 +52,7 @@ async function getAllCarts() {
 async function createCart({ userId, isPayFor, price }) {
   try {
     const {
-      rows: [cart],
+      rows: [cart]
     } = await client.query(
       `
         INSERT INTO cart("userId", price,"isPayFor" ) 
@@ -61,7 +61,7 @@ async function createCart({ userId, isPayFor, price }) {
       `,
       [userId, price, isPayFor]
     );
-    return cart;
+
   } catch (error) {
     throw error;
   }
@@ -141,6 +141,6 @@ module.exports = {
   getAllCarts,
   createCart,
   updateCart,
-getTotalCartItemPrice,
-getCartsByUser
+  getTotalCartItemPrice,
+  getCartsByUser
   };
