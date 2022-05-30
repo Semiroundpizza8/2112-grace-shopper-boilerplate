@@ -30,8 +30,8 @@ const {
 
 
 const {
-  // getProductById,
-  // getAllProducts,
+  getProductById,
+  getAllProducts,
   createProducts,
 } = require("./models/product");
 
@@ -77,10 +77,10 @@ async function createTables() {
     );  
     CREATE TABLE product (
       id SERIAL PRIMARY KEY,
-      name varchar(255) NOT NULL,
-      description varchar(255) NOT NULL,
-      pictures varchar(255) NOT NULL,
-      price INTEGER NOT NULL
+      name varchar(255),
+      description varchar(255),
+      pictures varchar(255),
+      price INTEGER
     ); 
     CREATE TABLE cart (
       id SERIAL PRIMARY KEY,

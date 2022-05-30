@@ -62,7 +62,6 @@ async function updateProduct({ id, name, description }) {
 module.exports = {
   getProductById,
   getAllProducts,
-
- updateProduct,
-     createProducts
+  updateProduct,
+  createProducts
 };
