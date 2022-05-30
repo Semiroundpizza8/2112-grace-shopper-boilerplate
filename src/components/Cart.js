@@ -2,7 +2,7 @@
 
 
 import React, { useEffect, useState } from 'react';
-import {useHistory} from 'react-router-dom'
+import {useHistory,Link} from 'react-router-dom'
 import { addNewCart, deleteCart, patchCart, getMyCartProductbyUserId, createProductCart } from '../axios-services/cart';
 import CheckoutPage from './CheckoutPage';
 
@@ -30,7 +30,7 @@ let myDBCartProducts;
 let allProducts = [];
   if (activeCart){
   myDBCartProducts = await getMyCartProductbyUserId(userId);
-  console.log(myDBCartProducts);
+  console.log("dbproducts",myDBCartProducts);
   }
   if (activeCart && myDBCartProducts){
   console.log(myDBCartProducts);
@@ -108,7 +108,7 @@ const handleDeleteCart = async (cartId, event) => {
             ) }
             
 
-            
+            <Link to = "/Shop"> Go Back to Product Page </Link>
             </div> </> : <div> Nothing to show, yet! Add a products to your cart! </div> }
             </div> 
         </div>

@@ -32,6 +32,8 @@ useEffect(() => {
     })();
   }, []);
 
+  let history = useHistory();
+
   const handleAddToCart = async(event) => {
 
      event.preventDefault();
@@ -56,7 +58,7 @@ useEffect(() => {
     setMyCart(productInActiveCart);
     console.log(productInActiveCart);
     localStorage.setItem('ActiveCart',JSON.stringify(productInActiveCart))
-
+    history.push(`/cart/${id}`);
   }
 
 
@@ -110,7 +112,7 @@ return (
         </Typography>
 
         <Typography variant="body2" color="text.secondary">
-            <Link to = "/Shop"> Go Back to Home Page </Link>
+            <Link to = "/Shop"> Go Back to Product Page </Link>
         </Typography>
         </CardActions>
       
