@@ -26,6 +26,7 @@ const Cart = () => {
    
 
 useEffect(() => { (async () => {
+  console.log("userid",userId)
 let myDBCartProducts;
 let allProducts = [];
   if (activeCart){
@@ -33,9 +34,9 @@ let allProducts = [];
   console.log("dbproducts",myDBCartProducts);
   }
   if (activeCart && myDBCartProducts){
-  console.log(myDBCartProducts);
+  console.log("&&dbproducts",myDBCartProducts);
   allProducts.push(myDBCartProducts);
-  console.log(activeCart)
+  console.log("active",activeCart)
 } 
   if (activeCart){
     allProducts.push(activeCart);
