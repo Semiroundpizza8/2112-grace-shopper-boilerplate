@@ -4,7 +4,6 @@ export const baseUrl = 'http://localhost:4000/api';
 
 
 export const addNewCart = async () => {
-    console.log("are we going inside add cart?????")
     let response;
     let userId = localStorage.getItem('userId')
     let cartProduct = JSON.parse(localStorage.getItem('cartProductArray'))
@@ -56,71 +55,58 @@ localStorage.setItem('cart', JSON.stringify(cart));
                             }
                 const addedToCart = await response.json()
                 console.log("cartresponse",addedToCart)
-                let retrievedCart = JSON.parse(localStorage.getItem('cart'));
-                retrievedCart.cartProductId.push(addedToCart.id);
-            localStorage.setItem('cart', JSON.stringify(retrievedCart));
-            let retrievedCartProductArray = JSON.parse(localStorage.getItem('cartProductArray'));
-let cartProductArray = [];
-            if(!retrievedCartProductArray){
-                cartProductArray.push(addedToCart);
-                 } else { 
-                    cartProductArray = retrievedCartProductArray;
-                    cartProductArray.push(addedToCart);
-             }
-             localStorage.setItem('cartPoductArray', JSON.stringify(cartProductArray));
+                // let retrievedCart = JSON.parse(localStorage.getItem('cart'));
+                // retrievedCart.cartProductId.push(addedToCart);
+                console.log(addedToCart);
+                //console.log(retrievedCart);
+            // localStorage.setItem('cart', JSON.stringify(retrievedCart));
+//             let retrievedCartProductArray = JSON.parse(localStorage.getItem('cartProductArray'));
+// let cartProductArray = [];
+//             if(!retrievedCartProductArray){
+//                 cartProductArray.push(addedToCart);
+//                  } else { 
+//                     cartProductArray = retrievedCartProductArray;
+//                     cartProductArray.push(addedToCart);
+//              }
+//              localStorage.setItem('cartPoductArray', JSON.stringify(cartProductArray));
                   return addedToCart;
                          } 
 
                     
-     export const getMyCart = async () => {
-        const userId = localStorage.getItem('userId');
-        const cartArray = JSON.parse(localStorage.getItem('cartProductArray'));
-        const cartProductArray = JSON.parse(localStorage.getItem('cartProductArray'))
-        
-        let response;
-        let fullArray = [];
-        if(!userId && !cartProductArray) {
-            console.log("no cart nor userId present")
-        }
-        const cart = JSON.parse(localStorage.getItem('cart'))
-        if (!cart){
-            return;
-        }
-        if (!userId && cart.id){
-        try { 
-            response = await fetch(`${baseUrl}/cart/${cart.id}`, {
-            method: "GET",
-            headers: {
-                    'Content-Type': 'application/json',
-                                }
-                                
-                            })
-        const json = await response.json()
-        fullArray.push(json);
-        return fullArray;
-                        } catch (error) {
-                            console.log("error in getting my cart!")
-                            throw [error];
-                        }
-                } else {
-                
-                        try { 
-                            response = await fetch(`${baseUrl}/cart/${userId}`, {
-                            method: "GET",
-                            headers: {
-                                    'Content-Type': 'application/json',
-                                                }
-                                                
-                                            })
-                        const json = await response.json()
-                        fullArray.push(json);
-                        return fullArray;
-                                        } catch (error) {
-                                            console.log("error in getting my cart!")
-                                            throw [error];
-                                        }                 
-                }
-            }
+                         export const getMyCartProductbyUserId = async (userId) => {
+ 
+                            let response;
+                           try { 
+                                response = await fetch(`${baseUrl}/cart/${userId}`, {
+                                method: "GET",
+                                headers: {
+                                        'Content-Type': 'application/json',
+                                        }
+                                })
+                                            const json = await response.json()
+                                            return json;
+                             } catch (error) {
+                                console.log("error in getting my cart!")
+                                }                 
+                     }
+                    
+                    //  export const getMyCartbyTemporaryCartId = async (cartId) => {
+                     
+                    //     let response;
+                    //    try { 
+                    //         response = await fetch(`${baseUrl}/cart/${cartId}`, {
+                    //         method: "GET",
+                    //         headers: {
+                    //                 'Content-Type': 'application/json',
+                    //                 }
+                    //         })
+                    //                     const json = await response.json()
+                    //                     return json;
+                    //      } catch (error) {
+                    //         console.log("error in getting my cart!")
+                    //         }                 
+                    // }
+                    
 
 
 

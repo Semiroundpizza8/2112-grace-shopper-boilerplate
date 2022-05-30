@@ -19,10 +19,14 @@ const LoggedIn = (props) => {
         setUserName('');
         setPassword('');
         setLoggedIn(!!localStorage.getItem('token'));
-        const localCart = localStorage.getItem('cart');
+        const localCart = JSON.parse(localStorage.getItem('cart'));
         if(localCart){
-        localCart.userId = localStorage.getItem('userId');
-        
+            const userId = localStorage.getItem('userId');
+        // console.log(localCart);
+        localCart.userId = userId;
+        // console.log(userId);
+        // console.log(localCart);
+        localStorage.setItem('cart', JSON.stringify(localCart));
     }
     };
     const updateUserName = (event) => {

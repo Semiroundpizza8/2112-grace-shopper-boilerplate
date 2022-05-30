@@ -2,13 +2,13 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { addNewCart, deleteCart, patchCart, getMyCart, createProductCart } from '../axios-services/cart';
+import { addNewCart, deleteCart, patchCart, getMyCartProductbyUserId, createProductCart } from '../axios-services/cart';
 
 const Cart = () => {
 
     const [quantity, setQuantity] = useState("");
     const [price, setPrice] = useState("");
-    const [myCart, setMyCart] = useState("");
+    const [myCart, setMyCart] = useState();
     const [myCartList, setMyCartList] = useState("");
     const [editCount, setEditCount] = useState("");
     const [editPrice, setEditPrice] = useState("");
@@ -18,22 +18,31 @@ const Cart = () => {
     const [addOpen, setAddOpen] = useState(false);
 
     const userId = localStorage.getItem('userId');
-    const cartProductArray = localStorage.getItem('cartProductArray')
-    const cart = localStorage.getItem('cart')
+    const myLocalCartProducts = JSON.parse(localStorage.getItem('cartProductArray'));
+    const cart = JSON.parse(localStorage.getItem('cart'));
 
 
 useEffect(() => { (async () => {
-  const getMyCartList = await getMyCart();
-  setMyCart(getMyCartList)
-})();
+  if (cart){
+  const myDBCartProducts = await getMyCartProductbyUserId(userId);
+  if (myDBCartProducts){
+  console.log(myDBCartProducts);
+  cart.cartProduct.push(myDBCartProducts);
+} 
+  if (myLocalCartProducts){
+  cart.cartProduct.push(myLocalCartProducts);
+}
+  localStorage.setItem('cart', JSON.stringify(cart));
+  setMyCart(cart);
+}})();
 }, []);
 
 const handleDeleteCart = async (cartId, event) => {
   event.preventDefault();
  const deletedCart =  await deleteCart(cartId);
- delete cartProductArray.cartId;
- localStorage.setItem('cartProductArray', JSON.stringify(cartProductArray));
- const myCartList = await getMyCart();
+ delete myLocalCartProducts.cartId;
+ localStorage.setItem('cartProductArray', JSON.stringify(myLocalCartProducts));
+ const myCartList = await getMyCartProductbyUserId(userId);
  setMyCart(myCartList)
 }
 
@@ -75,7 +84,7 @@ console.log("creating a new item in the cart");
         event.preventDefault();
        console.log("creating a new item in the cart");
              try{const editedCart = await patchCart(cartId, quantity, price)
-                const myCartList = await getMyCart();
+                const myCartList = await getMyCartProductbyUserId(userId);
                 setMyCart(myCartList)
             }
              catch(error){
