@@ -50,7 +50,7 @@ useEffect(() => {
      if(!!productInActiveCart){
         productInActiveCart.push(addProdToCart);
     } else {
-        productInActiveCart = addProdToCart;
+        productInActiveCart = [addProdToCart];
     }
 
     setMyCart(productInActiveCart);

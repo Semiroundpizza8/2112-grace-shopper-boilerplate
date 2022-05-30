@@ -6,7 +6,7 @@ const getAllCartProducts = async () => {
 		const { rows } = await client.query(
 			`
             SELECT *
-                FROM cartProducts
+                FROM cartproducts
             `
 		);
 
@@ -21,7 +21,7 @@ const getCartProductById = async (cartId) => {
 		const { rows: [ cartProducts ] } = await client.query(
 			`
             SELECT *
-                FROM cartProducts
+                FROM cartproducts
                 WHERE id=$1;
             `,
 			[ cartId ]
@@ -35,16 +35,16 @@ const getCartProductById = async (cartId) => {
 
 const getCartProductByUserId = async (userId) => {
 	try {
-		const { rows: [ cartProducts ] } = await client.query(
+		const { rows } = await client.query(
 			`
             SELECT *
-                FROM cartProducts
+                FROM cartproducts
                 WHERE "userId"=$1;
             `,
 			[ userId ]
 		);
 
-		return cartProducts;
+		return rows;
 	} catch (error) {
 		throw error;
 	}
@@ -52,16 +52,16 @@ const getCartProductByUserId = async (userId) => {
 
 const createCartProduct = async ({ userId, productId, price, quantity }) => {
 	try {
-		const { rows  } = await client.query(
+		const { rows : [cart]  } = await client.query(
 			`
-            INSERT INTO cartProducts("userId", "productId", price, quantity)
+            INSERT INTO cartproducts("userId", "productId", price, quantity)
             VALUES ($1, $2, $3, $4)
             RETURNING *;
         `,
 	        [ userId, productId, price, quantity ]
 		);
         
-		return rows;
+		return [cart];
 	} catch (error) {
 		throw error;
 	}
@@ -75,7 +75,7 @@ const updateCartProduct = async (fields = { price, quantity }) => {
 		if (setString.length > 0) {
 			const { rows: [ newUpdate ] } = await client.query(
 				`    
-              UPDATE cartProducts
+              UPDATE cartproducts
               SET ${setString}
               WHERE id= ${fields.id} 
               RETURNING *;
@@ -96,7 +96,7 @@ const deleteCartProduct = async (id) => {
 	try {
 		const { rows: [product] } = await client.query(
 			`
-            DELETE FROM cartProducts
+            DELETE FROM cartproducts
             WHERE id=$1
 			RETURNING *
         `,

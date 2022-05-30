@@ -69,8 +69,9 @@ cartRouter.post('/', async (req, res, next) => {
         const { userId } = req.params;
 
         const cart = await getCartProductByUserId(userId);
-        res.send(cart);
         console.log(cart);
+        res.send(cart);
+        
           
       } catch (error) {
           next(error);
