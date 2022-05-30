@@ -49,7 +49,7 @@ async function getAllCarts() {
   }
 }
 
-async function createCart({ id, userId, isPayFor, price }) {
+async function createCart({ userId, isPayFor, price }) {
   try {
     const {
       rows: [cart]
