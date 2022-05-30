@@ -14,6 +14,7 @@ import LoggedIn from "./LoggedIn";
 import Logout from "./Logout";
 import Home from "./Home";
 import Products from "./Products";
+import CheckoutPage from "./CheckoutPage";
 
 
 
@@ -95,6 +96,11 @@ const App = () => {
             <Route path='/Register'>
               {loggedIn ? null : <Register loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
             </Route>
+
+            <Route path = '/checkout'>
+              <CheckoutPage/>
+            </Route>
+            
           </Switch>
         </div>
         <Footer />

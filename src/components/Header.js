@@ -34,7 +34,7 @@ function Header() {
         </div>
 
         <div className="header_optionBasket">
-          <LocalShippingIcon />
+          <Link to = '/cart'><LocalShippingIcon /></Link>
           <span className="header_optionLineTwo header_basketCount">{}</span>
           
         </div>

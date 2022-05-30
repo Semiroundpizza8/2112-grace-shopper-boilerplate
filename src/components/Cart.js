@@ -2,7 +2,9 @@
 
 
 import React, { useEffect, useState } from 'react';
+import {useHistory} from 'react-router-dom'
 import { addNewCart, deleteCart, patchCart, getMyCartProductbyUserId, createProductCart } from '../axios-services/cart';
+import CheckoutPage from './CheckoutPage';
 
 const Cart = () => {
 
@@ -20,6 +22,7 @@ const Cart = () => {
     const userId = localStorage.getItem('userId');
     //const myLocalCartProducts = JSON.parse(localStorage.getItem('cartProductArray'));
     const activeCart = JSON.parse(localStorage.getItem('ActiveCart'));
+    
    
 
 useEffect(() => { (async () => {
@@ -64,7 +67,8 @@ const handleDeleteCart = async (cartId, event) => {
     const handleEditCart = async (cartId, event) => {
         event.preventDefault();
        console.log("creating a new item in the cart");
-             try{const editedCart = await patchCart(cartId, quantity, price)
+             try{
+               const editedCart = await patchCart(cartId, quantity, price)
                 const myCartList = await getMyCartProductbyUserId(userId);
                 setMyCart(myCartList)
             }
@@ -73,10 +77,12 @@ const handleDeleteCart = async (cartId, event) => {
              }
          }
 
+         let history = useHistory();
 
+        const handleSubmitOrder = () =>{
+          history.push('/checkout');
+        }
 
-
-    
         return (<div> 
         <div> <h2> Here all the items in your cart: </h2> 
 
@@ -88,7 +94,7 @@ const handleDeleteCart = async (cartId, event) => {
                       <p>product name:{myCart.id}</p>
                     <p>product quantity:{quantity}</p>
                     <p>product price:{price}</p>
-                    {<button key={product.id} onClick={() => { setEditOpen({ open: !editOpen, id: product.id  }) }} editOpen={editOpen}>Edit Product</button>}
+                    {<button key={product.id} onClick={() => { setEditOpen({ open: !editOpen, id: product.id  }) }} editOpen={editOpen}>Edit Cart</button>}
                                 {editOpen.open && editOpen.id === product.id ? <> New Product quantity:
                                 <input value={editCount}
                                     onChange={handleQuantityChange} />
@@ -96,7 +102,8 @@ const handleDeleteCart = async (cartId, event) => {
                                 <button onClick={(event) => { handleEditCart(product.id, event) }}>Submit Edited cart</button> </> : null}
                      
                          
-                    {<button onClick={(id, event) => { handleDeleteCart(id, event) }}>Delete</button>}
+                    {<button onClick={(id, event) => { handleDeleteCart(id, event) }}>Delete Cart</button>}
+                    {<button onClick={(id,event) => {handleSubmitOrder(id,event)}}>Submit Order</button>}
                 </div>
             ) }
             
