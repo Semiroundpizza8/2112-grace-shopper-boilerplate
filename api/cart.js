@@ -49,20 +49,20 @@ cartRouter.post('/:cartId', async (req, res, next) => {
 
   cartRouter.get('/:cartId', async (req,res,next) => {
     console.log("I'm inside the cartId route")
-    const { cartId, userId } = req.params;
-    const user = await getuserById(userId);
+    const { cartId } = req.params;
+    //const user = await getUserById(userId);
+
 
       try {
         
-        const cart = await getCartById(cartId);
-        if (cart.userId = userId || user.role == "admin" ){
-        res.send(cart);
-      } else {
-        next({
-          message: 'Not an authorized user to access cart'
-        });
-      }
-          
+        const cart = await getCartProductById(cartId);
+      //   if (cart.userId = userId ){
+      //   res.send(cart);
+      // } else {
+      //   next({
+      //     message: 'Not an authorized user to access cart'
+      //   });
+      res.send(cart);
       } catch (error) {
           next(error);
       }
@@ -76,6 +76,7 @@ cartRouter.post('/:cartId', async (req, res, next) => {
 
         const cart = await getCartProductByUserId(userId);
         res.send(cart);
+        console.log(cart);
           
       } catch (error) {
           next(error);
@@ -83,7 +84,7 @@ cartRouter.post('/:cartId', async (req, res, next) => {
   })
 
 
-  cartRouter.patch('/:cartId/:cartProductId', async (req, res, next) => {
+  cartRouter.patch('/:cartProductId', async (req, res, next) => {
    
     const { cartProductId } = req.params;
 	const { price, quantity } = req.body;
@@ -123,7 +124,7 @@ cartRouter.post('/:cartId', async (req, res, next) => {
 
   })
 
-  cartRouter.delete('/:cartId/:cartProductId', async (req, res, next) => {
+  cartRouter.delete('/:cartProductId', async (req, res, next) => {
     const { cartProductId } = req.params;
     try {
       const newCart = await deleteCartProduct(cartProductId);

@@ -12,7 +12,7 @@ const Cart = () => {
     const [myCartList, setMyCartList] = useState("");
     const [editCount, setEditCount] = useState("");
     const [editPrice, setEditPrice] = useState("");
-
+  //const [myDBCartProducts, setMyDBCartProducts] = useState();
 
     const [editOpen, setEditOpen] = useState(false);
     const [addOpen, setAddOpen] = useState(false);
@@ -20,21 +20,26 @@ const Cart = () => {
     const userId = localStorage.getItem('userId');
     const myLocalCartProducts = JSON.parse(localStorage.getItem('cartProductArray'));
     const cart = JSON.parse(localStorage.getItem('cart'));
-
+   
 
 useEffect(() => { (async () => {
+let myDBCartProducts;
   if (cart){
-  const myDBCartProducts = await getMyCartProductbyUserId(userId);
+  myDBCartProducts = await getMyCartProductbyUserId(userId);
+  console.log(myDBCartProducts);
+  }
   if (myDBCartProducts){
   console.log(myDBCartProducts);
   cart.cartProduct.push(myDBCartProducts);
+  console.log(cart)
 } 
   if (myLocalCartProducts){
   cart.cartProduct.push(myLocalCartProducts);
+  console.log(cart)
 }
-  localStorage.setItem('cart', JSON.stringify(cart));
   setMyCart(cart);
-}})();
+  localStorage.setItem('cart', JSON.stringify(cart));
+})();
 }, []);
 
 const handleDeleteCart = async (cartId, event) => {
@@ -46,30 +51,7 @@ const handleDeleteCart = async (cartId, event) => {
  setMyCart(myCartList)
 }
 
-const handleCreateCart = async (productId, event) => {
- event.preventDefault();
-console.log("creating a new item in the cart");
-      try{
-          const addedCart = await addNewCart()
-          const addProductsToCart = await createProductCart({productId, price, quantity})
-       let newCart = addedCart.cartProductId.push(addProductsToCart);
-      setMyCart(newCart);
-    }
-      catch(error){
-        console.log(error)
-      }
-  }
 
-
-    const handlePriceChange = (event) => {
-
-      event.preventDefault();
-      try{
-        setPrice(event.target.value);
-    }catch(error){
-        throw error
-    }
-    }
 
     const handleQuantityChange = (event) => {
       event.preventDefault();
@@ -98,26 +80,26 @@ console.log("creating a new item in the cart");
     
         return (<div> 
         <div> <h2> Here all the items in your cart: </h2> 
-
-         <div>{!myCart? <div> Nothing to show, yet! Add a products to your cart! </div> : <div> {myCart.map(cart =>
-                <div key={cart.id}> 
-                   
-                      <p>product name:{cart.name}</p>
-                    <p>product quantity:{cart.quantity}</p>
-                    <p>product price:{cart.price}</p>
-                    {<button key={cart.id} onClick={() => { setEditOpen({ open: !editOpen, id: cart.id }) }} editOpen={editOpen}>Edit Product</button>}
-                                {editOpen.open && editOpen.id === cart.id ? <> New Product quantity:
+{/* <p>{myCart}</p> */}
+         <div>{myCart.cartProduct ? <div> 
+           {cartProduct.map(product =>
+                <div key={product.id}> 
+                      <p>product name:{product.name}</p>
+                    <p>product quantity:{product.quantity}</p>
+                    <p>product price:{product.price}</p>
+                    {/* {<button key={cart.product.id} onClick={() => { setEditOpen({ open: !editOpen, id: cart.product.id  }) }} editOpen={editOpen}>Edit Product</button>}
+                                {editOpen.open && editOpen.id === cart.product.id ? <> New Product quantity:
                                 <input value={editCount}
                                     onChange={handleQuantityChange} />
                                 New total price :
-                                <input value={editPrice}
-                                    onChange={handlePriceChange} /><button onClick={(event) => { handleEditCart(cart.id, event) }}>Submit Edited cart</button> </> : null}
-                    
+                                <button onClick={(event) => { handleEditCart(cart.product.id, event) }}>Submit Edited cart</button> </> : null}
+                     */}
                     
                    
                     {<button onClick={(id, event) => { handleDeleteCart(id, event) }}>Delete</button>}
                 </div>
-            ) }</div> }</div> 
+            ) }</div> : <div> Nothing to show, yet! Add a products to your cart! </div> }
+            </div> 
         </div>
         </div>)
 }

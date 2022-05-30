@@ -36,7 +36,7 @@ localStorage.setItem('cart', JSON.stringify(cart));
                 
  export const createProductCart = async (cartId, userId, productId, price, quantity) => {
  let response;
-//let userId = localStorage.getItem('userId')
+userId = localStorage.getItem('userId');
 //let cart = localStorage.getItem('cart')
 //cartId = cart.id;
         try {
@@ -72,9 +72,8 @@ localStorage.setItem('cart', JSON.stringify(cart));
                   return addedToCart;
                          } 
 
-                    
-                         export const getMyCartProductbyUserId = async (userId) => {
- 
+ export const getMyCartProductbyUserId = async (userId) => {
+ console.log("i'm inside getMyCartProductbyUserId")
                             let response;
                            try { 
                                 response = await fetch(`${baseUrl}/cart/${userId}`, {
@@ -84,7 +83,9 @@ localStorage.setItem('cart', JSON.stringify(cart));
                                         }
                                 })
                                             const json = await response.json()
+                                            console.log("response getMyCartProductbyUserId", json)
                                             return json;
+ 
                              } catch (error) {
                                 console.log("error in getting my cart!")
                                 }                 
@@ -112,7 +113,6 @@ localStorage.setItem('cart', JSON.stringify(cart));
 
  export const patchCart = async (cartId, price, quantity) => {
     let response;
-    
         try {
             response = await fetch(`${baseUrl}/cart/${cartId}`, {
             method: "PATCH",
