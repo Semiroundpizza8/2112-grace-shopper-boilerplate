@@ -16,8 +16,8 @@ const ProductScreen = () => {
 
 const { id } = useParams();
 const [singleProduct, setSingleProduct] = useState({})
-const [qty, setQty] = useState([]);
-const [myCart, setMyCart] = useState([]);
+const [qty, setQty] = useState(1);
+const [myCart, setMyCart] = useState();
 
 const userId = localStorage.getItem('userId');
 const cartProductArray = JSON.parse(localStorage.getItem('cartProductArray'));
@@ -32,25 +32,30 @@ useEffect(() => {
     })();
   }, []);
 
-  const handleAddToCart = async(productId,event) => {
+  const handleAddToCart = async(event) => {
+
      event.preventDefault();
     let userId = localStorage.getItem('userId')
+    let productInActiveCart = JSON.parse(localStorage.getItem('ActiveCart'));
     let addProdToCart;
-    console.log("prod",productId);
+    //console.log("prod",productId);
     console.log("user",userId);
     console.log("single",singleProduct);
     console.log("qty",qty);
     console.log("price",singleProduct.price)
-    if(!cart){
-    const newCart = await addNewCart();
-    console.log("new",newCart)
-     addProdToCart = await createProductCart(newCart.id, userId, productId, singleProduct.price, qty)
-} else {
-     addProdToCart = await createProductCart(cart.id, userId, productId, singleProduct.price, qty)
-}
-   
-    setMyCart(addProdToCart);
-    localStorage.setItem('activeCart',JSON.stringify(addProdToCart))
+
+    //console.log("cart", cart.cartProduct);
+
+     addProdToCart = await createProductCart(userId, singleProduct.id, singleProduct.price, qty)
+     if(!!productInActiveCart){
+        productInActiveCart.push(addProdToCart);
+    } else {
+        productInActiveCart = addProdToCart;
+    }
+
+    setMyCart(productInActiveCart);
+    console.log(productInActiveCart);
+    localStorage.setItem('ActiveCart',JSON.stringify(productInActiveCart))
 
   }
 
@@ -100,7 +105,7 @@ return (
         <CardActions>
         <Typography variant="body2" color="text.secondary">
             {singleProduct.stock > 0 ? <button onClick={(event) => {
-                handleAddToCart(singleProduct.id, event)
+                handleAddToCart(event)
             }}>Add to Cart</button> : <p> Product is out of stock </p> }  
         </Typography>
 

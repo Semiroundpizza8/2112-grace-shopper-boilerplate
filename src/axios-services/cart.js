@@ -34,13 +34,15 @@ localStorage.setItem('cart', JSON.stringify(cart));
             } 
                    
                 
- export const createProductCart = async (cartId, userId, productId, price, quantity) => {
+ export const createProductCart = async (userId, productId, price, quantity) => {
  let response;
-userId = localStorage.getItem('userId');
+//userId = localStorage.getItem('userId');
 //let cart = localStorage.getItem('cart')
 //cartId = cart.id;
+console.log("I'm inside createProductCart")
+//console.log("cartId", cartId)
         try {
-            response = await fetch(`${baseUrl}/cart/${cartId}`, {
+            response = await fetch(`${baseUrl}/cart/`, {
                         method: "POST",
                         headers: {
                                     'Content-Type': 'application/json',

@@ -13,32 +13,32 @@ const Cart = () => {
     const [editCount, setEditCount] = useState("");
     const [editPrice, setEditPrice] = useState("");
   //const [myDBCartProducts, setMyDBCartProducts] = useState();
-
+    const [cartProduct, setCartProduct] = useState();
     const [editOpen, setEditOpen] = useState(false);
     const [addOpen, setAddOpen] = useState(false);
 
     const userId = localStorage.getItem('userId');
     const myLocalCartProducts = JSON.parse(localStorage.getItem('cartProductArray'));
-    const cart = JSON.parse(localStorage.getItem('cart'));
+    const activeCart = JSON.parse(localStorage.getItem('ActiveCart'));
    
 
 useEffect(() => { (async () => {
 let myDBCartProducts;
-  if (cart){
+  if (activeCart){
   myDBCartProducts = await getMyCartProductbyUserId(userId);
   console.log(myDBCartProducts);
   }
-  if (myDBCartProducts){
+  if (activeCart && myDBCartProducts){
   console.log(myDBCartProducts);
-  cart.cartProduct.push(myDBCartProducts);
-  console.log(cart)
+  //cart.cartProduct.push(myDBCartProducts);
+  console.log(activeCart)
 } 
   if (myLocalCartProducts){
-  cart.cartProduct.push(myLocalCartProducts);
-  console.log(cart)
+    activeCart.push(myLocalCartProducts);
+  console.log(activeCart)
 }
-  setMyCart(cart);
-  localStorage.setItem('cart', JSON.stringify(cart));
+  setMyCart(activeCart);
+  localStorage.setItem('activeCart', JSON.stringify(activeCart));
 })();
 }, []);
 
@@ -74,15 +74,17 @@ const handleDeleteCart = async (cartId, event) => {
              }
          }
 
-  
+
 
 
     
         return (<div> 
         <div> <h2> Here all the items in your cart: </h2> 
 {/* <p>{myCart}</p> */}
-         <div>{myCart.cartProduct ? <div> 
-           {cartProduct.map(product =>
+         <div>{myCart ? <><div> 
+           <div>{myCart.id}</div>
+
+           {/* {cartProduct.map(product =>
                 <div key={product.id}> 
                       <p>product name:{product.name}</p>
                     <p>product quantity:{product.quantity}</p>
@@ -95,10 +97,14 @@ const handleDeleteCart = async (cartId, event) => {
                                 <button onClick={(event) => { handleEditCart(cart.product.id, event) }}>Submit Edited cart</button> </> : null}
                      */}
                     
-                   
+{/*                    
                     {<button onClick={(id, event) => { handleDeleteCart(id, event) }}>Delete</button>}
                 </div>
-            ) }</div> : <div> Nothing to show, yet! Add a products to your cart! </div> }
+            ) }  */}
+            
+
+            
+            </div> </> : <div> Nothing to show, yet! Add a products to your cart! </div> }
             </div> 
         </div>
         </div>)

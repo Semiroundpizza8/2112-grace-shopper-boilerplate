@@ -14,33 +14,27 @@ cartRouter.use((req, res, next) => {
 
 //the below path was tested and returns the cart.
 
+// cartRouter.post('/', async (req, res, next) => {
+//   const {userId, cartProductId} = req.body;
+//     try {
+//       const newCart = await addCartProductsToCart(req.body);
+//       console.log(req.body, newCart);
+//       res.send(newCart);
+//     } catch (error) {
+//       next(error);
+//     }
+//   })
+
+
+
 cartRouter.post('/', async (req, res, next) => {
-  const {userId, cartProductId} = req.body;
-    try {
-      const newCart = await addCartProductsToCart(req.body);
-      console.log(req.body, newCart);
-      res.send(newCart);
-    } catch (error) {
-      next(error);
-    }
-  })
-
-
-
-cartRouter.post('/:cartId', async (req, res, next) => {
   const { userId, cartId } = req.params;
  // const user = await getuserById(userId);
 
     try {
       const newCart = await createCartProduct(req.body);
       console.log(req.body, newCart);
-      if (newCart.userId = userId || user.role == "admin" ){
       res.send(newCart);
-    } else {
-      next({
-        message: 'Not an authorized user to add to cart'
-      });
-    }
     } catch (error) {
       next(error);
     }
