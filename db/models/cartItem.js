@@ -113,7 +113,7 @@ async function getTotalCartProductPrice(){
 module.exports = {
   getCartItemById,
   addProductToCart,
-  updateCartItem,
+  // updateCartItem,
   destroyCartItem,
   createCartItem
  

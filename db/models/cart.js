@@ -55,13 +55,13 @@ async function createCart({ userId, isPayFor, price }) {
       rows: [cart]
     } = await client.query(
       `
-        INSERT INTO cart("userId", price,"isPayFor" ) 
-        VALUES($1, $2, $3) 
-        RETURNING *;
+        INSERT INTO cart ("userId", price,"isPayFor") 
+        VALUES($1, $2, $3)
+        RETURNING*;
       `,
       [userId, price, isPayFor]
-    );
-
+    ); 
+    return cart;
   } catch (error) {
     throw error;
   }

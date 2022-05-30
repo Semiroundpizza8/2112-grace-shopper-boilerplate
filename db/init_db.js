@@ -85,7 +85,7 @@ async function createTables() {
     CREATE TABLE cart (
       id SERIAL PRIMARY KEY,
       "userId" INTEGER REFERENCES users(id) ,
-      price INTEGER NOT NULL,
+      price INTEGER,
       "isPayFor" BOOLEAN DEFAULT false
     
     );
@@ -210,7 +210,7 @@ async function populateCartData () {
   }
  ]
 
-    console.log("populatecartData");
+    console.log("populateCartData");
     // console.log(products);
   const carts = await Promise.all(cartData.map(createCart)) 
     console.log("Finished creating CartData")

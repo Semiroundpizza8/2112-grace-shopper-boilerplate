@@ -19,7 +19,7 @@ cartRouter.get('/', async (req, res, next) => {
     }
 });
 
-productRouter.post('/', async (req, res, next) => {
+cartRouter.post('/', async (req, res, next) => {
     try{
         const newCart = await createCart(req.body);
         res.send(newCart);

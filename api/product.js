@@ -26,7 +26,7 @@ productRouter.post('/', async (req, res, next) => {
     }
 });
 
-//  NEEDS TO BE TESTED AND POSSIBLY WROTE 
+//  NEEDS TO BE TESTED AND POSSIBLY REWRITE 
 
 // productRouter.patch('/:productId', requireUser, async (req, res, next) => {
 //     try {
