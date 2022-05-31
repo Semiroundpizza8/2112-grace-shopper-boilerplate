@@ -40,12 +40,28 @@ let products=[];
     products = activeCart;
   //console.log(activeCart)
 }
+
+// function sum(array){
+//   for (let i=0; i<array.lenght; i++){
+//   for (let j=0; j<array.length; j++){
+//   if(array[i].productId = array[j].productId){
+//     let newQuantity = array[i].quantity + array[j].quantity;
+//     delete array[j];
+//     array[i].quantity = newQuantity;
+//   }
+// }
+// } return array;
+// }
+
+// products = sum(products);
+
+
   setMyCart(products);
   localStorage.setItem('ActiveCart', JSON.stringify(products));
 
-  const singProd = await getProductById(products.id);
-  setMySingleProduct(singProd);
-  console.log("singleProduct",singleProduct)
+  // const singProd = await getProductById(products.id);
+  // setMySingleProduct(singProd);
+  // console.log("singleProduct",singleProduct)
   
 
 })();
@@ -91,9 +107,11 @@ const handleDeleteCart = async (cartId, event) => {
          <div>{!myCart ? <div> Nothing to show, yet! Add a products to your cart! </div>  :  <div> 
            {myCart.map(product =>
                <> <div key={product.id}> 
+               
                 {/* <> <div>{singleProduct.map(prod => <div key ={prod.id}>
                     <p>activity name:{prod.name}</p>
                     <p>activity description:{prod.description}</p> */}
+                    <p>product id:{product.productId}</p>
                     <p>product quantity:{product.quantity}</p>
                     <p>product price:{product.price}</p>
                     {<button key={product.id} onClick={() => { setEditOpen({ open: !editOpen, id: product.id  }) }} editOpen={editOpen}>Edit Product</button>}
