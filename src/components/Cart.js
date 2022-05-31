@@ -42,8 +42,30 @@ let allProducts = [];
     allProducts.push(activeCart);
   //console.log(activeCart)
 }
-  setMyCart(allProducts);
-  localStorage.setItem('ActiveCart', JSON.stringify(allProducts));
+
+// function sum(array){
+//   for (let i=0; i<array.lenght; i++){
+//   for (let j=0; j<array.length; j++){
+//   if(array[i].productId = array[j].productId){
+//     let newQuantity = array[i].quantity + array[j].quantity;
+//     delete array[j];
+//     array[i].quantity = newQuantity;
+//   }
+// }
+// } return array;
+// }
+
+// products = sum(products);
+
+
+  setMyCart(products);
+  localStorage.setItem('ActiveCart', JSON.stringify(products));
+
+  // const singProd = await getProductById(products.id);
+  // setMySingleProduct(singProd);
+  // console.log("singleProduct",singleProduct)
+  
+
 })();
 }, []);
 
@@ -91,11 +113,15 @@ const handleDeleteCart = async (cartId, event) => {
            <div>{myCart.id}</div>
 
            {myCart.map(product =>
-                <div key={product.id}> 
-                      <p>product name:{myCart.id}</p>
-                    <p>product quantity:{quantity}</p>
-                    <p>product price:{price}</p>
-                    {<button key={product.id} onClick={() => { setEditOpen({ open: !editOpen, id: product.id  }) }} editOpen={editOpen}>Edit Cart</button>}
+               <> <div key={product.id}> 
+               
+                {/* <> <div>{singleProduct.map(prod => <div key ={prod.id}>
+                    <p>activity name:{prod.name}</p>
+                    <p>activity description:{prod.description}</p> */}
+                    <p>product id:{product.productId}</p>
+                    <p>product quantity:{product.quantity}</p>
+                    <p>product price:{product.price}</p>
+                    {<button key={product.id} onClick={() => { setEditOpen({ open: !editOpen, id: product.id  }) }} editOpen={editOpen}>Edit Product</button>}
                                 {editOpen.open && editOpen.id === product.id ? <> New Product quantity:
                                 <input value={editCount}
                                     onChange={handleQuantityChange} />
