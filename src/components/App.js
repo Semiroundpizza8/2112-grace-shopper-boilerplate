@@ -60,11 +60,6 @@ const App = () => {
         <div id="header">
           <h1 className="header">The furniture store</h1>
           <div id="routeBox">
-
-
-
-
-
           </div>
         </div>
 

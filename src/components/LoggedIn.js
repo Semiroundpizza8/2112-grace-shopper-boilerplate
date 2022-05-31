@@ -18,16 +18,7 @@ const LoggedIn = (props) => {
         console.log(localStorage.getItem('token'));
         setUserName('');
         setPassword('');
-        setLoggedIn(!!localStorage.getItem('token'));
-        const localCart = JSON.parse(localStorage.getItem('cart'));
-        if(localCart){
-            const userId = localStorage.getItem('userId');
-        // console.log(localCart);
-        localCart.userId = userId;
-        // console.log(userId);
-        // console.log(localCart);
-        localStorage.setItem('cart', JSON.stringify(localCart));
-    }
+        setLoggedIn(!!localStorage.getItem('token'))
     };
     const updateUserName = (event) => {
         setUserName(event.target.value)
