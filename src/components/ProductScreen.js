@@ -68,10 +68,13 @@ const ProductScreen = (props) => {
 
     const handleAddToCart = async(event) => {
         event.preventDefault();
+		//qty will be the quantity added in cart
         const quantity = qty;
+		//price comes from the product
         const price = singleProduct.price;
         console.log('qty:', qty, 'price:', price, 'id:', id);
 
+		//create a prod object, that takes the values of name and description as well
         const prod = {
             prodId : id,
             quantity : quantity,
@@ -79,11 +82,13 @@ const ProductScreen = (props) => {
             name : singleProduct.name,
             description : singleProduct.description
         }
+		//make a copy of empty cart
         let cartArray = [...myCart];
         let activeCart;
 
+		//simple case, if user id is logged in, add that prod to cart
         if(userId) {
-            const addProdToCart = await createProductCart(userId, singleProduct.id, singleProduct.price, qty);
+            const addProdToCart = await createProductCart(userId, prod.prodId, prod.price,prod.quantity);
             console.log("prodincart", addProdToCart);
             cartArray.push(addProdToCart);
         } else {
