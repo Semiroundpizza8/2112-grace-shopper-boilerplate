@@ -20,7 +20,9 @@ import CheckoutPage from "./CheckoutPage";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState([]);
+  const [singleProduct, setSingleProduct] = useState({});
+  const [myCart, setMyCart] = useState();
 
 
   // const[user, setUser] = useState();
@@ -75,9 +77,9 @@ const App = () => {
             <Route exact path={"/Shop"}>
               <Products />
             </Route>
-            <Route path="/cart"><Cart /></Route>
+            <Route path="/cart"><Cart singleProduct = {singleProduct} setSingleProduct = {setSingleProduct} myCart = {myCart} setMyCart = {setMyCart} /></Route>
             <Route path="/products/:id">
-              <ProductScreen />
+              <ProductScreen singleProduct = {singleProduct} setSingleProduct = {setSingleProduct} />
             </Route>
 
             <Route path='/LoggedIn'>

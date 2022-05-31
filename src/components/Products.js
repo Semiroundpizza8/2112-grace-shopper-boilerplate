@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../axios-services/productScreen";
- import Product from "./Product";
- import {Link} from 'react-router-dom'
+import Product from "./Product";
+ 
 
 const AllProducts = () => {
   const [productList, setProductList] = useState([]);

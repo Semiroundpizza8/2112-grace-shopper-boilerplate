@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { addNewCart, deleteCart, patchCart, getMyCartProductbyUserId, createProductCart } from '../axios-services/cart';
 import { getProductById } from '../axios-services/productScreen';
-const Cart = () => {
+const Cart = (props) => {
 
     const [quantity, setQuantity] = useState("");
     const [price, setPrice] = useState("");
-    const [myCart, setMyCart] = useState();
+    const {myCart, setMyCart} = props;
     const [myCartList, setMyCartList] = useState("");
     const [editCount, setEditCount] = useState("");
     const [editPrice, setEditPrice] = useState("");
@@ -13,7 +13,7 @@ const Cart = () => {
     const [cartProduct, setCartProduct] = useState();
     const [editOpen, setEditOpen] = useState(false);
     const [addOpen, setAddOpen] = useState(false);
-    const [singleProduct, setMySingleProduct] = useState();
+    const {singleProduct, setSingleProduct } = props;
 
     const userId = localStorage.getItem('userId');
     //const myLocalCartProducts = JSON.parse(localStorage.getItem('cartProductArray'));
@@ -108,6 +108,7 @@ const handleDeleteCart = async (cartId, event) => {
                 {/* <> <div>{singleProduct.map(prod => <div key ={prod.id}>
                     <p>activity name:{prod.name}</p>
                     <p>activity description:{prod.description}</p> */}
+                    
                     <p>product id:{product.productId}</p>
                     <p>product quantity:{product.quantity}</p>
                     <p>product price:{product.price}</p>
