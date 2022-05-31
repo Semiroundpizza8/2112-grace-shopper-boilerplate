@@ -1,11 +1,6 @@
-//Cannot fix the cart until the order functions are ready
-
-
 import React, { useEffect, useState } from 'react';
-import {useHistory,Link} from 'react-router-dom'
 import { addNewCart, deleteCart, patchCart, getMyCartProductbyUserId, createProductCart } from '../axios-services/cart';
-import CheckoutPage from './CheckoutPage';
-
+import { getProductById } from '../axios-services/productScreen';
 const Cart = () => {
 
     const [quantity, setQuantity] = useState("");
@@ -18,28 +13,28 @@ const Cart = () => {
     const [cartProduct, setCartProduct] = useState();
     const [editOpen, setEditOpen] = useState(false);
     const [addOpen, setAddOpen] = useState(false);
+    const [singleProduct, setMySingleProduct] = useState();
 
     const userId = localStorage.getItem('userId');
     //const myLocalCartProducts = JSON.parse(localStorage.getItem('cartProductArray'));
     const activeCart = JSON.parse(localStorage.getItem('ActiveCart'));
-    
-   
+   console.log(activeCart);
 
 useEffect(() => { (async () => {
-  console.log("userid",userId)
 let myDBCartProducts;
-let allProducts = [];
+let products=[];
   if (activeCart){
   myDBCartProducts = await getMyCartProductbyUserId(userId);
-  console.log("dbproducts",myDBCartProducts);
+  console.log(myDBCartProducts);
   }
   if (activeCart && myDBCartProducts){
-  console.log("&&dbproducts",myDBCartProducts);
-  allProducts.push(myDBCartProducts);
-  console.log("active",activeCart)
+  console.log(myDBCartProducts);
+  products = [...activeCart, myDBCartProducts]
+  //allProducts.push(myDBCartProducts);
+  console.log(activeCart)
 } 
-  if (activeCart){
-    allProducts.push(activeCart);
+  if (activeCart && myDBCartProducts){
+    products = activeCart;
   //console.log(activeCart)
 }
 
@@ -90,8 +85,7 @@ const handleDeleteCart = async (cartId, event) => {
     const handleEditCart = async (cartId, event) => {
         event.preventDefault();
        console.log("creating a new item in the cart");
-             try{
-               const editedCart = await patchCart(cartId, quantity, price)
+             try{const editedCart = await patchCart(cartId, quantity, price)
                 const myCartList = await getMyCartProductbyUserId(userId);
                 setMyCart(myCartList)
             }
@@ -100,18 +94,14 @@ const handleDeleteCart = async (cartId, event) => {
              }
          }
 
-         let history = useHistory();
 
-        const handleSubmitOrder = () =>{
-          history.push('/checkout');
-        }
 
+
+    
         return (<div> 
         <div> <h2> Here all the items in your cart: </h2> 
 
-         <div>{myCart ? <><div> 
-           <div>{myCart.id}</div>
-
+         <div>{!myCart ? <div> Nothing to show, yet! Add a products to your cart! </div>  :  <div> 
            {myCart.map(product =>
                <> <div key={product.id}> 
                
@@ -129,17 +119,13 @@ const handleDeleteCart = async (cartId, event) => {
                                 <button onClick={(event) => { handleEditCart(product.id, event) }}>Submit Edited cart</button> </> : null}
                      
                          
-                    {<button onClick={(id, event) => { handleDeleteCart(id, event) }}>Delete Cart</button>}
-                    {<button onClick={(id,event) => {handleSubmitOrder(id,event)}}>Submit Order</button>}
-                </div>
+                    {<button onClick={(id, event) => { handleDeleteCart(id, event) }}>Delete</button>}
+                {/* </div>)}</div> </> */}
+                </div> </>
             ) }
-            
-
-            <Link to = "/Shop"> Go Back to Product Page </Link>
-            </div> </> : <div> Nothing to show, yet! Add a products to your cart! </div> }
-            </div> 
+            </div>}
         </div>
-        </div>)
+        </div></div>)
 }
 
 
