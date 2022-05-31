@@ -26,7 +26,7 @@ const LoggedIn = (props) => {
         let result = localCart.map(obj => {obj.userId = userId});
         //console.log(userId);
         console.log(localCart);
-        localStorage.setItem('cart', JSON.stringify(localCart));
+        localStorage.setItem('ActiveCart', JSON.stringify(localCart));
     }
     };
     const updateUserName = (event) => {

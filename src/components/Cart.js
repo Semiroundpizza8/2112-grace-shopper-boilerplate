@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { addNewCart, deleteCart, patchCart, getMyCartProductbyUserId, createProductCart } from '../axios-services/cart';
-
+import { getProductById } from '../axios-services/productScreen';
 const Cart = () => {
 
     const [quantity, setQuantity] = useState("");
@@ -16,30 +16,38 @@ const Cart = () => {
     const [cartProduct, setCartProduct] = useState();
     const [editOpen, setEditOpen] = useState(false);
     const [addOpen, setAddOpen] = useState(false);
+    const [singleProduct, setMySingleProduct] = useState();
 
     const userId = localStorage.getItem('userId');
     //const myLocalCartProducts = JSON.parse(localStorage.getItem('cartProductArray'));
     const activeCart = JSON.parse(localStorage.getItem('ActiveCart'));
-   
+   console.log(activeCart);
 
 useEffect(() => { (async () => {
 let myDBCartProducts;
-let allProducts = [];
+let products=[];
   if (activeCart){
   myDBCartProducts = await getMyCartProductbyUserId(userId);
   console.log(myDBCartProducts);
   }
   if (activeCart && myDBCartProducts){
   console.log(myDBCartProducts);
-  allProducts.push(myDBCartProducts);
+  products = [...activeCart, myDBCartProducts]
+  //allProducts.push(myDBCartProducts);
   console.log(activeCart)
 } 
-  if (activeCart){
-    allProducts.push(activeCart);
+  if (activeCart && myDBCartProducts){
+    products = activeCart;
   //console.log(activeCart)
 }
-  setMyCart(allProducts);
-  localStorage.setItem('ActiveCart', JSON.stringify(allProducts));
+  setMyCart(products);
+  localStorage.setItem('ActiveCart', JSON.stringify(products));
+
+  const singProd = await getProductById(products.id);
+  setMySingleProduct(singProd);
+  console.log("singleProduct",singleProduct)
+  
+
 })();
 }, []);
 
@@ -80,14 +88,14 @@ const handleDeleteCart = async (cartId, event) => {
         return (<div> 
         <div> <h2> Here all the items in your cart: </h2> 
 
-         <div>{myCart ? <><div> 
-           <div>{myCart.id}</div>
-
+         <div>{!myCart ? <div> Nothing to show, yet! Add a products to your cart! </div>  :  <div> 
            {myCart.map(product =>
-                <div key={product.id}> 
-                      <p>product name:{myCart.id}</p>
-                    <p>product quantity:{quantity}</p>
-                    <p>product price:{price}</p>
+               <> <div key={product.id}> 
+                {/* <> <div>{singleProduct.map(prod => <div key ={prod.id}>
+                    <p>activity name:{prod.name}</p>
+                    <p>activity description:{prod.description}</p> */}
+                    <p>product quantity:{product.quantity}</p>
+                    <p>product price:{product.price}</p>
                     {<button key={product.id} onClick={() => { setEditOpen({ open: !editOpen, id: product.id  }) }} editOpen={editOpen}>Edit Product</button>}
                                 {editOpen.open && editOpen.id === product.id ? <> New Product quantity:
                                 <input value={editCount}
@@ -97,15 +105,12 @@ const handleDeleteCart = async (cartId, event) => {
                      
                          
                     {<button onClick={(id, event) => { handleDeleteCart(id, event) }}>Delete</button>}
-                </div>
+                {/* </div>)}</div> </> */}
+                </div> </>
             ) }
-            
-
-            
-            </div> </> : <div> Nothing to show, yet! Add a products to your cart! </div> }
-            </div> 
+            </div>}
         </div>
-        </div>)
+        </div></div>)
 }
 
 
