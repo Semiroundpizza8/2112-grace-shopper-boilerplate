@@ -19,13 +19,13 @@ const LoggedIn = (props) => {
         setUserName('');
         setPassword('');
         setLoggedIn(!!localStorage.getItem('token'));
-        const localCart = JSON.parse(localStorage.getItem('cart'));
+        const localCart = JSON.parse(localStorage.getItem('ActiveCart'));
         if(localCart){
             const userId = localStorage.getItem('userId');
-        // console.log(localCart);
-        localCart.userId = userId;
-        // console.log(userId);
-        // console.log(localCart);
+        console.log(localCart);
+        let result = localCart.map(obj => {obj.userId = userId});
+        //console.log(userId);
+        console.log(localCart);
         localStorage.setItem('cart', JSON.stringify(localCart));
     }
     };

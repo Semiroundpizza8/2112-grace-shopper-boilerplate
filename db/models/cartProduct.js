@@ -52,7 +52,7 @@ const getCartProductByUserId = async (userId) => {
 
 const createCartProduct = async ({ userId, productId, price, quantity }) => {
 	try {
-		const { rows : [cart]  } = await client.query(
+		const { rows : cart  } = await client.query(
 			`
             INSERT INTO cartproducts("userId", "productId", price, quantity)
             VALUES ($1, $2, $3, $4)
@@ -61,7 +61,7 @@ const createCartProduct = async ({ userId, productId, price, quantity }) => {
 	        [ userId, productId, price, quantity ]
 		);
         
-		return [cart];
+		return cart;
 	} catch (error) {
 		throw error;
 	}

@@ -28,7 +28,7 @@ cartRouter.use((req, res, next) => {
 
 
 cartRouter.post('/', async (req, res, next) => {
-  const { userId, cartId } = req.params;
+  //const { userId, cartId } = req.params;
  // const user = await getuserById(userId);
 
     try {

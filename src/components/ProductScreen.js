@@ -48,9 +48,9 @@ useEffect(() => {
 
      addProdToCart = await createProductCart(userId, singleProduct.id, singleProduct.price, qty)
      if(!!productInActiveCart){
-        productInActiveCart.push(addProdToCart);
+        productInActiveCart.push(...addProdToCart);
     } else {
-        productInActiveCart = [addProdToCart];
+        productInActiveCart = addProdToCart;
     }
 
     setMyCart(productInActiveCart);
