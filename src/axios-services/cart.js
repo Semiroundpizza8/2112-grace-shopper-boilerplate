@@ -68,15 +68,14 @@ console.log("I'm inside createProductCart")
             response = await fetch(`${baseUrl}/cart/${userId}`, {
             method: "GET",
             headers: {
-                                        'Content-Type': 'application/json',
-                                        }
+                     'Content-Type': 'application/json',         }
                                 })
-                            const json = await response.json()
-                            console.log("response getMyCartProductbyUserId", json)
-                            return json;
- 
-                             } catch (error) {
-                                console.log("error in getting my cart!")
+        const json = await response.json()
+        console.log("response getMyCartProductbyUserId", json)
+        return json;
+        
+ } catch (error) {
+        console.log("error in getting my cart!")
                                 }                 
                      }
                     
