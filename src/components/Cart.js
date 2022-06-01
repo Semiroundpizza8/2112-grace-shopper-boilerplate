@@ -64,33 +64,33 @@ const Cart = (props) => {
 		})();
 	}, []);
 
-	const handleDeleteCart = async (cartId, event) => {
-		event.preventDefault();
-		const deletedCart = await deleteCart(cartId);
-		const myCartList = await getMyCartProductbyUserId(userId);
-		setMyCart(myCartList);
-	};
+	// const handleDeleteCart = async (cartId, event) => {
+	// 	event.preventDefault();
+	// 	const deletedCart = await deleteCart(cartId);
+	// 	const myCartList = await getMyCartProductbyUserId(userId);
+	// 	setMyCart(myCartList);
+	// };
 
-	const handleQuantityChange = (event) => {
-		event.preventDefault();
-		try {
-			setQuantity(event.target.value);
-		} catch (error) {
-			throw error;
-		}
-	};
+	// const handleQuantityChange = (event) => {
+	// 	event.preventDefault();
+	// 	try {
+	// 		setQuantity(event.target.value);
+	// 	} catch (error) {
+	// 		throw error;
+	// 	}
+	// };
 
-	const handleEditCart = async (cartId, event) => {
-		event.preventDefault();
-		console.log('creating a new item in the cart');
-		try {
-			const editedCart = await patchCart(cartId, quantity, price);
-			const myCartList = await getMyCartProductbyUserId(userId);
-			setMyCart(myCartList);
-		} catch (error) {
-			console.log(error);
-		}
-	};
+	// const handleEditCart = async (cartId, event) => {
+	// 	event.preventDefault();
+	// 	console.log('creating a new item in the cart');
+	// 	try {
+	// 		const editedCart = await patchCart(cartId, quantity, price);
+	// 		const myCartList = await getMyCartProductbyUserId(userId);
+	// 		setMyCart(myCartList);
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// };
 
 	console.log('mycartinsidecart', myCart);
 	return (
@@ -106,7 +106,7 @@ const Cart = (props) => {
 								<div>Nothing to show </div>
 							) : (
 								<div>
-									{console.log('mycartinsidecart', myCart)}
+									
 									{myCart.map((product) => <CartItems product={product} />)}
 								</div>
 							)}

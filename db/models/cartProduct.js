@@ -35,7 +35,7 @@ const getCartProductById = async (cartId) => {
 
 const getCartProductByUserId = async (userId) => {
 	try {
-		const { rows } = await client.query(
+		const { rows : [cartProducts] } = await client.query(
 			`
             SELECT *
                 FROM cartproducts
