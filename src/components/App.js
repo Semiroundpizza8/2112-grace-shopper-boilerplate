@@ -22,7 +22,7 @@ const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
   const [cart, setCart] = useState([]);
   const [singleProduct, setSingleProduct] = useState({});
-  const [myCart, setMyCart] = useState();
+  const [myCart, setMyCart] = useState([]);
 
 
   // const[user, setUser] = useState();

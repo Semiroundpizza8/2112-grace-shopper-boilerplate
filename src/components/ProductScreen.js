@@ -12,16 +12,14 @@ import { createProductCart, addNewCart } from '../axios-services/cart';
 
 const ProductScreen = (props) => {
 	const { id } = useParams();
-	const {singleProduct, setSingleProduct} = props;
+	const { singleProduct, setSingleProduct } = props;
 	const [ qty, setQty ] = useState(1);
 	const [ myCart, setMyCart ] = useState([]);
-    const [addItem, setAddItem] = useState(false);
-    
+	const [ addItem, setAddItem ] = useState(false);
 
 	const userId = localStorage.getItem('userId');
 	const cartProductArray = JSON.parse(localStorage.getItem('cartProductArray'));
 	const cart = JSON.parse(localStorage.getItem('cart'));
-    
 
 	useEffect(() => {
 		(async () => {
@@ -45,19 +43,19 @@ const ProductScreen = (props) => {
 
 	// 	//console.log("cart", cart.cartProduct);
 
-    //     // if the user is logged in then create it in db
-    //     if(userId) {
+	//     // if the user is logged in then create it in db
+	//     if(userId) {
 	// 	addProdToCart = await createProductCart(userId, singleProduct.id, singleProduct.price, qty);
-    //     console.log("prod",addProdToCart);
+	//     console.log("prod",addProdToCart);
 	// 	if (!!productInActiveCart) {
 	// 		productInActiveCart.push(...addProdToCart);
 	// 	} else {
 	// 		productInActiveCart = addProdToCart;
 	// 	}
-    // } else {
+	// } else {
 
-    // }
-    //     console.log("ProductPage: setting cart");
+	// }
+	//     console.log("ProductPage: setting cart");
 	// 	setMyCart(productInActiveCart);
 	// 	console.log(productInActiveCart);
 	// 	localStorage.setItem('ActiveCart', JSON.stringify(productInActiveCart));
@@ -65,42 +63,41 @@ const ProductScreen = (props) => {
 	// 	history.push(`/cart/${id}`);
 	// };
 
-
-    const handleAddToCart = async(event) => {
-        event.preventDefault();
+	const handleAddToCart = async (event) => {
+		event.preventDefault();
 		//qty will be the quantity added in cart
-        const quantity = qty;
+		const quantity = qty;
 		//price comes from the product
-        const price = singleProduct.price;
-        console.log('qty:', qty, 'price:', price, 'id:', id);
+		const price = singleProduct.price;
+		console.log('qty:', qty, 'price:', price, 'id:', id);
 
 		//create a prod object, that takes the values of name and description as well
-        const prod = {
-            prodId : id,
-            quantity : quantity,
-            price,
-            name : singleProduct.name,
-            description : singleProduct.description
-        }
+		const prod = {
+			prodId: id,
+			quantity: quantity,
+			price,
+			name: singleProduct.name,
+			description: singleProduct.description
+		};
 		//make a copy of empty cart
-        let cartArray = [...myCart];
-        let activeCart;
+		let cartArray = [ ...myCart ];
+		let activeCart;
 
 		//simple case, if user id is logged in, add that prod to cart
-        if(userId) {
-            const addProdToCart = await createProductCart(userId, prod.prodId, prod.price,prod.quantity);
-            console.log("prodincart", addProdToCart);
-            cartArray.push(addProdToCart);
-        } else {
-            cartArray.push(prod);
-            console.log("withoutloggedinuser",cartArray);
-        } 
-        console.log("Setting cart ....");
-        setMyCart(cartArray);
-        localStorage.setItem('activeCart',JSON.stringify(cartArray));
+		if (userId) {
+			const addProdToCart = await createProductCart(userId, prod.prodId, prod.price, prod.quantity);
+			console.log('prodincart', addProdToCart);
+			cartArray.push(addProdToCart);
+		} else {
+			cartArray.push(prod);
+			console.log('withoutloggedinuser', cartArray);
+		}
+		console.log('Setting cart ....');
+		setMyCart(cartArray);
+		localStorage.setItem('activeCart', JSON.stringify(cartArray));
 
-        
-    }
+		history.push(`/cart/${id}`);
+	};
 
 	return (
 		<div className='product'>

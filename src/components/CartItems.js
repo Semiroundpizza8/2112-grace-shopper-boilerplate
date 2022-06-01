@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { addNewCart, deleteCart, patchCart, getMyCartProductbyUserId, createProductCart } from '../axios-services/cart';
 import { getProductById } from '../axios-services/productScreen';
-import CartItems from './CartItems';
-const Cart = (props) => {
+const CartItems = (props) => {
 	const [ quantity, setQuantity ] = useState('');
 	const [ price, setPrice ] = useState('');
 	const { myCart, setMyCart } = props;
@@ -14,6 +13,7 @@ const Cart = (props) => {
 	const [ editOpen, setEditOpen ] = useState(false);
 	const [ addOpen, setAddOpen ] = useState(false);
 	const { singleProduct, setSingleProduct } = props;
+	const { product } = props;
 
 	const userId = localStorage.getItem('userId');
 	//const myLocalCartProducts = JSON.parse(localStorage.getItem('cartProductArray'));
@@ -26,19 +26,18 @@ const Cart = (props) => {
 			let products = [];
 			if (activeCart) {
 				myDBCartProducts = await getMyCartProductbyUserId(userId);
-				console.log('dbprods', myDBCartProducts);
-				//set product = [array of all prods from 28]
+				console.log(myDBCartProducts);
 			}
-			//   if (activeCart && myDBCartProducts){
-			//   console.log(myDBCartProducts);
-			//   products = [...activeCart, myDBCartProducts]
-			//   //allProducts.push(myDBCartProducts);
-			//   console.log(activeCart)
-			// }
-			//   if (activeCart && myDBCartProducts){
-			//     products = activeCart;
-			//   //console.log(activeCart)
-			// }
+			if (activeCart && myDBCartProducts) {
+				console.log(myDBCartProducts);
+				products = [ ...activeCart, myDBCartProducts ];
+				//allProducts.push(myDBCartProducts);
+				console.log(activeCart);
+			}
+			if (activeCart && myDBCartProducts) {
+				products = activeCart;
+				//console.log(activeCart)
+			}
 
 			// function sum(array){
 			//   for (let i=0; i<array.lenght; i++){
@@ -54,7 +53,6 @@ const Cart = (props) => {
 
 			// products = sum(products);
 
-			console.log('productsinside', products);
 			setMyCart(products);
 			localStorage.setItem('ActiveCart', JSON.stringify(products));
 
@@ -91,31 +89,46 @@ const Cart = (props) => {
 			console.log(error);
 		}
 	};
-
-	console.log('mycartinsidecart', myCart);
 	return (
-		<div>
-			<div>
-				<h2> Here all the items in your cart: </h2>
+		<div key={product.id}>
+			<p>product id:{product.productId}</p>
+			<p>product quantity:{product.quantity}</p>
+			<p>product price:{product.price}</p>
+			<button
+				key={product.id}
+				onClick={() => {
+					setEditOpen({ open: !editOpen, id: product.id });
+				}}
+				editOpen={editOpen}
+			>
+				Edit Product
+			</button>
+
+			{editOpen.open &&
+			editOpen.id === product.id && (
 				<div>
-					{!myCart ? (
-						<div> Nothing to show, yet! Add a products to your cart! </div>
-					) : (
-						<div>
-							{myCart.length === 0 ? (
-								<div>Nothing to show </div>
-							) : (
-								<div>
-									{console.log('mycartinsidecart', myCart)}
-									{myCart.map((product) => <CartItems product={product} />)}
-								</div>
-							)}
-						</div>
-					)}
+					<p>New Product quantity:</p>
+					<input value={editCount} onChange={handleQuantityChange} />
+					<p>New total price :</p>
+					<button
+						onClick={(event) => {
+							handleEditCart(product.id, event);
+						}}
+					>
+						Submit Edited cart
+					</button>
 				</div>
-			</div>
+			)}
+
+			<button
+				onClick={(id, event) => {
+					handleDeleteCart(id, event);
+				}}
+			>
+				Delete
+			</button>
 		</div>
 	);
 };
 
-export default Cart;
+export default CartItems;
