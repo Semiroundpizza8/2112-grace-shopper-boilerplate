@@ -19,14 +19,29 @@ async function getCartById(cartId) {
   }
 }
 
+async function getCartsByUser(userId){
+  try{
+    const {
+      rows: orderHistory
+    } = await client.query(`
+    SELECT *
+    FROM cart
+    WHERE "userId" = $1 AND "isPayFor" = true;
+    `,[userId]);
+
+    return orderHistory;
+  }catch(error){
+    throw error
+  }
+}
 
 
-async function getAllcarts() {
+async function getAllCarts() {
   try {
     const { rows: cart } = await client.query(`
         SELECT cart.*, users.username AS "creatorName"
         FROM cart
-        JOIN users ON users.id=cart."creatorId";
+        JOIN users ON users.id=cart."userId";
       `);
     return cart;
   } catch (error) {
@@ -34,24 +49,18 @@ async function getAllcarts() {
   }
 }
 
-
-
-
-
-
-
 async function createCart({ userId, isPayFor, price }) {
   try {
     const {
-      rows: [cart],
+      rows: [cart]
     } = await client.query(
       `
-        INSERT INTO cart("userId", price,"isPayFor" ) 
-        VALUES($1, $2, $3) 
-        RETURNING *;
+        INSERT INTO cart ("userId", price,"isPayFor") 
+        VALUES($1, $2, $3)
+        RETURNING*;
       `,
       [userId, price, isPayFor]
-    );
+    ); 
     return cart;
   } catch (error) {
     throw error;
@@ -128,12 +137,10 @@ async function getCartsByUser(userId){
 
 
 module.exports = {
-  // getCartById,
-//   getAllCarts,
+  getCartById,
+  getAllCarts,
   createCart,
-  // updateCart,
-//   updateCartPrice,
-// getTotalCartItemPrice,
-// getCartsByUser
-  
-};
+  updateCart,
+  getTotalCartItemPrice,
+  getCartsByUser
+  };

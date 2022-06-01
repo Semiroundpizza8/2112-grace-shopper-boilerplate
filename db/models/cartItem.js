@@ -62,7 +62,7 @@ async function addProductToCart({
   }
 }
 
-async function updateCartItem({ productId, cartId, id }) {
+async function updateCart_Product({ productId, cartId, price, id }) {
   try {
     const {
       rows: [cartItem],
@@ -92,11 +92,28 @@ async function destroyCartItem(id) {
   }
 }
 
+async function getTotalCartProductPrice(){
+  try{
+    const { rows: [ totalPrice ] } = await client.query(`
+    SELECT price
+    FROM product;
+    RETURNING *;
+    `)
+
+    const totalCartPrice = 0;
+
+    totalPrice.map(price => totalCartPrice+=price)
+
+    return totalCartPrice;
+  }catch(error){
+    throw error;
+  }
+}
 
 module.exports = {
   getCartItemById,
   addProductToCart,
-  updateCartItem,
+  // updateCartItem,
   destroyCartItem,
   createCartItem
  

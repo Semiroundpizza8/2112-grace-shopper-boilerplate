@@ -30,8 +30,8 @@ const {
 
 
 const {
-  // getProductById,
-  // getAllProducts,
+  getProductById,
+  getAllProducts,
   createProducts,
 } = require("./models/product");
 
@@ -68,24 +68,24 @@ async function createTables() {
     CREATE TABLE users (
       id SERIAL PRIMARY KEY,
       username varchar(255) NOT NULL,
-      address varchar(255) NOT NULL,
-      email varchar(255) UNIQUE NOT NULL,
-      city varchar(255) NOT NULL,
-      state varchar(255) NOT NULL,
-      zip INTEGER NOT NULL,
+      address varchar(255) ,
+      email varchar(255) UNIQUE ,
+      city varchar(255) ,
+      state varchar(255) ,
+      zip INTEGER ,
       password varchar(255) UNIQUE NOT NULL
     );  
     CREATE TABLE product (
       id SERIAL PRIMARY KEY,
-      name varchar(255) NOT NULL,
-      description varchar(255) NOT NULL,
-      pictures varchar(255) NOT NULL,
-      price INTEGER NOT NULL
+      name varchar(255),
+      description varchar(255),
+      pictures varchar(255),
+      price INTEGER
     ); 
     CREATE TABLE cart (
       id SERIAL PRIMARY KEY,
       "userId" INTEGER REFERENCES users(id) ,
-      price INTEGER NOT NULL,
+      price INTEGER,
       "isPayFor" BOOLEAN DEFAULT false
     
     );
@@ -210,7 +210,7 @@ async function populateCartData () {
   }
  ]
 
-    console.log("populatecartData");
+    console.log("populateCartData");
     // console.log(products);
   const carts = await Promise.all(cartData.map(createCart)) 
     console.log("Finished creating CartData")
