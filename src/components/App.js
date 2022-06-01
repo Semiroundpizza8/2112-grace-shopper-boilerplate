@@ -52,11 +52,12 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <Header />
+      
       
       <BrowserRouter>
+      <Header />
         <div id="header">
-          <h1 className="header">The furniture store</h1>
+          
           <div id="routeBox">
 
         <Route path ='/'>        

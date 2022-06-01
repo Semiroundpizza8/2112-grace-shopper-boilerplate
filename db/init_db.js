@@ -1,7 +1,7 @@
 
 const client= require('./client');
 const { createOrder, getAllOrders } = require('./models/orders');
-const { getAllCartProducts, addProductsToCartProduct } = require('./models/cart_product');
+const { getAllCartProducts, addProductsToCartProduct } = require('./models/cartProduct');
 const { getAllCarts, addCartProductsToCart } = require('./models/cart');
 
 
@@ -20,7 +20,7 @@ const {
   usersToCreate,
 } = require("./seedData");
 const addProductsToOrder = require('./models/order_products');
-const {addProductsToCart} = require('./models/cart_product');
+const {addProductsToCart} = require('./models/cartProduct');
 
 
 async function dropTables() {
@@ -35,6 +35,7 @@ async function dropTables() {
         
     DROP TABLE IF EXISTS cart CASCADE;
     DROP TABLE IF EXISTS cartProducts CASCADE;
+    DROP TABLE IF EXISTS cart_products CASCADE;
     DROP TABLE IF EXISTS orderProducts CASCADE;
     DROP TABLE IF EXISTS orders CASCADE;
     DROP TABLE IF EXISTS products CASCADE;
@@ -96,13 +97,9 @@ async function buildTables() {
 
       );
 
-      CREATE TABLE cart (
-        id SERIAL PRIMARY KEY,
-        "userId" INTEGER REFERENCES users(id) ON DELETE CASCADE,
-        "cartProductId" INTEGER REFERENCES cartProducts(id),
-      );
+      
 
-      CREATE TABLE cartProducts (
+      CREATE TABLE cart_products (
         id SERIAL PRIMARY KEY,
         "userId" INTEGER REFERENCES users(id) ON DELETE CASCADE,
         "productId" INTEGER REFERENCES products(id),
@@ -110,7 +107,11 @@ async function buildTables() {
         quantity INTEGER,
         UNIQUE("userId","productId")
       );
-
+      CREATE TABLE cart (
+        id SERIAL PRIMARY KEY,
+        "userId" INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        "cartProductId" INTEGER REFERENCES cart_products(id)
+      );
       CREATE TABLE creditCard (
         id SERIAL PRIMARY KEY,
         "userId" INTEGER REFERENCES users(id) ON DELETE CASCADE,

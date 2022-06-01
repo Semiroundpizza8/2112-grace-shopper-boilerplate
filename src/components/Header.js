@@ -8,11 +8,9 @@ import { BrowserRouter, Link } from "react-router-dom";
 function Header() {
   return (
     <div className="header">
-      <BrowserRouter>
         <Link to="/">
           <img className="header_logo" src={Logo} alt="Coconut Logo" />
         </Link>
-      </BrowserRouter>
 
       <div className="header_search">
         <input className="header_searchInput" type="text"></input>
