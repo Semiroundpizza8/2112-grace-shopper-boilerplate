@@ -68,7 +68,9 @@ const addCartProductsToCart = async ({ userId, cartProductId }) => {
 	}
 };
 
-
+//create a new cart
+//user purchases item for the first time this should be called in frontend
+//save cart id 
 const deleteCart = async (id) => {
 	try {
 		const { rows: [cart] } = await client.query(

@@ -12,6 +12,12 @@ import { createProductCart, addNewCart } from '../axios-services/cart';
 
 const ProductScreen = (props) => {
 	const { id } = useParams();
+	const params = useParams();
+	
+	console.log("params",params);
+	console.log("useParams",useParams());
+	console.log("id", id);
+
 	const { singleProduct, setSingleProduct } = props;
 	const [ qty, setQty ] = useState(1);
 	const [ myCart, setMyCart ] = useState([]);
@@ -95,8 +101,8 @@ const ProductScreen = (props) => {
 		console.log('Setting cart ....');
 		setMyCart(cartArray);
 		localStorage.setItem('activeCart', JSON.stringify(cartArray));
-
-		history.push(`/cart/${id}`);
+		
+		history.push('/cart');
 	};
 
 	return (
