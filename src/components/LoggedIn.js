@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { loginUser } from '../axios-services/user';
 import { Link } from "react-router-dom";
+import "../../src/style/Login.css";
 
 
 const LoggedIn = (props) => {
@@ -28,13 +29,15 @@ const LoggedIn = (props) => {
     };
 
     return (
-        <div>
+        <div className='login'>
             <form onSubmit ={ handleSubmit }>
-                <input type = 'text' placeholder = "UserName" value={username} onChange={updateUserName} />
-                <input type = 'text' placeholder = "Password" value={password} onChange={updatePassword} />
-                <button>Login</button>
+                <input className='textBoxLogin' type = 'text' placeholder = "UserName" value={username} onChange={updateUserName} />
+                <input className='textBoxLogin' type = 'text' placeholder = "Password" value={password} onChange={updatePassword} />
+                <Link to="/Shop">
+                <button className='Btn_Login' >Login</button>
+                </Link>
             </form>
-            <Link to = '/register'>Register Here!</Link>
+            <Link className='reg_link' to = '/register'>Register Here!</Link>
         </div>
     )
 };

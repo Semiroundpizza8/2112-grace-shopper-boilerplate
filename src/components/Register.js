@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { registerUser, loginUser } from '../axios-services/user';
+import "../../src/style/Register.css"
+import { Link } from "react-router-dom"
 
 const Register = (props) => {
     const { loggedIn, setLoggedIn } = props;
@@ -46,14 +48,16 @@ const Register = (props) => {
     }
 
     return (
-        <div>
+        <div className='Register'>
             <form onSubmit={ handleSubmit }>
-            <input type = 'text' placeholder = "First Name" value = {firstName} onChange = {updateFirstName} />
-                <input type = 'text' placeholder = "Last Name" value = {lastName} onChange = {updateLastName} />
-                <input type = 'text' placeholder = "Register Username" value = {userName} onChange = {updateUserName} />
-                <input type = 'text' placeholder = "Register Password" value = {password} onChange = {updatePassword} />
-                <input type = 'text' placeholder = "Register Email" value = {email} onChange = {updateEmail} />
-                <button > Register </button>
+                <input className='textBoxRegister' type = 'text' placeholder = "First Name" value = {firstName} onChange = {updateFirstName} />
+                <input className='textBoxRegister' type = 'text' placeholder = "Last Name" value = {lastName} onChange = {updateLastName} />
+                <input className='textBoxRegister' type = 'text' placeholder = "Register Username" value = {userName} onChange = {updateUserName} />
+                <input className='textBoxRegister' type = 'text' placeholder = "Register Password" value = {password} onChange = {updatePassword} />
+                <input className='textBoxRegister' type = 'text' placeholder = "Register Email" value = {email} onChange = {updateEmail} />
+                <Link to="/Shop">
+                    <button className='Btn_Register'> Register </button>
+                </Link> 
             </form>
         </div>
     )
