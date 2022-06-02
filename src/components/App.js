@@ -16,7 +16,6 @@ import Home from "./Home";
 import Products from "./Products";
 
 
-
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
   const [cart, setCart] = useState([])
@@ -49,21 +48,16 @@ const App = () => {
     // invoke it immediately after its declaration, inside the useEffect callback
     getAPIStatus();
   }, []);
-
+console.log(loggedIn)
   return (
     <div className="app-container">
 
       {/* <Cart/> */}
       <BrowserRouter>
-        <Header />
+        <Header loggedIn={loggedIn}/>
         <div id="header">
           <h1 className="header">The furniture store</h1>
           <div id="routeBox">
-
-
-
-
-
           </div>
         </div>
 

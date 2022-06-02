@@ -5,7 +5,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { BrowserRouter, Link } from "react-router-dom";
 
-function Header() {
+function Header(props) {
+  const { loggedIn } = props;
   return (
     <div className="header">
    
@@ -23,7 +24,8 @@ function Header() {
         <div className="header_option">
           <span className="header_optionLineOne">Hello Guest</span>
           <Link to="/LoggedIn">
-          <span className="header_optionLineTwo">Sign In</span> 
+           
+          {!loggedIn ? <span className="header_optionLineTwo">Sign In</span> : <span className="header_optionLineTwo">Log Out</span> }
           </Link> 
         </div>
 

@@ -51,6 +51,9 @@ const createUser = async ({ username, password, email, firstname, lastname, role
 const getUser = async ({ username, password }) => {
 	try {
 		const user = await getUserByUsername(username);
+		if (!user) {
+			return '';
+		}
 		const hashedPassword = user.password;
 		const verifyPassword = await bcrypt.compare(password, hashedPassword);
 
@@ -90,6 +93,7 @@ const getAdmin = async (id) => {
 
 const getUserByUsername = async (username) => {
 	try {
+		console.log(username)
 		const { rows: [ user ] } = await client.query(
 			`
             SELECT * FROM users

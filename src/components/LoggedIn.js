@@ -15,6 +15,7 @@ const LoggedIn = (props) => {
             username: username,
             password: password
         };
+        console.log("Hello LoggedIn!!!!")
         await loginUser(user);
         console.log(localStorage.getItem('token'));
         setUserName('');
@@ -30,11 +31,11 @@ const LoggedIn = (props) => {
 
     return (
         <div className='login'>
-            <form onSubmit ={ handleSubmit }>
+            <form >
                 <input className='textBoxLogin' type = 'text' placeholder = "UserName" value={username} onChange={updateUserName} />
                 <input className='textBoxLogin' type = 'text' placeholder = "Password" value={password} onChange={updatePassword} />
                 <Link to="/Shop">
-                <button className='Btn_Login' >Login</button>
+                <button onClick={handleSubmit} className='Btn_Login' >Login</button>
                 </Link>
             </form>
             <Link className='reg_link' to = '/register'>Register Here!</Link>
