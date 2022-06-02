@@ -6,21 +6,20 @@ const jwt = require("jsonwebtoken");
 
 userRouter.post("/register", async (req, res, next) => {
     const { username, password, email, firstname, lastname, role } = req.body;
+    console.log("are we in register")
+
     try {
         if (password.length < 8) {
             return;
         }
         const user = await createUser ({ username, password, email, firstname, lastname, role });
 
-        const token = jwt.sign(
-            {
-                id: user.id,
-                username: username,
-                email: email,
-                firstname: firstname, 
-                lastname: lastname,
-                role: role
-            },
+        
+            const token =jwt.sign(
+                {
+                    id: user.id, 
+                    username, 
+                },
 
             process.env.JWT_SECRET,
 
@@ -28,12 +27,13 @@ userRouter.post("/register", async (req, res, next) => {
                 expiresIn: "1w",
             }
         );
-
+console.log(token, "token in register")
         res.send({
             message: "Thank you for signing up!",
             token: token,
             user: user,
         });
+
     } catch ({ name, message }) {
         next({ name, message });
     }

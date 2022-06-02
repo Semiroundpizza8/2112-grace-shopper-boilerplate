@@ -6,11 +6,11 @@ const getAllCartProducts = async () => {
 		const { rows } = await client.query(
 			`
             SELECT *
-                FROM cartProducts
+                FROM cartproducts
             `
 		);
 
-		return cart_products;
+		return rows;
 	} catch (error) {
 		throw error;
 	}
@@ -18,64 +18,69 @@ const getAllCartProducts = async () => {
 
 const getCartProductById = async (cartId) => {
 	try {
-		const { rows: [ cart_products ] } = await client.query(
+		const { rows: [ cartProducts ] } = await client.query(
 			`
             SELECT *
-                FROM cartProducts
+                FROM cartproducts
                 WHERE id=$1;
             `,
 			[ cartId ]
 		);
 
-		return cart_products;
+		return cartProducts;
 	} catch (error) {
 		throw error;
 	}
 };
 
 const getCartProductByUserId = async (userId) => {
+	console.log("userIdInDB", userId);
 	try {
-		const { rows: [ cart_products ] } = await client.query(
+		const { rows } = await client.query(
 			`
             SELECT *
-                FROM cartProducts
+                FROM cartproducts 
+				JOIN products
+				ON products.id = cartproducts."productId"
                 WHERE "userId"=$1;
             `,
 			[ userId ]
 		);
-
-		return cart_products;
+console.log("rows in modules", rows)
+		return rows;
 	} catch (error) {
 		throw error;
 	}
 };
 
-const addProductsToCartProduct = async ({ userId, productId, price, quantity }) => {
+
+
+const createCartProduct = async ({ userId, productId, price, quantity }) => {
 	try {
-		const { rows:  cart_products  } = await client.query(
+		const { rows : cart  } = await client.query(
 			`
-            INSERT INTO cartProducts("UserId", "productId", price, quantity)
+            INSERT INTO cartproducts("userId", "productId", price, quantity)
             VALUES ($1, $2, $3, $4)
             RETURNING *;
         `,
 	        [ userId, productId, price, quantity ]
 		);
-        console.log("inside cart_products",cart_products);
-		return cart_products;
+        
+		return cart;
 	} catch (error) {
 		throw error;
 	}
 };
 
 
-const updateProductInCartProduct = async (fields = { price, quantity }) => {
+const updateCartProduct = async (fields = { price, quantity }) => {
 	const setString = Object.keys(fields).map((key, index) => `"${key}"=$${index + 1}`).join(', ');
 
 	try {
 		if (setString.length > 0) {
 			const { rows: [ newUpdate ] } = await client.query(
 				`    
-              UPDATE cartProducts
+              UPDATE cartproducts
               SET ${setString}
               WHERE id= ${fields.id} 
               RETURNING *;
@@ -96,7 +101,7 @@ const deleteCartProduct = async (id) => {
 	try {
 		const { rows: [product] } = await client.query(
 			`
-            DELETE FROM cartProducts
+            DELETE FROM cartproducts
             WHERE id=$1
 			RETURNING *
         `,
@@ -117,4 +122,4 @@ const deleteCartProduct = async (id) => {
 
 
 
-module.exports = {getAllCartProducts, addProductsToCartProduct, updateProductInCartProduct, deleteCartProduct, getCartProductById, getCartProductByUserId}
+module.exports = {getAllCartProducts, createCartProduct, updateCartProduct, deleteCartProduct, getCartProductById, getCartProductByUserId}
