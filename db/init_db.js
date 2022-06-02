@@ -73,6 +73,7 @@ async function createTables() {
       city varchar(255) ,
       state varchar(255) ,
       zip INTEGER ,
+      admin BOOLEAN DEFAULT false,
       password varchar(255) UNIQUE NOT NULL
     );  
     CREATE TABLE product (
@@ -80,6 +81,7 @@ async function createTables() {
       name varchar(255),
       description varchar(255),
       pictures varchar(255),
+      active BOOLEAN DEFAULT true,
       price INTEGER
     ); 
     CREATE TABLE cart (
@@ -116,6 +118,7 @@ async function populateInitialUsers() {
        city: "Pandaville", 
        state: "california",
         zip: 75214,
+        admin: true,
          password: "blackandwhitealltheway"
     },
 
@@ -124,8 +127,9 @@ async function populateInitialUsers() {
      email: "IeatPanadasBamboo@gmail.com", 
      city: "bejing", 
      state: "china",
-      zip: 84217,
-       password: "bamboofarts"
+     zip: 84217,
+     admin: false,
+     password: "bamboofarts"
 },
 
 {username: "Rihanna", 
@@ -134,6 +138,7 @@ async function populateInitialUsers() {
  city: "Sqwiggletown", 
  state: "Oregon",
   zip: 99998,
+  admin: true,
    password: "deepfriedpizzarolls"
 }
  ]
