@@ -17,7 +17,7 @@ const {
   // updateCart_Product,
   // destroyCart_Product,
   createCartProduct,
-} = require("./models/cart_product");
+} = require("./models/cartItem");
 
 
 const {

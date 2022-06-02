@@ -7,16 +7,16 @@ import axios from 'axios';
 // for example, if we need to display a list of users
 // we'd probably want to define a getUsers service like this:
 
-/* 
-  export async function getUsers() {
-    try {
-      const { data: users } = await axios.get('/api/users')
-      return users;
-    } catch(err) {
-      console.error(err)
-    }
+ 
+export async function getUsers() {
+  try {
+    const { data: users } = await axios.get('/api/users')
+    return users;
+  } catch(err) {
+    console.error(err)
   }
-*/
+}
+
 
 export async function getAPIHealth() {
   try {
@@ -25,5 +25,26 @@ export async function getAPIHealth() {
   } catch (err) {
     console.error(err);
     return { healthy: false };
+  }
+}
+
+export async function getAllProducts() {
+  try {
+    const { data: products } = await axios.get('/api/:productId');
+    return products;
+  } catch (err) {
+    console.error(err);
+    return  "Whoops, looks like we'er fresh out."  ;
+  }
+}
+
+export async function retrieve() {
+  try {
+    //is that /cart? or /:cart
+    const { data: cartItem } = await axios.patch('/api/cartItem');
+    return cartItem;
+  } catch (err) {
+    console.error(err);
+    return  "Choose something else, or do not."  ;
   }
 }
