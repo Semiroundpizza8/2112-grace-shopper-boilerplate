@@ -13,10 +13,10 @@ import { createProductCart, addNewCart } from '../axios-services/cart';
 const ProductScreen = (props) => {
 	const { id } = useParams();
 	const params = useParams();
-	
-	console.log("params",params);
-	console.log("useParams",useParams());
-	console.log("id", id);
+
+	console.log('params', params);
+	console.log('useParams', useParams());
+	console.log('id', id);
 
 	const { singleProduct, setSingleProduct } = props;
 	const [ qty, setQty ] = useState(1);
@@ -92,16 +92,16 @@ const ProductScreen = (props) => {
 		//simple case, if user id is logged in, add that prod to cart
 		if (userId) {
 			const addProdToCart = await createProductCart(userId, prod.prodId, prod.price, prod.quantity);
-			console.log('prodincart', addProdToCart);
+			console.log('signedinusercart', addProdToCart);
 			cartArray.push(addProdToCart);
 		} else {
 			cartArray.push(prod);
-			console.log('withoutloggedinuser', cartArray);
+			console.log('withoutloggedinusercart', cartArray);
 		}
 		console.log('Setting cart ....');
 		setMyCart(cartArray);
 		localStorage.setItem('activeCart', JSON.stringify(cartArray));
-		
+
 		history.push('/cart');
 	};
 
