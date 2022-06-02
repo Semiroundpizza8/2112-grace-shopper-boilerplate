@@ -41,26 +41,26 @@ cartRouter.post('/', async (req, res, next) => {
   })
   
 
-  cartRouter.get('/:cartId', async (req,res,next) => {
-    console.log("I'm inside the cartId route")
-    const { cartId } = req.params;
-    //const user = await getUserById(userId);
+  // cartRouter.get('/:cartId', async (req,res,next) => {
+  //   console.log("I'm inside the cartId route")
+  //   const { cartId } = req.params;
+  //   //const user = await getUserById(userId);
 
 
-      try {
+  //     try {
         
-        const cart = await getCartProductById(cartId);
-      //   if (cart.userId = userId ){
-      //   res.send(cart);
-      // } else {
-      //   next({
-      //     message: 'Not an authorized user to access cart'
-      //   });
-      res.send(cart);
-      } catch (error) {
-          next(error);
-      }
-  })
+  //       const cart = await getCartProductById(cartId);
+  //     //   if (cart.userId = userId ){
+  //     //   res.send(cart);
+  //     // } else {
+  //     //   next({
+  //     //     message: 'Not an authorized user to access cart'
+  //     //   });
+  //     res.send(cart);
+  //     } catch (error) {
+  //         next(error);
+  //     }
+  // })
 
 
   cartRouter.get('/:userId', async (req,res,next) => {

@@ -34,21 +34,26 @@ const getCartProductById = async (cartId) => {
 };
 
 const getCartProductByUserId = async (userId) => {
+	console.log("userIdInDB", userId);
 	try {
-		const { rows: [cart] } = await client.query(
+		const { rows } = await client.query(
 			`
             SELECT *
-                FROM cartproducts
+                FROM cartproducts 
+				JOIN products
+				ON products.id = cartproducts."productId"
                 WHERE "userId"=$1;
             `,
 			[ userId ]
 		);
-
-		return cart;
+console.log("rows in modules", rows)
+		return rows;
 	} catch (error) {
 		throw error;
 	}
 };
+
+
 
 const createCartProduct = async ({ userId, productId, price, quantity }) => {
 	try {
