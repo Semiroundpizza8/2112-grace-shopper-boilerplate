@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { loginUser } from '../axios-services/user';
 import { Link } from "react-router-dom";
+import{createProductCart} from '../axios-services/cart';
 
 
 const LoggedIn = (props) => {
@@ -18,7 +19,23 @@ const LoggedIn = (props) => {
         console.log(localStorage.getItem('token'));
         setUserName('');
         setPassword('');
-        setLoggedIn(!!localStorage.getItem('token'))
+        setLoggedIn(!!localStorage.getItem('token'));
+        const localCart = JSON.parse(localStorage.getItem('ActiveCart'));
+        if(localCart){
+            const userId = localStorage.getItem('userId');
+        console.log(localCart);
+        let result = localCart.map(obj => {
+            obj.userId = userId
+        }
+            );
+        let sentItems = result.map(obj => {
+                createProductCart(obj)
+            }
+                );
+        //console.log(userId);
+        console.log(localCart);
+        localStorage.setItem('ActiveCart', JSON.stringify(localCart));
+    }
     };
     const updateUserName = (event) => {
         setUserName(event.target.value)

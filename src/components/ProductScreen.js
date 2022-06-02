@@ -8,7 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { createProductCart } from "../axios-services/cart";
+import { createProductCart, addNewCart } from "../axios-services/cart";
 
 
 
@@ -16,28 +16,53 @@ const ProductScreen = () => {
 
 const { id } = useParams();
 const [singleProduct, setSingleProduct] = useState({})
-const [qty, setQty] = useState(0);
+const [qty, setQty] = useState(1);
+const [myCart, setMyCart] = useState();
 
+const userId = localStorage.getItem('userId');
+const cartProductArray = JSON.parse(localStorage.getItem('cartProductArray'));
+const cart = JSON.parse(localStorage.getItem('cart'))
 
 
 useEffect(() => {
     (async () => {
         const singleProduct = await getProductById(id);
-        console.log("singleproduct",singleProduct);
+       // console.log("singleproduct",singleProduct);
         setSingleProduct(singleProduct);
     })();
   }, []);
 
-  const handleAddToCart = async() => {
-      console.log("product added to cart!");
-      
+  const handleAddToCart = async(event) => {
+
+     event.preventDefault();
+    let userId = localStorage.getItem('userId')
+    let productInActiveCart = JSON.parse(localStorage.getItem('ActiveCart'));
+    let addProdToCart;
+    //console.log("prod",productId);
+    console.log("user",userId);
+    console.log("single",singleProduct);
+    console.log("qty",qty);
+    console.log("price",singleProduct.price)
+
+    //console.log("cart", cart.cartProduct);
+
+     addProdToCart = await createProductCart(userId, singleProduct.id, singleProduct.price, qty)
+     if(!!productInActiveCart){
+         console.log(productInActiveCart);
+        productInActiveCart.push(...addProdToCart);
+    } else {
+        productInActiveCart = addProdToCart;
+    }
+
+    setMyCart(productInActiveCart);
+    console.log(productInActiveCart);
+    localStorage.setItem('ActiveCart',JSON.stringify(productInActiveCart))
+
   }
 
+
   
-    
-
-
-  return (
+return (
     <div className="product">
         <Card>
             <CardMedia
@@ -66,7 +91,7 @@ useEffect(() => {
         </label>
 
         <select 
-            value={ qty } 
+            value={ qty }
             onChange={(event) => setQty(event.target.value)}>
             {[...Array(singleProduct.stock).keys()].map((x) => (
                 <option key = {x+1} value={x+1}>
@@ -74,12 +99,14 @@ useEffect(() => {
                 </option>
             ))}
         </select>
+
+           
         </Typography>
         </CardContent>
         <CardActions>
         <Typography variant="body2" color="text.secondary">
             {singleProduct.stock > 0 ? <button onClick={(event) => {
-                handleAddToCart()
+                handleAddToCart(event)
             }}>Add to Cart</button> : <p> Product is out of stock </p> }  
         </Typography>
 
@@ -95,4 +122,3 @@ useEffect(() => {
 
   export default ProductScreen;
 
-//   { product.available_quantity > 0 ?
