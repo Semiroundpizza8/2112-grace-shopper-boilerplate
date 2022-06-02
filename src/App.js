@@ -2,7 +2,7 @@
 // // you can think of that directory as a collection of api adapters
 // // where each adapter fetches specific info from our express server's /api route
 
-import { getAPIHealth } from '../axios-services';
+import { getAPIHealth, retrieve, add, update, remove, emptyCart, capture, refreshCart } from '../axios-services';
 //import '../style/App.css'
 // newStuff
 import React, { useState, useEffect } from 'react';
@@ -37,24 +37,25 @@ const App = () => {
   };
 
   const handleAddToCart = async () => {
-    // const item = await ;
+    const item = await add();
 
-    setCart();
+    setCart(item.cart);
   };
 
   const handleUpdateCartQty = async (lineItemId, quantity) => {
-    const response = await cart.update(lineItemId, { quantity });
+    const response = await update(lineItemId, { quantity });
 
     setCart(response.cart);
   };
 
   const handleRemoveFromCart = async (lineItemId) => {
-    const response = await cart.remove(lineItemId);
+    const response = await remove(lineItemId);
 
     setCart(response.cart);
   };
 
   const handleEmptyCart = async () => {
+    //need to pass in the props from main
     const response = await emptyCart();
 
     setCart(response.cart);
@@ -63,7 +64,7 @@ const App = () => {
 
   const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
     try {
-      const incomingOrder = await Checkout.capture(checkoutTokenId, newOrder);
+      const incomingOrder = await capture(checkoutTokenId, newOrder);
 
       setOrder(incomingOrder);
 

@@ -30,6 +30,8 @@ export async function getAPIHealth() {
 
 export async function getAllProducts() {
   try {
+    //is that /productId? or /:productId
+    //is the method get? 
     const { data: products } = await axios.get('/api/:productId');
     return products;
   } catch (err) {
@@ -40,11 +42,84 @@ export async function getAllProducts() {
 
 export async function retrieve() {
   try {
-    //is that /cart? or /:cart
+    //is that /cart? or /:cartItem
+    //is the method patch? 
     const { data: cartItem } = await axios.patch('/api/cartItem');
     return cartItem;
   } catch (err) {
     console.error(err);
     return  "Choose something else, or do not."  ;
+  }
+}
+
+export async function add() {
+  try {
+    //is that /add? or /:addItem
+    //is the method patch? 
+    const { data: addItem } = await axios.patch('/api/addItem');
+    return addItem;
+  } catch (err) {
+    console.error(err);
+    return  "something helpful"  ;
+  }
+}
+
+export async function update() {
+  try {
+    //is that /update? or /:updateItem
+    //is the method post? 
+    const { data: updateItem } = await axios.post('/api/updateItem');
+    return updateItem;
+  } catch (err) {
+    console.error(err);
+    return  "something helpful"  ;
+  }
+}
+
+export async function remove() {
+  try {
+    //is that /remove? or /:removeItem
+    //is the method delete?
+    const { data: removeItem } = await axios.delete('/api/removeItem');
+    return removeItem;
+  } catch (err) {
+    console.error(err);
+    return  "something helpful"  ;
+  }
+}
+
+export async function emptyCart() {
+  try {
+    //is that /emptyCart? or /:emptyCartItemItem
+    //is the method delete?
+    const { data: emptyCartItem } = await axios.delete('/api/emptyCartItem');
+    return emptyCartItem;
+  } catch (err) {
+    console.error(err);
+    return  "something helpful"  ;
+  }
+}
+
+export async function capture() {
+  try {
+    //is that /capture? or /:captureItem
+    //is the method delete?
+    const { data: captureCart } = await axios.post('/api/captureCart');
+    return captureCart;
+  } catch (err) {
+    console.error(err);
+    return  "something helpful"  ;
+  }
+}
+
+export async function refreshCart() {
+  try {
+    //is that /cart? or /:cartItem
+    //is the method delete?
+    const { data: cartItem } = await axios.post('/api/cartItem');
+    return cartItem;
+  } catch (err) {
+    console.error(err);
+    return  "something helpful"  ;
   }
 }
