@@ -57,11 +57,10 @@ const App = () => {
   return (
     <div className="app-container">
 
-      {/* <Cart/> */}
       <BrowserRouter>
         <Header />
         <div id="header">
-          <h1 className="header">The furniture store</h1>
+          
           <div id="routeBox">
 
 
