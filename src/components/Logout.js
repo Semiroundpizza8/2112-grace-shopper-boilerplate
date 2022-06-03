@@ -1,4 +1,5 @@
 import React from 'react';
+import "../../src/style/Logout.css"
 
 const Logout = (props) => {
     const { loggedIn, setLoggedIn } = props;
@@ -6,7 +7,7 @@ const Logout = (props) => {
     const handleClick = () => {
         localStorage.removeItem('token')
         localStorage.removeItem('userId')
-        setLoggedIn(!!localStorage.getItem("token"))
+        //setLoggedIn(!!localStorage.getItem("token"))
     };
 
     return(

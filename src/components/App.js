@@ -57,17 +57,11 @@ const App = () => {
   return (
     <div className="app-container">
 
-      {/* <Cart/> */}
-      <BrowserRouter>
-        <Header />
+<BrowserRouter>
+        <Header loggedIn={loggedIn}/>
         <div id="header">
           <h1 className="header">The furniture store</h1>
           <div id="routeBox">
-
-
-
-
-
           </div>
         </div>
 
@@ -89,7 +83,7 @@ const App = () => {
             </Route>
 
             <Route path='/LoggedIn'>
-              {loggedIn ? <Logout loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> :
+              {loggedIn ? null :
                 <LoggedIn loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
               }
             </Route>

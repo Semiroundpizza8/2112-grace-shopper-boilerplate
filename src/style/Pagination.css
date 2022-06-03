@@ -1,0 +1,28 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 50px;
+    padding-top: 25px;
+}
+
+.page__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.page__link {
+    display: flex;
+    background-color: #846041;
+    padding: 5px 10px;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+
+}
+
+.page__link :hover {
+    background-color: black;
+}

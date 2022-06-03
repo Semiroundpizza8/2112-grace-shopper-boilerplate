@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { loginUser } from '../axios-services/user';
 import { Link } from "react-router-dom";
 import{createProductCart} from '../axios-services/cart';
-
+import "../../src/style/Login.css";
 
 const LoggedIn = (props) => {
     const { loggedIn, setLoggedIn } = props;
@@ -15,6 +15,9 @@ const LoggedIn = (props) => {
             username: username,
             password: password
         };
+        if (!user){
+            return;
+        }
         await loginUser(user);
         console.log(localStorage.getItem('token'));
         setUserName('');
@@ -48,13 +51,15 @@ const LoggedIn = (props) => {
     };
 
     return (
-        <div>
-            <form onSubmit ={ handleSubmit }>
-                <input type = 'text' placeholder = "UserName" value={username} onChange={updateUserName} />
-                <input type = 'text' placeholder = "Password" value={password} onChange={updatePassword} />
-                <button>Login</button>
+        <div className='login'>
+            <form >
+                <input className='textBoxLogin' type = 'text' placeholder = "UserName" value={username} onChange={updateUserName} />
+                <input className='textBoxLogin' type = 'text' placeholder = "Password" value={password} onChange={updatePassword} />
+                <Link to="/Shop">
+                <button onClick={handleSubmit} className='Btn_Login' >Login</button>
+                </Link>
             </form>
-            <Link to = '/register'>Register Here!</Link>
+            {/* <Link className='reg_link' to = '/register'>Register Here!</Link> */}
         </div>
     )
 };
