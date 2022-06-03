@@ -22,7 +22,7 @@ const [myCart, setMyCart] = useState();
 const userId = localStorage.getItem('userId');
 const cartProductArray = JSON.parse(localStorage.getItem('cartProductArray'));
 const cart = JSON.parse(localStorage.getItem('cart'))
-
+let history = useHistory();
 
 useEffect(() => {
     (async () => {
@@ -57,6 +57,7 @@ useEffect(() => {
     setMyCart(productInActiveCart);
     console.log(productInActiveCart);
     localStorage.setItem('ActiveCart',JSON.stringify(productInActiveCart))
+    history.push('/cart')
 
   }
 

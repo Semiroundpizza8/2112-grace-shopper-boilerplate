@@ -128,7 +128,7 @@ const handleDeleteCart = async (cartId, event) => {
                         <button 
                         key={product.id} 
                         onClick={() => { 
-                          setEditOpen({ open: !editOpen, id: product.id  }) 
+                          setEditOpen({ open: !editOpen, id: product.productId  }) 
                         }}
                         editOpen={editOpen}>
                           Edit Product
