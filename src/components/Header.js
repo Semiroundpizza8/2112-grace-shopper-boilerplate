@@ -5,8 +5,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { BrowserRouter, Link } from "react-router-dom";
 import Product from "./Product";
+import Logout from "./Logout";
+import LoggedIn  from "./LoggedIn";
 
-function Header() {
+function Header(props) {
+  const {loggedIn, setLoggedIn} =props;
   return (
     <div className="header">
         <Link to="/">
@@ -21,9 +24,11 @@ function Header() {
       <div className="header_nav">
         <div className="header_option">
           <span className="header_optionLineOne">Hello Guest</span>
-          <Link to="/LoggedIn">
-          <span className="header_optionLineTwo">Sign In</span> 
-          </Link> 
+          
+           
+           {!loggedIn ? <Link to="/LoggedIn"><LoggedIn className="header_optionLineTwo" loggedIn={loggedIn} setLoggedIn={setLoggedIn}/></Link>  : <Logout className="header_optionLineTwo" loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+      
+          
         </div>
 
         <div className="header_option">
