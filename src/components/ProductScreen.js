@@ -8,7 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { createProductCart, addNewCart } from "../axios-services/cart";
+import { createProductCart, addNewCart, getMyCartProductbyUserId, patchCart } from "../axios-services/cart";
 
 
 
@@ -17,7 +17,7 @@ const ProductScreen = () => {
 const { id } = useParams();
 const [singleProduct, setSingleProduct] = useState({})
 const [qty, setQty] = useState(1);
-const [myCart, setMyCart] = useState();
+const [myCart, setMyCart] = useState([]);
 
 const userId = localStorage.getItem('userId');
 const cartProductArray = JSON.parse(localStorage.getItem('cartProductArray'));
@@ -36,30 +36,52 @@ useEffect(() => {
 
      event.preventDefault();
     let userId = localStorage.getItem('userId')
-    let productInActiveCart = JSON.parse(localStorage.getItem('ActiveCart'));
+    let productInActiveCart = [];
+    let cartArray = [];
     let addProdToCart;
-    //console.log("prod",productId);
-    console.log("user",userId);
-    console.log("single",singleProduct);
-    console.log("qty",qty);
-    console.log("price",singleProduct.price)
 
-    //console.log("cart", cart.cartProduct);
+    let foundProduct;
+    if (userId){
+       let myDBCartProducts = await getMyCartProductbyUserId(userId);
+console.log(myDBCartProducts);
+    //look myDBCartProduct to see if the current product  is in there
+       foundProduct = myDBCartProducts.find(({ productId }) => productId === singleProduct.id)
+console.log(foundProduct);
+    //if it is add +1 in database
+        if (foundProduct){
+            foundProduct.quantity = foundProduct.quantity + qty;
+            myDBCartProducts = await patchCart(foundProduct.id, foundProduct.price, foundProduct.quantity )
 
-     addProdToCart = await createProductCart(userId, singleProduct.id, singleProduct.price, qty)
-     if(!!productInActiveCart){
-         console.log(productInActiveCart);
-        productInActiveCart.push(...addProdToCart);
-    } else {
-        productInActiveCart = addProdToCart;
+            setMyCart(myDBCartProducts);
+        } else {
+            foundProduct = await createProductCart(userId, singleProduct.id, singleProduct.price, qty)
+
+            setMyCart(myDBCartProducts);
+        }
+        } else {
+            let activeCart = localStorage.getItem('ActiveCart')
+            if(activeCart){ 
+            productInActiveCart = JSON.parse(localStorage.getItem('ActiveCart'));
+            foundProduct = productInActiveCart.find(({ productId }) => productId === singleProduct.id)
+                if (foundProduct){
+                foundProduct.quantity = foundProduct.quantity + qty;
+                cartArray = foundProduct
+                // setMyCart(cartArray);
+                localStorage.setItem('ActiveCart', JSON.stringify(productInActiveCart))
+                } else {
+                    foundProduct = await createProductCart(userId, singleProduct.id, singleProduct.price, qty)
+                    productInActiveCart.push(...foundProduct);
+                    localStorage.setItem('ActiveCart', JSON.stringify(productInActiveCart))
+                }
+            } else {
+                foundProduct = await createProductCart(userId, singleProduct.id, singleProduct.price, qty)
+                localStorage.setItem('ActiveCart', JSON.stringify(foundProduct))
+            }
+           
+        }
+
+        setMyCart(foundProduct);
     }
-
-    setMyCart(productInActiveCart);
-    console.log(productInActiveCart);
-    localStorage.setItem('ActiveCart',JSON.stringify(productInActiveCart))
-    history.push('/cart')
-
-  }
 
 
   
@@ -95,7 +117,7 @@ return (
             value={ qty }
             onChange={(event) => setQty(event.target.value)}>
             {[...Array(singleProduct.stock).keys()].map((x) => (
-                <option key = {x+1} value={x+1}>
+                <option key = {x+1} value={(x+1)}>
                     {x+1}
                 </option>
             ))}

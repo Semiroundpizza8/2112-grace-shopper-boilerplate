@@ -69,6 +69,10 @@ cartRouter.post('/', async (req, res, next) => {
         const { userId } = req.params;
 
         const cart = await getCartProductByUserId(userId);
+        console.log("=================================")
+        console.log("=================================")
+        console.log("=================================")
+        console.log("=================================")
         console.log(cart);
         res.send(cart);
         
@@ -99,7 +103,8 @@ cartRouter.post('/', async (req, res, next) => {
 		const originalCart = await getCartProductById(cartProductId);
 
 		if (originalCart) {
-			const updateCart = await updateProductInCartProduct(updateFields);
+      console.log(updateFields)
+			const updateCart = await updateCartProduct(updateFields);
 
 			res.send(updateCart);
 		} else {
@@ -109,6 +114,7 @@ cartRouter.post('/', async (req, res, next) => {
 			});
 		}
 	} catch ({ name, message }) {
+    console.log("message", message)
 		next({
 			name,
 			message

@@ -37,7 +37,7 @@ const getCartProductByUserId = async (userId) => {
 	try {
 		const { rows } = await client.query(
 			`
-            SELECT *
+            SELECT *, cartproducts.id as id
                 FROM cartproducts 
 				JOIN products
 				ON products.id = cartproducts."productId"
@@ -73,7 +73,7 @@ const createCartProduct = async ({ userId, productId, price, quantity }) => {
 
 const updateCartProduct = async (fields = { price, quantity }) => {
 	const setString = Object.keys(fields).map((key, index) => `"${key}"=$${index + 1}`).join(', ');
-
+	console.log(fields);
 	try {
 		if (setString.length > 0) {
 			const { rows: [ newUpdate ] } = await client.query(

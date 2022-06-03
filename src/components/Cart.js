@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 import { addNewCart, deleteCart, patchCart, getMyCartProductbyUserId, createProductCart } from '../axios-services/cart';
 import { getProductById } from '../axios-services/productScreen';
+import "../style/Cart.css";
+
+
+
 const Cart = () => {
 
 
@@ -9,7 +13,7 @@ const Cart = () => {
 
     const [quantity, setQuantity] = useState("");
     const [price, setPrice] = useState("");
-    const [productsInCart, setProductsInCart] = useState();
+    const [productsInCart, setProductsInCart] = useState([]);
     const [myCartList, setMyCartList] = useState("");
     const [editCount, setEditCount] = useState("");
     const [editPrice, setEditPrice] = useState("");
@@ -34,45 +38,19 @@ if (userId){
   if (!userId) {
     setProductsInCart(activeCart)
   }
+ 
 
-  // const product = productsInCart.map(async item => {
-  //   let id = item.productId
-  //   let product = await getProductById(id);
-  //   item.name = product.name;
-  //   item.description = product.description
-  // })
-  // console.log("singleproduct",singleProduct);
    setSingleProduct(singleProduct);
-// function sum(array){
-//   for (let i=0; i<array.lenght; i++){
-//   for (let j=0; j<array.length; j++){
-//   if(array[i].productId = array[j].productId){
-//     let newQuantity = array[i].quantity + array[j].quantity;
-//     delete array[j];
-//     array[i].quantity = newQuantity;
-//   }
-// }
-// } return array;
-// }
-
-// products = sum(products);
-
-
-  
-  //localStorage.setItem('ActiveCart', JSON.stringify(products));
 
   console.log("myCart", productsInCart)
 
 })();
 }, []);
 
-// const handleGetProduct = async (prodId) => {
-//       const singleProduct = await getProductById(prodId);
-//      // console.log("singleproduct",singleProduct);
-//       setSingleProduct(singleProduct);
-//   };
-  
 
+let allProducts = []
+
+  
 const handleDeleteCart = async (cartId, event) => {
   event.preventDefault();
  const deletedCart =  await deleteCart(cartId);
@@ -111,21 +89,24 @@ const handleDeleteCart = async (cartId, event) => {
         <div> 
           <div>
             <h2> Here all the items in your cart: </h2> 
-            <div>
+            <div class="cart">
               {!productsInCart ? 
               <div> Nothing to show, yet! Add a products to your cart! </div>  : 
               <div> 
+                 <div>total products:{}</div>
+                <div>total price:{}</div>
                 {productsInCart.map(product => 
                   <>
                     <div key={product.productId}> 
+                    <div class="singleProductCart">
                       <img src={product.image} style={{"height": '100px'}}></img>
                       <p>product name:{product.name}</p>
                       <p>product description:{product.description}</p>
                       <p>product id:{product.productId}</p>
                       <p>product quantity:{product.quantity}</p>
                       <p>product price:{product.price}</p>
-                      {
-                        <button 
+                      <p>total price per item:{product.price*product.quantity}</p>
+                      {<button 
                         key={product.id} 
                         onClick={() => { 
                           setEditOpen({ open: !editOpen, id: product.productId  }) 
@@ -141,7 +122,8 @@ const handleDeleteCart = async (cartId, event) => {
                                 New total price :
                                 <button onClick={(event) => { handleEditCart(product.id, event) }}>Submit Edited cart</button>
                         </> : null}  
-                      {<button onClick={(id, event) => { handleDeleteCart(id, event) }}>Delete</button>}
+                      {<button onClick={(id, event) => { handleDeleteCart(id, event) }}>Delete</button>}</div>
+                     
                     </div>
                     </>)}
               </div>}
