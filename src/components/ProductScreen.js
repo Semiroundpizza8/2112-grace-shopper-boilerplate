@@ -8,7 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { createProductCart, addNewCart } from "../axios-services/cart";
+import { createProductCart, addNewCart, getMyCartProductbyUserId, patchCart } from "../axios-services/cart";
 
 
 
@@ -36,29 +36,69 @@ useEffect(() => {
 
      event.preventDefault();
     let userId = localStorage.getItem('userId')
-    let productInActiveCart = JSON.parse(localStorage.getItem('ActiveCart'));
+    let productInActiveCart = [];
+    let cartArray = [];
     let addProdToCart;
-    //console.log("prod",productId);
-    console.log("user",userId);
-    console.log("single",singleProduct);
-    console.log("qty",qty);
-    console.log("price",singleProduct.price)
 
-    //console.log("cart", cart.cartProduct);
+    let foundProduct;
+    if (userId){
+       let myDBCartProducts = await getMyCartProductbyUserId(userId);
+console.log(myDBCartProducts);
+    //look myDBCartProduct to see if the current product  is in there
+       foundProduct = myDBCartProducts.find(({ productId }) => productId === singleProduct.id)
+console.log(foundProduct);
+    //if it is add +1 in database
+        if (foundProduct){
+            foundProduct.quantity = foundProduct.quantity + qty;
+            myDBCartProducts = await patchCart(foundProduct.id, foundProduct.price, foundProduct.quantity )
 
-     addProdToCart = await createProductCart(userId, singleProduct.id, singleProduct.price, qty)
-     if(!!productInActiveCart){
-         console.log(productInActiveCart);
-        productInActiveCart.push(...addProdToCart);
-    } else {
-        productInActiveCart = addProdToCart;
-    }
+            setMyCart(myDBCartProducts);
+        } else {
+            foundProduct = await createProductCart(userId, singleProduct.id, singleProduct.price, qty)
 
-    setMyCart(productInActiveCart);
-    console.log(productInActiveCart);
-    localStorage.setItem('ActiveCart',JSON.stringify(productInActiveCart))
+            setMyCart(myDBCartProducts);
+        }
+        } else {
+            let activeCart = localStorage.getItem('ActiveCart')
+            if(activeCart){ 
+            productInActiveCart = JSON.parse(localStorage.getItem('ActiveCart'));
+            foundProduct = productInActiveCart.find(({ productId }) => productId === singleProduct.id)
+                if (foundProduct){
+                foundProduct.quantity = foundProduct.quantity + qty;
+                setMyCart(productInActiveCart);
+                } else {
+                    setMyCart(productInActiveCart); 
+                }
+            } else {
+                foundProduct = await createProductCart(userId, singleProduct.id, singleProduct.price, qty)
+                cartArray.push(...foundProduct);
+                setMyCart(cartArray);
+            }
+            localStorage.setItem('ActiveCart',JSON.stringify(myCart))
+        }
 
-  }
+
+
+    //if it is not in the cart create it in the DB
+      }
+
+      //look in localstorage if it exists, 
+      //if it does add 1 to localstorage
+      //if it doesn't add it localstorage
+
+     
+    //  if(!!productInActiveCart){
+    //      console.log(productInActiveCart);
+    //     productInActiveCart.push(...addProdToCart);
+    // } else {
+    //     productInActiveCart = addProdToCart;
+    // }
+
+    // setMyCart(productInActiveCart);
+    // console.log(productInActiveCart);
+    // localStorage.setItem('ActiveCart',JSON.stringify(productInActiveCart))
+
+//   }
 
 
   

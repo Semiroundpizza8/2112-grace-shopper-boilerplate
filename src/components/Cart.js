@@ -5,6 +5,10 @@ import React, { useEffect, useState } from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 import { addNewCart, deleteCart, patchCart, getMyCartProductbyUserId, createProductCart } from '../axios-services/cart';
 import { getProductById } from '../axios-services/productScreen';
+
+
+
+
 const Cart = () => {
 
 
@@ -12,7 +16,7 @@ const Cart = () => {
 
     const [quantity, setQuantity] = useState("");
     const [price, setPrice] = useState("");
-    const [productsInCart, setProductsInCart] = useState();
+    const [productsInCart, setProductsInCart] = useState([]);
     const [myCartList, setMyCartList] = useState("");
     const [editCount, setEditCount] = useState("");
     const [editPrice, setEditPrice] = useState("");
@@ -38,30 +42,15 @@ if (userId){
     setProductsInCart(activeCart)
   }
 
-  // const product = productsInCart.map(async item => {
-  //   let id = item.productId
-  //   let product = await getProductById(id);
-  //   item.name = product.name;
-  //   item.description = product.description
-  // })
-  // console.log("singleproduct",singleProduct);
+  // 
+ console.log(productsInCart);
+// let holder = {}
+//   productsInCart.forEach()
+
+//  
+
    setSingleProduct(singleProduct);
-// function sum(array){
-//   for (let i=0; i<array.lenght; i++){
-//   for (let j=0; j<array.length; j++){
-//   if(array[i].productId = array[j].productId){
-//     let newQuantity = array[i].quantity + array[j].quantity;
-//     delete array[j];
-//     array[i].quantity = newQuantity;
-//   }
-// }
-// } return array;
-// }
 
-// products = sum(products);
-
-
-  
   //localStorage.setItem('ActiveCart', JSON.stringify(products));
 
   console.log("myCart", productsInCart)
@@ -69,6 +58,36 @@ if (userId){
 })();
 }, []);
 
+// const arrayUniqueByKey = [...new Map(productsInCart.map(item =>
+//       [item[productId], item])).values()];
+    
+//     console.log(arrayUniqueByKey);
+
+let allProducts = []
+// console.log(productsInCart)
+//    productsInCart.map(prod => { 
+//      if(!allProducts.productId || prod.productId !== allProducts.productId){
+//         allProducts.push(prod);
+//      if(prod.productId === allProducts.productId) {
+//         allProducts.quantity =+ prod.quantity;
+//       }
+//       }
+//       setProductsInCart(allProducts);
+//     }
+    
+//   )
+// const aggregateProducts = () => {
+// for (let i=1; i<productsInCart.length; i++){
+//   allProducts.push(productsInCart[0])
+//   let index = allProducts.indexOf(productsInCart[i].productId)
+//   if (index !== -1){
+//     allProducts[index].quantity =+  productsInCart[i].quantity
+//   }
+// }
+// setProductsInCart(allProducts);
+// }
+// aggregateProducts();
+console.log(productsInCart)
 // const handleGetProduct = async (prodId) => {
 //       const singleProduct = await getProductById(prodId);
 //      // console.log("singleproduct",singleProduct);

@@ -25,16 +25,19 @@ const LoggedIn = (props) => {
             const userId = localStorage.getItem('userId');
         console.log(localCart);
         let result = localCart.map(obj => {
-            obj.userId = userId
+            obj.userId = userId;
+            return obj;
         }
             );
         let sentItems = result.map(obj => {
-                createProductCart(obj)
+                createProductCart(obj.userId, obj.productId, obj.price, obj.quantity)
+
             }
                 );
+                
         //console.log(userId);
         console.log(localCart);
-        localStorage.setItem('ActiveCart', JSON.stringify(localCart));
+        localStorage.setItem('ActiveCart', JSON.stringify([]));
     }
     };
     const updateUserName = (event) => {
