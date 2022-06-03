@@ -57,10 +57,12 @@ const App = () => {
   return (
     <div className="app-container">
 
+
 <BrowserRouter>
         <Header loggedIn={loggedIn}/>
+
         <div id="header">
-          <h1 className="header">The furniture store</h1>
+          
           <div id="routeBox">
           </div>
         </div>
