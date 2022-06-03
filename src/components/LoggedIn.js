@@ -37,7 +37,7 @@ const LoggedIn = (props) => {
                 
         //console.log(userId);
         console.log(localCart);
-        localStorage.setItem('ActiveCart', JSON.stringify([]));
+        localStorage.removeItem('ActiveCart');
     }
     };
     const updateUserName = (event) => {

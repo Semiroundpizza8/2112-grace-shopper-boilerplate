@@ -17,7 +17,7 @@ const ProductScreen = () => {
 const { id } = useParams();
 const [singleProduct, setSingleProduct] = useState({})
 const [qty, setQty] = useState(1);
-const [myCart, setMyCart] = useState();
+const [myCart, setMyCart] = useState([]);
 
 const userId = localStorage.getItem('userId');
 const cartProductArray = JSON.parse(localStorage.getItem('cartProductArray'));
@@ -65,40 +65,23 @@ console.log(foundProduct);
             foundProduct = productInActiveCart.find(({ productId }) => productId === singleProduct.id)
                 if (foundProduct){
                 foundProduct.quantity = foundProduct.quantity + qty;
-                setMyCart(productInActiveCart);
+                cartArray = foundProduct
+                // setMyCart(cartArray);
+                localStorage.setItem('ActiveCart', JSON.stringify(productInActiveCart))
                 } else {
-                    setMyCart(productInActiveCart); 
+                    foundProduct = await createProductCart(userId, singleProduct.id, singleProduct.price, qty)
+                    productInActiveCart.push(...foundProduct);
+                    localStorage.setItem('ActiveCart', JSON.stringify(productInActiveCart))
                 }
             } else {
                 foundProduct = await createProductCart(userId, singleProduct.id, singleProduct.price, qty)
-                cartArray.push(...foundProduct);
-                setMyCart(cartArray);
+                localStorage.setItem('ActiveCart', JSON.stringify(foundProduct))
             }
-            localStorage.setItem('ActiveCart',JSON.stringify(myCart))
+           
         }
 
-
-
-    //if it is not in the cart create it in the DB
-      }
-
-      //look in localstorage if it exists, 
-      //if it does add 1 to localstorage
-      //if it doesn't add it localstorage
-
-     
-    //  if(!!productInActiveCart){
-    //      console.log(productInActiveCart);
-    //     productInActiveCart.push(...addProdToCart);
-    // } else {
-    //     productInActiveCart = addProdToCart;
-    // }
-
-    // setMyCart(productInActiveCart);
-    // console.log(productInActiveCart);
-    // localStorage.setItem('ActiveCart',JSON.stringify(productInActiveCart))
-
-//   }
+        setMyCart(foundProduct);
+    }
 
 
   
@@ -134,7 +117,7 @@ return (
             value={ qty }
             onChange={(event) => setQty(event.target.value)}>
             {[...Array(singleProduct.stock).keys()].map((x) => (
-                <option key = {x+1} value={x+1}>
+                <option key = {x+1} value={(x+1)}>
                     {x+1}
                 </option>
             ))}
