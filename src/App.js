@@ -1,20 +1,17 @@
-// -OG STUFF-
-// import React, { useState, useEffect } from 'react';
 // // getAPIHealth is defined in our axios-services directory index.js
 // // you can think of that directory as a collection of api adapters
 // // where each adapter fetches specific info from our express server's /api route
-// import { getAPIHealth } from '../axios-services';
-// import '../style/App.css';
-// -/OG STUFF-
 
+import { getAPIHealth, retrieve, add, update, remove, emptyCart, capture, refreshCart } from '../axios-services';
+//import '../style/App.css'
 // newStuff
 import React, { useState, useEffect } from 'react';
 import { CssBaseline } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
 import { Navbar, Products, Cart, Checkout } from './components';
-import { commerce } from './lib/commerce';
-
+// import { get } from 'express/lib/response';
+import { getAllProducts } from '../db/models/product';
+//import our product source
 const App = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [products, setProducts] = useState([]);
@@ -22,51 +19,52 @@ const App = () => {
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
 
-  // const commerce = "data";
+  const testHealth = async () => {
+    const { data } = await getAPIHealth();
+    console.log(data)
+  }
+  testHealth();
 
+// after each "await" we need to add where our product source
   const fetchProducts = async () => {
-    const { data } = await commerce.products.list();
+    const { data } = await getAllProducts();
 
     setProducts(data);
   };
 
   const fetchCart = async () => {
-    setCart(await commerce.cart.retrieve());
+    setCart(await retrieve());
   };
 
-  const handleAddToCart = async (productId, quantity) => {
-    const item = await commerce.cart.add(productId, quantity);
+  const handleAddToCart = async () => {
+    const item = await add();
 
     setCart(item.cart);
   };
 
   const handleUpdateCartQty = async (lineItemId, quantity) => {
-    const response = await commerce.cart.update(lineItemId, { quantity });
+    const response = await update(lineItemId, { quantity });
 
     setCart(response.cart);
   };
 
   const handleRemoveFromCart = async (lineItemId) => {
-    const response = await commerce.cart.remove(lineItemId);
+    const response = await remove(lineItemId);
 
     setCart(response.cart);
   };
 
   const handleEmptyCart = async () => {
-    const response = await commerce.cart.empty();
+    //need to pass in the props from main
+    const response = await emptyCart();
 
     setCart(response.cart);
   };
 
-  const refreshCart = async () => {
-    const newCart = await commerce.cart.refresh();
-
-    setCart(newCart);
-  };
 
   const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
     try {
-      const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
+      const incomingOrder = await capture(checkoutTokenId, newOrder);
 
       setOrder(incomingOrder);
 
@@ -75,7 +73,7 @@ const App = () => {
       setErrorMessage(error.data.error.message);
     }
   };
-
+// end of "await" adding
   useEffect(() => {
     fetchProducts();
     fetchCart();
@@ -103,6 +101,5 @@ const App = () => {
     </Router>
   );
 };
-// /newStuff
 
 export default App;
