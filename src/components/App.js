@@ -5,7 +5,6 @@ import {useParams, useHistory} from 'react-router-dom';
 // you can think of that directory as a collection of api adapters
 // where each adapter fetches specific info from our express server's /api route
 import { getAPIHealth } from "../axios-services";
-import { getProductById } from "../axios-services/productScreen";
 import "../style/App.css";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -16,15 +15,33 @@ import LoggedIn from "./LoggedIn";
 import Logout from "./Logout";
 import Home from "./Home";
 import Products from "./Products";
+import { getMyCartProductbyUserId } from "../axios-services/cart";
 
-
+const userId = localStorage.getItem('userId');
+const guestCart = JSON.parse(localStorage.getItem('ActiveCart'));
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
-  const [cart, setCart] = useState([])
+  const [quantityInCart, setQuantityInCart] = useState(0)
 
 
- 
+  useEffect(() => { (async () => {
+    let sumQuantity=0;
+        if(userId){
+            let myDBCartProducts = await getMyCartProductbyUserId(userId);
+             myDBCartProducts.map(item => {
+              sumQuantity = Number(sumQuantity) + Number(item.quantity);
+              })
+        } else {
+             guestCart.map(item => {
+              sumQuantity = Number(sumQuantity) + Number(item.quantity)
+              });
+        }
+    setQuantityInCart(sumQuantity);
+ }
+  )();
+   }, []);
+  
 
   // const[user, setUser] = useState();
   // const [username, setUsername] = useState('');
@@ -58,7 +75,7 @@ const App = () => {
     <div className="app-container">
 
 <BrowserRouter>
-        <Header loggedIn={loggedIn}/>
+        <Header loggedIn={loggedIn} quantityInCart={quantityInCart}/>
         <div id="header">
           <h1 className="header">The furniture store</h1>
           <div id="routeBox">
@@ -77,7 +94,7 @@ const App = () => {
             <Route exact path={"/Shop"}>
               <Products />
             </Route>
-            <Route path="/cart"><Cart /></Route>
+            <Route path="/cart"><Cart quantityInCart={quantityInCart}/></Route>
             <Route path="/products/:id">
               <ProductScreen  />
             </Route>

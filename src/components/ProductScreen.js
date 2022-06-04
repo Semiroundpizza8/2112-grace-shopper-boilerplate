@@ -27,7 +27,7 @@ const cart = JSON.parse(localStorage.getItem('cart'))
 useEffect(() => {
     (async () => {
         const singleProduct = await getProductById(id);
-       // console.log("singleproduct",singleProduct);
+
         setSingleProduct(singleProduct);
     })();
   }, []);
@@ -43,11 +43,9 @@ useEffect(() => {
     let foundProduct;
     if (userId){
        let myDBCartProducts = await getMyCartProductbyUserId(userId);
-//console.log(myDBCartProducts);
-    //look myDBCartProduct to see if the current product  is in there
+
        foundProduct = myDBCartProducts.find(({ productId }) => productId === singleProduct.id)
-//console.log(foundProduct);
-    //if it is add +1 in database
+
         if (foundProduct){
             foundProduct.quantity = foundProduct.quantity + qty;
             myDBCartProducts = await patchCart(foundProduct.id, foundProduct.price, foundProduct.quantity )
