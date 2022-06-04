@@ -104,7 +104,7 @@ const App = () => {
             </Route>
 
             <Route path='/LoggedIn'>
-              {loggedIn ? null :
+              {loggedIn ? <Logout loggedIn={loggedIn} setLoggedIn={setLoggedIn}/> :
                 <LoggedIn loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
               }
             </Route>
