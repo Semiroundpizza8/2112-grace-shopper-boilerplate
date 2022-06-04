@@ -24,7 +24,7 @@ const App = () => {
 
 
   const fetchProducts = async () => {
-    const  data  = await getAllProducts();
+    const data = await getAllProducts();
     console.log(data)
 
     setProducts(data);

@@ -33,7 +33,6 @@ export async function getAllProducts() {
     //is that /productId? or /:productId
     //is the method get? 
     const { data: products } = await axios.get('/api/product');
-    console.log(products)
     return products;
   } catch (err) {
     console.error(err);
