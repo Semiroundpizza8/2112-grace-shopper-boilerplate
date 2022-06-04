@@ -18,7 +18,7 @@ import Products from "./Products";
 import { getMyCartProductbyUserId } from "../axios-services/cart";
 
 const userId = localStorage.getItem('userId');
-const guestCart = JSON.parse(localStorage.getItem('ActiveCart'));
+const guestCart = JSON.parse(localStorage.getItem('ActiveCartWProducts'));
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
