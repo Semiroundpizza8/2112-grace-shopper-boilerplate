@@ -1,11 +1,13 @@
 import React from "react";
-import "../../src/style/Header.css";
-import Logo from "../public/Assets/Coconut Furniture Logo.png";
+import "../style/Header.css";
+
 import SearchIcon from "@mui/icons-material/Search";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { BrowserRouter, Link } from "react-router-dom";
 import Logout from "./Logout";
 import LoggedIn  from "./LoggedIn";
+
+const Logo = "/Assets/Coconut Furniture Logo.png";
 
 function Header(props) {
   const {loggedIn, setLoggedIn, quantityInCart} =props;

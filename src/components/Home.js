@@ -3,13 +3,13 @@ import "../style/Home.css";
 import Product from "../components/Product";
 
 
-import Hero from "../public/Assets/Home Hero Image.jpg";
-import Sofa from "../public/Assets/Sofa.jpg";
-import EndTable from "../public/Assets/End Table.jpg";
-import WoodChair from "../public/Assets/Wood Chair.jpg";
-import TableSets from "../public/Assets/Stylish End Table Sets.jpg";
-import ChildNightStand from "../public/Assets/Child Wooden Night Stand.jpg";
-import LivingRoomSet from "../public/Assets/Living Room Set.jpg";
+const Hero = "/Assets/Home Hero Image.jpg";
+const Sofa = "/Assets/Sofa.jpg";
+const EndTable = "/Assets/End Table.jpg";
+const WoodChair = "/Assets/Wood Chair.jpg";
+const TableSets = "/Assets/Stylish End Table Sets.jpg";
+const ChildNightStand = "/Assets/Child Wooden Night Stand.jpg";
+const LivingRoomSet = "/Assets/Living Room Set.jpg";
 
 function Home() {
   return (
