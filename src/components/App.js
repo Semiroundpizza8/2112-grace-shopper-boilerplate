@@ -48,7 +48,7 @@ const App = () => {
     // invoke it immediately after its declaration, inside the useEffect callback
     getAPIStatus();
   }, []);
-console.log(loggedIn)
+
   return (
     <div className="app-container">
 
