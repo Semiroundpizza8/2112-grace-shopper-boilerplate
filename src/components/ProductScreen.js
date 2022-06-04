@@ -12,7 +12,9 @@ import { createProductCart, addNewCart, getMyCartProductbyUserId, patchCart } fr
 
 
 
+
 const ProductScreen = () => {
+    let history = useHistory();
 
 const { id } = useParams();
 const [singleProduct, setSingleProduct] = useState({})
@@ -22,7 +24,7 @@ const [myCart, setMyCart] = useState([]);
 const userId = localStorage.getItem('userId');
 const cartProductArray = JSON.parse(localStorage.getItem('cartProductArray'));
 const cart = JSON.parse(localStorage.getItem('cart'))
-let history = useHistory();
+
 
 useEffect(() => {
     (async () => {
@@ -81,18 +83,39 @@ console.log(foundProduct);
         }
 
         setMyCart(foundProduct);
+       
+        if(userId) {
+        history.push('/cart');
+        } else {
+            
+            history.push('/LoggedIn');
+
+        }
+
     }
 
+    var cardStyle = {
+        display: 'inline',
+        width: '100vw',
+        height: '50vh',
+        justifyContent: 'center',
+        alignContent : 'center'
+    }
 
+    var container = {
+        display: 'flex',
+        justifyContent: 'center'
+    }
   
 return (
-    <div className="product">
-        <Card>
-            <CardMedia
+    <div style = {container}>
+        <Card style = {cardStyle}>
+            <CardMedia 
             component="img"
-            height="140"
             image={singleProduct.image}
             alt={singleProduct.name}
+            height = '100vh'
+            width = '100vw'
             />
         
         <CardContent>
@@ -140,6 +163,7 @@ return (
       
       </Card>
       </div>
+      
   )
 }
 

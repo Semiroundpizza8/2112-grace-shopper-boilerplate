@@ -52,14 +52,14 @@ const LoggedIn = (props) => {
 
     return (
         <div className='login'>
-            <form >
+            <form onClick={handleSubmit} >
                 <input className='textBoxLogin' type = 'text' placeholder = "UserName" value={username} onChange={updateUserName} />
                 <input className='textBoxLogin' type = 'text' placeholder = "Password" value={password} onChange={updatePassword} />
                 <Link to="/Shop">
-                <button onClick={handleSubmit} className='Btn_Login' >Login</button>
+                <button className='Btn_Login' >Login</button>
                 </Link>
             </form>
-            {/* <Link className='reg_link' to = '/register'>Register Here!</Link> */}
+            <Link className='reg_link' to = '/register'>Register Here!</Link>
         </div>
     )
 };

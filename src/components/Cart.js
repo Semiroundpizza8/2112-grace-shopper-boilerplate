@@ -3,13 +3,14 @@ import {useParams, useHistory} from 'react-router-dom';
 import { addNewCart, deleteCart, patchCart, getMyCartProductbyUserId, createProductCart } from '../axios-services/cart';
 import { getProductById } from '../axios-services/productScreen';
 import "../style/Cart.css";
+import { getAllOrders } from '../axios-services/orders';
 
 
 
 const Cart = () => {
 
 
-
+  let history = useHistory();
 
     const [quantity, setQuantity] = useState("");
     const [price, setPrice] = useState("");
@@ -50,7 +51,12 @@ if (userId){
 
 let allProducts = []
 
+ 
+const handleOrder = async(cartId, event) => {
+  event.preventDefault();
+  history.push('/orders');
   
+}
 const handleDeleteCart = async (cartId, event) => {
   event.preventDefault();
  const deletedCart =  await deleteCart(cartId);
@@ -89,6 +95,7 @@ const handleDeleteCart = async (cartId, event) => {
         <div> 
           <div>
             <h2> Here all the items in your cart: </h2> 
+
             <div class="cart">
               {!productsInCart ? 
               <div> Nothing to show, yet! Add a products to your cart! </div>  : 
@@ -123,12 +130,16 @@ const handleDeleteCart = async (cartId, event) => {
                                 <button onClick={(event) => { handleEditCart(product.id, event) }}>Submit Edited cart</button>
                         </> : null}  
                       {<button onClick={(id, event) => { handleDeleteCart(id, event) }}>Delete</button>}</div>
-                     
+                      
                     </div>
-                    </>)}
+                   
+                    </>
+                    
+                    )}
               </div>}
             </div>
         </div>
+        <div> {<button onClick={(id, event) => { handleOrder(id, event) }}>Submit Order</button>} </div> 
         </div>)
 }
 

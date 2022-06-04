@@ -4,7 +4,6 @@ import Logo from "../Assets/Coconut Furniture Logo.png";
 import SearchIcon from "@mui/icons-material/Search";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { BrowserRouter, Link } from "react-router-dom";
-import Product from "./Product";
 import Logout from "./Logout";
 import LoggedIn  from "./LoggedIn";
 
@@ -24,11 +23,9 @@ function Header(props) {
       <div className="header_nav">
         <div className="header_option">
           <span className="header_optionLineOne">Hello Guest</span>
-          
-           
-           {!loggedIn ? <Link to="/LoggedIn"><LoggedIn className="header_optionLineTwo" loggedIn={loggedIn} setLoggedIn={setLoggedIn}/></Link>  : <Logout className="header_optionLineTwo" loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
-      
-          
+          <Link to="/LoggedIn">
+          <span className="header_optionLineTwo">Sign In</span> 
+          </Link> 
         </div>
 
         <div className="header_option">
