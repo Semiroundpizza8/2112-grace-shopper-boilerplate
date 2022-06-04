@@ -23,10 +23,12 @@ const Order = (props) => {
             street: street,
             city: city,
             zipcode: zipcode,
+            country:country,
             phone:phone
         }
         console.log(order)
-        await createOrders(order);
+        const newOrder = await createOrders(order);
+        if(newOrder) {
         setFirstName('');
         setLastName('');
         setEmail('');
@@ -37,6 +39,7 @@ const Order = (props) => {
         setPhone('');
         setLoggedIn(!!localStorage.getItem("token"))
         history.push('/checkout');
+        }
     };
 
     const updateFirstName = (event) => {

@@ -10,9 +10,12 @@ orderRouter.use((req, res, next) => {
 });
 
 orderRouter.post('/', async (req, res, next) => {
+  console.log("apineworder");
     try {
       const newOrder = await createOrder(req.body);
+      
       res.send(newOrder);
+      
     } catch (error) {
       next(error);
     }
@@ -38,4 +41,4 @@ orderRouter.post('/', async (req, res, next) => {
   })
 
 
-module.exports = productRouter;
+module.exports = orderRouter;

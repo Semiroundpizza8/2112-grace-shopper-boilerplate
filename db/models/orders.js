@@ -17,7 +17,7 @@ async function createOrder({
     } = await client.query(
       `
                 INSERT INTO orders("userId",email,street,city,zipcode,country,phone)
-                VALUES ($1, $2, $3, $4, $5, $6)
+                VALUES ($1, $2, $3, $4, $5, $6,$7)
                 RETURNING *;
             `,
       [userId,email,street,city,zipcode,country,phone]

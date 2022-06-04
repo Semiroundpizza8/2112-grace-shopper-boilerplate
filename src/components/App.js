@@ -118,7 +118,7 @@ const App = () => {
             </Route>
 
             <Route path = '/order'>
-              <Order/>
+              <Order loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/>
             </Route>
 
             <Route path = '/checkout'>
