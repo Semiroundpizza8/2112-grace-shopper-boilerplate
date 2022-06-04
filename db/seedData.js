@@ -2,7 +2,7 @@ const productsToAdd = [
   {
     name: 'interdum.',
     description: 'amet nulla. Donec non justo. Proin non massa non ante',
-    image: "../assets/Living Room Set.jpg",
+    image: "https://drive.google.com/file/d/1mrfj3qIPQ7KSygDa5etYL0MqHTuno-Vn/view?usp=sharing",
     stock: 11,
     price: 494,
     reviewStars: 3,

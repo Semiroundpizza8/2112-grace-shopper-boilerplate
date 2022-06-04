@@ -8,7 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { createProductCart } from "../axios-services/cart";
+import { createProductCart, addNewCart, getMyCartProductbyUserId, patchCart } from "../axios-services/cart";
 
 
 
@@ -16,28 +16,76 @@ const ProductScreen = () => {
 
 const { id } = useParams();
 const [singleProduct, setSingleProduct] = useState({})
-const [qty, setQty] = useState(0);
+const [qty, setQty] = useState(1);
+const [myCart, setMyCart] = useState([]);
 
+const userId = localStorage.getItem('userId');
+const cartProductArray = JSON.parse(localStorage.getItem('cartProductArray'));
+const cart = JSON.parse(localStorage.getItem('cart'))
 
 
 useEffect(() => {
     (async () => {
         const singleProduct = await getProductById(id);
-        console.log("singleproduct",singleProduct);
+
         setSingleProduct(singleProduct);
     })();
   }, []);
 
-  const handleAddToCart = async() => {
-      console.log("product added to cart!");
-      
-  }
+  const handleAddToCart = async(event) => {
+
+     event.preventDefault();
+    let userId = localStorage.getItem('userId')
+    let productInActiveCart = [];
+    let cartArray = [];
+    let addProdToCart;
+
+    let foundProduct;
+    if (userId){
+       let myDBCartProducts = await getMyCartProductbyUserId(userId);
+
+       foundProduct = myDBCartProducts.find(({ productId }) => productId === singleProduct.id)
+
+        if (foundProduct){
+            foundProduct.quantity = foundProduct.quantity + qty;
+            myDBCartProducts = await patchCart(foundProduct.id, foundProduct.price, foundProduct.quantity )
+
+            setMyCart(myDBCartProducts);
+        } else {
+            foundProduct = await createProductCart(userId, singleProduct.id, singleProduct.price, qty)
+
+            setMyCart(myDBCartProducts);
+        }
+        } else {
+            let activeCart = localStorage.getItem('ActiveCart')
+            if(activeCart){ 
+            productInActiveCart = JSON.parse(localStorage.getItem('ActiveCart'));
+            foundProduct = productInActiveCart.find(({ productId }) => productId === singleProduct.id)
+                if (foundProduct){
+                foundProduct.quantity = Number(foundProduct.quantity) + Number(qty);
+                console.log("qty", typeof(qty));
+                console.log("foundProduct.quantity", typeof(foundProduct.quantity));
+                cartArray = foundProduct
+                // setMyCart(cartArray);
+                localStorage.setItem('ActiveCart', JSON.stringify(productInActiveCart))
+                } else {
+                    foundProduct = await createProductCart(userId, singleProduct.id, singleProduct.price, qty)
+                    productInActiveCart.push(...foundProduct);
+                    localStorage.setItem('ActiveCart', JSON.stringify(productInActiveCart))
+                }
+            } else {
+                foundProduct = await createProductCart(userId, singleProduct.id, singleProduct.price, qty)
+                localStorage.setItem('ActiveCart', JSON.stringify(foundProduct))
+            }
+           
+        }
+
+        setMyCart(foundProduct);
+    }
+
 
   
-    
-
-
-  return (
+return (
     <div className="product">
         <Card>
             <CardMedia
@@ -66,20 +114,23 @@ useEffect(() => {
         </label>
 
         <select 
-            value={ qty } 
+            value={ qty }
             onChange={(event) => setQty(event.target.value)}>
             {[...Array(singleProduct.stock).keys()].map((x) => (
-                <option key = {x+1} value={x+1}>
-                    {x+1}
+                <option key = {x} value={(x)}>
+                    {x}
+                    {console.log(typeof(x))}
                 </option>
             ))}
         </select>
+
+           
         </Typography>
         </CardContent>
         <CardActions>
         <Typography variant="body2" color="text.secondary">
             {singleProduct.stock > 0 ? <button onClick={(event) => {
-                handleAddToCart()
+                handleAddToCart(event)
             }}>Add to Cart</button> : <p> Product is out of stock </p> }  
         </Typography>
 
@@ -95,4 +146,3 @@ useEffect(() => {
 
   export default ProductScreen;
 
-//   { product.available_quantity > 0 ?

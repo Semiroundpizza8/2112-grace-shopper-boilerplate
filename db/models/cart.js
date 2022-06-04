@@ -45,7 +45,7 @@ const getCartByUserId = async (userId) => {
 			[ userId ]
 		);
 
-		return cart;
+		return [cart];
 	} catch (error) {
 		throw error;
 	}

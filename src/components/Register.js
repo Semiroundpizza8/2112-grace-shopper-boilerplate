@@ -50,14 +50,18 @@ const Register = (props) => {
   
     return (
         <div className='Register'>
+
             <form onClick={ handleSubmit }>
+
                 <input className='textBoxRegister' type = 'text' placeholder = "First Name" value = {firstName} onChange = {updateFirstName} />
                 <input className='textBoxRegister' type = 'text' placeholder = "Last Name" value = {lastName} onChange = {updateLastName} />
                 <input className='textBoxRegister' type = 'text' placeholder = "Register Username" value = {userName} onChange = {updateUserName} />
                 <input className='textBoxRegister' type = 'text' placeholder = "Register Password" value = {password} onChange = {updatePassword} />
                 <input className='textBoxRegister' type = 'text' placeholder = "Register Email" value = {email} onChange = {updateEmail} />
                 <Link to="/Shop">
+
                     <button type="submit" className='Btn_Register'> Register </button>
+
                 </Link> 
             </form>
         </div>
