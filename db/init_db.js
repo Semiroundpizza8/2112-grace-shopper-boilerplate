@@ -18,11 +18,6 @@ const {
   // updateCartItem,
   // destroyCartItem,
   createCartItem
-=======
-  // updateCart_Product,
-  // destroyCart_Product,
-  createCartProduct,
->>>>>>> 8a922174701d607a653e63bbb8d9e0260ada771b
 } = require("./models/cartItem");
 
 
