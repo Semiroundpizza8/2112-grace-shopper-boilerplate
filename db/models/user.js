@@ -93,6 +93,7 @@ const getAdmin = async (id) => {
 
 const getUserByUsername = async (username) => {
 	try {
+		console.log(username)
 		const { rows: [ user ] } = await client.query(
 			`
             SELECT * FROM users

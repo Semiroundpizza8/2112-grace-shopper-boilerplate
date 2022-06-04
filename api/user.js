@@ -34,8 +34,8 @@ console.log(token, "token in register")
             user: user,
         });
 
-    } catch ({ name, message }) {
-        next({ name, message });
+    } catch ( error ) {
+        next( error );
     }
 })
 
@@ -61,7 +61,8 @@ userRouter.post("/login", async (req, res, next) => {
                 message: "Username or password is incorrect",
             });
         }
-    } catch ({ name, message }) {
+    } catch (error) {
+        console.error(error)
         next({ name: "error", message: "Unable to log in user!" });
     }
 });

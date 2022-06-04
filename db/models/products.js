@@ -37,7 +37,7 @@ async function getAllProducts() {
     `);
     
 
-    console.log("inside the products",products)
+    // console.log("inside the products",products)
     return products;
   } catch (error) {
     throw error;

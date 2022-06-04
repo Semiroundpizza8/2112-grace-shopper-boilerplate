@@ -17,8 +17,10 @@ import Home from "./Home";
 import Products from "./Products";
 import { getMyCartProductbyUserId } from "../axios-services/cart";
 
+
 const userId = localStorage.getItem('userId');
 const guestCart = JSON.parse(localStorage.getItem('ActiveCart'));
+
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -77,14 +79,11 @@ const App = () => {
     <div className="app-container">
 
 
-<BrowserRouter>
-
+    
+      <BrowserRouter>
         <Header loggedIn={loggedIn} quantityInCart={quantityInCart}/>
-
         <div id="header">
-          
-          <div id="routeBox">
-          </div>
+          <h1 className="header">The furniture store</h1>
         </div>
 
 
