@@ -2,7 +2,7 @@
 // // you can think of that directory as a collection of api adapters
 // // where each adapter fetches specific info from our express server's /api route
 
-import { getAPIHealth, retrieve, add, update, remove, emptyCart, capture, refreshCart } from '../axios-services';
+import { getAPIHealth, getAllProducts, retrieve, add, update, remove, emptyCart, capture, refreshCart } from '../axios-services';
 //import '../style/App.css'
 // newStuff
 import React, { useState, useEffect } from 'react';
@@ -25,7 +25,6 @@ const App = () => {
   }
   testHealth();
 
-// after each "await" we need to add where our product source
   const fetchProducts = async () => {
     const { data } = await getAllProducts();
 
