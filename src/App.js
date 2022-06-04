@@ -2,7 +2,7 @@
 // // you can think of that directory as a collection of api adapters
 // // where each adapter fetches specific info from our express server's /api route
 
-import { getAPIHealth, retrieve, add, update, remove, emptyCart, capture, refreshCart } from '../axios-services';
+import { getAPIHealth, retrieve, add, update, remove, emptyCart, capture, refreshCart } from './axios-services';
 //import '../style/App.css'
 // newStuff
 import React, { useState, useEffect } from 'react';
@@ -10,7 +10,7 @@ import { CssBaseline } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Navbar, Products, Cart, Checkout } from './components';
 // import { get } from 'express/lib/response';
-import { getAllProducts } from '../db/models/product';
+// import { getAllProducts } from './db/models/product';
 //import our product source
 const App = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -26,11 +26,11 @@ const App = () => {
   testHealth();
 
 // after each "await" we need to add where our product source
-  const fetchProducts = async () => {
-    const { data } = await getAllProducts();
+  // const fetchProducts = async () => {
+  //   const { data } = await getAllProducts();
 
-    setProducts(data);
-  };
+  //   setProducts(data);
+  // };
 
   const fetchCart = async () => {
     setCart(await retrieve());
@@ -74,10 +74,10 @@ const App = () => {
     }
   };
 // end of "await" adding
-  useEffect(() => {
-    fetchProducts();
-    fetchCart();
-  }, []);
+  // useEffect(() => {
+  //   fetchProducts();
+  //   fetchCart();
+  // }, []);
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 

@@ -14,7 +14,6 @@ const {
 const {
   // getCartItemById,
   // addProductToCart,
-<<<<<<< HEAD
   // updateCartItem,
   // destroyCartItem,
   createCartItem
