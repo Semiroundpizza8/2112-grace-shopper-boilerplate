@@ -1,7 +1,7 @@
 import React from 'react'
 import { createOrders } from '../axios-services/orders';
 import { useState } from 'react';
-
+import { useHistory } from 'react-router-dom';
 const Order = (props) => {
     const { loggedIn, setLoggedIn } = props;
     const [email, setEmail] = useState('');
@@ -12,11 +12,10 @@ const Order = (props) => {
     const [country, setCountry] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-
+    const history = useHistory();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        event.target.reset();
         const order = {
             firstName: firstName,
             lastName: lastName,
@@ -37,6 +36,7 @@ const Order = (props) => {
         setCountry('');
         setPhone('');
         setLoggedIn(!!localStorage.getItem("token"))
+        history.push('/checkout');
     };
 
     const updateFirstName = (event) => {
@@ -67,7 +67,7 @@ const Order = (props) => {
   return (
     <div>
         <div className='Register'>
-            <form onSubmit={ handleSubmit}>
+            <form>
                 <input className='textBoxRegister' type = 'text' placeholder = "FirstName" value = {firstName} onChange = {updateFirstName} />
                 <input className='textBoxRegister' type = 'text' placeholder = "LastName" value = {lastName} onChange = {updateLastName} />
                 <input className='textBoxRegister' type = 'text' placeholder = "Email" value = {email} onChange = {updateEmail} />
@@ -76,7 +76,7 @@ const Order = (props) => {
                 <input className='textBoxRegister' type = 'text' placeholder = "Zipcode" value = {zipcode} onChange = {updateZipcode} />
                 <input className='textBoxRegister' type = 'text' placeholder = "Country" value = {country} onChange = {updateCountry} />
                 <input className='textBoxRegister' type = 'text' placeholder = "Phone" value = {phone} onChange = {updatePhone} />
-                <button className='Btn_Register'> Submit </button>
+                <button className='Btn_Register' onClick={(event) => { handleSubmit(event) }}>Checkout</button>
                 
             </form>
         </div>

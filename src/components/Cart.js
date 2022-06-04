@@ -15,6 +15,7 @@ const {quantityInCart} = props;
     const [totalPrice, setTotalPrice] = useState(0);
     const [editOpen, setEditOpen] = useState(false);
     const [singleProduct, setSingleProduct] = useState([]);
+    
 
     const userId = localStorage.getItem('userId');
     const activeCart = JSON.parse(localStorage.getItem('ActiveCart'));
@@ -93,6 +94,11 @@ const handleEditCart = async (productId, event) => {
                console.log(error)
              }
          }
+
+         const handleOrder = async() => {
+           console.log("We are in order page");
+           history.push('/order');
+         }
         
 
  useEffect(() => { (async () => {
@@ -148,7 +154,7 @@ const handleEditCart = async (productId, event) => {
               </div>}
             </div>
         </div>
-        <div> {<button onClick={(event) => { handleOrder(event) }}>Submit Order</button>} </div> 
+        <div> {(productsInCart.length !== 0) && <button onClick={(event) => { handleOrder(event) }}>Submit Order</button>} </div> 
         </div>)
 }
 
