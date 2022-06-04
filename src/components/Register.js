@@ -22,14 +22,15 @@ const Register = (props) => {
             role: "user"
         }
         console.log(user)
+        localStorage.setItem('username', user.username)
         await registerUser(user);
-        //console.log(localStorage.getItem(token));
         setUserName('');
         setPassword('');
         setEmail('');
         setFirstName('');
         setLastName('');
         setLoggedIn(!!localStorage.getItem("token"))
+
     };
     const updateUserName = (event) => {
         setUserName(event.target.value)
@@ -46,17 +47,21 @@ const Register = (props) => {
     const updateLastName =(event) => {
         setLastName(event.target.value)
     }
-
+  
     return (
         <div className='Register'>
-            <form onSubmit={ handleSubmit }>
+
+            <form onClick={ handleSubmit }>
+
                 <input className='textBoxRegister' type = 'text' placeholder = "First Name" value = {firstName} onChange = {updateFirstName} />
                 <input className='textBoxRegister' type = 'text' placeholder = "Last Name" value = {lastName} onChange = {updateLastName} />
                 <input className='textBoxRegister' type = 'text' placeholder = "Register Username" value = {userName} onChange = {updateUserName} />
                 <input className='textBoxRegister' type = 'text' placeholder = "Register Password" value = {password} onChange = {updatePassword} />
                 <input className='textBoxRegister' type = 'text' placeholder = "Register Email" value = {email} onChange = {updateEmail} />
                 <Link to="/Shop">
-                    <button className='Btn_Register' onClick={handleSubmit}> Register </button>
+
+                    <button type="submit" className='Btn_Register'> Register </button>
+
                 </Link> 
             </form>
         </div>

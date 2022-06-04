@@ -19,8 +19,10 @@ import { getMyCartProductbyUserId } from "../axios-services/cart";
 import CheckoutPage from './CheckoutPage';
 import Order from "./Order";
 
+
 const userId = localStorage.getItem('userId');
-const guestCart = JSON.parse(localStorage.getItem('ActiveCart'));
+const guestCart = JSON.parse(localStorage.getItem('ActiveCartWProducts'));
+
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -31,13 +33,15 @@ const App = () => {
     let sumQuantity=0;
         if(userId){
             let myDBCartProducts = await getMyCartProductbyUserId(userId);
+            if(myDBCartProducts){
              myDBCartProducts.map(item => {
               sumQuantity = Number(sumQuantity) + Number(item.quantity);
-              })
-        } else if(guestCart) {
+              })}
+        } else {
+          if(guestCart){
              guestCart.map(item => {
               sumQuantity = Number(sumQuantity) + Number(item.quantity)
-              });
+              });}
         }
     setQuantityInCart(sumQuantity);
  }
@@ -77,14 +81,11 @@ const App = () => {
     <div className="app-container">
 
 
-<BrowserRouter>
-
+    
+      <BrowserRouter>
         <Header loggedIn={loggedIn} quantityInCart={quantityInCart}/>
-
         <div id="header">
-          
-          <div id="routeBox">
-          </div>
+          <h1 className="header">The furniture store</h1>
         </div>
 
 

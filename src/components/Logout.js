@@ -12,7 +12,7 @@ const Logout = (props) => {
 
     return(
         <>
-            <button onClick={handleClick}>Logout</button>
+            <button className='logout' onClick={handleClick}>Logout</button>
         </>
     )
 };

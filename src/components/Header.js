@@ -10,7 +10,10 @@ import LoggedIn  from "./LoggedIn";
 const Logo = "/Assets/Coconut Furniture Logo.png";
 
 function Header(props) {
-  const {loggedIn, setLoggedIn, quantityInCart} =props;
+
+  const { loggedIn, setLoggedIn, quantityInCart } = props;
+  const username = localStorage.getItem('username')
+
   return (
     <div className="header">
         <Link to="/">
@@ -24,17 +27,15 @@ function Header(props) {
 
       <div className="header_nav">
         <div className="header_option">
-          <span className="header_optionLineOne">Hello {}</span>
-          
-           
-           {!loggedIn ? 
-           <div className="header_optionLineTwo">
-             <Link to="/LoggedIn">Sign in</Link>/
-             <Link to="/Register">Register</Link></div> : 
-             <Logout className="header_optionLineTwo" 
-             loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
-      
-          
+
+          {!loggedIn ? <span className="header_optionLineOne">Hello Guest</span> : 
+          <span className="header_optionLineOne">Hello {username}</span>}
+
+          <Link to="/LoggedIn">
+          {!loggedIn ? <span className="header_optionLineTwo">Sign In/Register</span> : 
+          <span className="header_optionLineTwo">Log Out</span> }
+          </Link> 
+
         </div>
 
         <div className="header_option">

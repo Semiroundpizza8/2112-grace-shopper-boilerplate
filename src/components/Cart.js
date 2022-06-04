@@ -27,46 +27,84 @@ if (userId){
     myDBCartProducts = await getMyCartProductbyUserId(userId);
     setProductsInCart(myDBCartProducts);
     } else {
-    setProductsInCart(activeCart)
+      if(activeCart){
+      activeCart.map(async item => {
+       let product = await getProductById(item.productId);
+       console.log(product);
+        item.name = product.name;
+        item.description = product.description;
+        item.image = product.image;
+      })
+      console.log(activeCart);
+      localStorage.setItem("ActiveCartWProducts", JSON.stringify(activeCart));
+      setProductsInCart(activeCart)
+      }
+    
   }
-   setSingleProduct(singleProduct);
 })();
 }, []);
 
-  
-const handleOrder = async() => {
-  history.push('/order');
-}
+const activeCartWProducts = JSON.parse(localStorage.getItem('ActiveCart'));
+
 const handleDeleteCart = async (cartId) => {
+  if(userId){
  const deletedCart =  await deleteCart(cartId);
  const myCartList = await getMyCartProductbyUserId(userId);
  setProductsInCart(myCartList)
+} else {
+  if (activeCartWProducts){
+    let foundProduct = activeCartWProducts.find(({ productId }) => productId === productId);
+    console.log(activeCartWProducts);
+    console.log(foundProduct);
+    let foundProductIndex = activeCartWProducts.indexof(foundProduct);
+    console.log(foundProductIndex);
+    activeCartWProducts.splice(foundProductIndex, 1);
+
+  localStorage.setItem("ActiveCartWProducts", JSON.stringify(activeCartWProducts));
+  //   localStorage.setItem("ActiveCart", JSON.stringify(activeCart));
+  }
+}
+
 }
 
 const handleEditCart = async (productId, event) => {
   event.preventDefault();
              try{
                 let myDBCartProducts = await getMyCartProductbyUserId(userId);
+                if(myDBCartProducts){
                let foundProduct = myDBCartProducts.find(({ productId }) => productId === productId)
                 myDBCartProducts = await patchCart(foundProduct.id, foundProduct.price, qty )
                 const myCartList = await getMyCartProductbyUserId(userId);
                 setProductsInCart(myCartList)
+            } else {
+              if (activeCartWProducts){
+                let foundProduct = activeCartWProducts.find(({ productId }) => productId === productId)
+               foundProduct.quantity = qty;
+               localStorage.setItem("ActiveCartWProducts", JSON.stringify(activeCartWProducts));
+                setProductsInCart(activeCartWProducts)
+                let activeCartQtyEdit = activeCart.find(({ id }) => id === id)
+                activeCartQtyEdit.quantity = qty;
+                localStorage.setItem("ActiveCart", JSON.stringify(activeCart));
+              }
             }
+          
+          }
              catch(error){
                console.log(error)
              }
          }
-
+        
 
  useEffect(() => { (async () => {
   let sumPrice=0;
             try{
               let myDBCartProducts = await getMyCartProductbyUserId(userId);
+              if (myDBCartProducts){
              myDBCartProducts.map(item => {
                sumPrice = Number(item.price) * Number(item.price) + Number(sumPrice);
              })
              setTotalPrice(sumPrice);
-          }
+          }}
            catch(error){
              console.log(error)
            }  
@@ -77,8 +115,7 @@ const handleEditCart = async (productId, event) => {
         <div> 
           <div>
             <h2> Here all the items in your cart: </h2> 
-
-            <div class="cart">
+            <div className="cart">
               {!productsInCart ? 
               <div> Nothing to show, yet! Add a products to your cart! </div>  : 
               <div> 
@@ -87,7 +124,7 @@ const handleEditCart = async (productId, event) => {
                 {productsInCart.map(product => 
                   <>
                     <div key={product.productId}> 
-                    <div class="singleProductCart">
+                    <div className="singleProductCart">
                       <img src={product.image} style={{"height": '100px'}}></img>
                       <p>product name:{product.name}</p>
                       <p>product description:{product.description}</p>
