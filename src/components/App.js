@@ -29,13 +29,15 @@ const App = () => {
     let sumQuantity=0;
         if(userId){
             let myDBCartProducts = await getMyCartProductbyUserId(userId);
+            if(myDBCartProducts){
              myDBCartProducts.map(item => {
               sumQuantity = Number(sumQuantity) + Number(item.quantity);
-              })
+              })}
         } else {
+          if(guestCart){
              guestCart.map(item => {
               sumQuantity = Number(sumQuantity) + Number(item.quantity)
-              });
+              });}
         }
     setQuantityInCart(sumQuantity);
  }
