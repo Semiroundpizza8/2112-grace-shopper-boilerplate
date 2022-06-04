@@ -30,6 +30,7 @@ const Register = (props) => {
         setFirstName('');
         setLastName('');
         setLoggedIn(!!localStorage.getItem("token"))
+
     };
     const updateUserName = (event) => {
         setUserName(event.target.value)
@@ -46,7 +47,7 @@ const Register = (props) => {
     const updateLastName =(event) => {
         setLastName(event.target.value)
     }
-
+    console.log("YOUR LOG IN!!!!", loggedIn)
     return (
         <div className='Register'>
             <form onSubmit={ handleSubmit }>

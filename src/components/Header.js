@@ -6,7 +6,7 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { BrowserRouter, Link } from "react-router-dom";
 
 function Header(props) {
-  const { loggedIn } = props;
+  const { loggedIn, username } = props;
   return (
     <div className="header">
    
@@ -22,10 +22,12 @@ function Header(props) {
 
       <div className="header_nav">
         <div className="header_option">
-          <span className="header_optionLineOne">Hello Guest</span>
+          {!loggedIn ? <span className="header_optionLineOne">Hello Guest</span> : 
+          <span className="header_optionLineOne">Hello {username}</span>}
+
           <Link to="/LoggedIn">
-           
-          {!loggedIn ? <span className="header_optionLineTwo">Sign In</span> : <span className="header_optionLineTwo">Log Out</span> }
+          {!loggedIn ? <span className="header_optionLineTwo">Sign In</span> : 
+          <span className="header_optionLineTwo">Log Out</span> }
           </Link> 
         </div>
 
