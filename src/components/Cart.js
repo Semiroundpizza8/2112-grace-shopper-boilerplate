@@ -8,6 +8,7 @@ import { getAllOrders } from '../axios-services/orders';
 
 
 const Cart = (props) => {
+  let history = useHistory();
 const {quantityInCart} = props;
     const [productsInCart, setProductsInCart] = useState([]);
     const [qty, setQty] = useState(1);
@@ -20,6 +21,7 @@ const {quantityInCart} = props;
 
 useEffect(() => { (async () => {
 let myDBCartProducts;
+
 let products=[];
 if (userId){
     myDBCartProducts = await getMyCartProductbyUserId(userId);
@@ -32,6 +34,9 @@ if (userId){
 }, []);
 
   
+const handleOrder = async() => {
+  history.push('/order');
+}
 const handleDeleteCart = async (cartId) => {
  const deletedCart =  await deleteCart(cartId);
  const myCartList = await getMyCartProductbyUserId(userId);
@@ -106,7 +111,7 @@ const handleEditCart = async (productId, event) => {
               </div>}
             </div>
         </div>
-        <div> {<button onClick={(id, event) => { handleOrder(id, event) }}>Submit Order</button>} </div> 
+        <div> {<button onClick={(event) => { handleOrder(event) }}>Submit Order</button>} </div> 
         </div>)
 }
 

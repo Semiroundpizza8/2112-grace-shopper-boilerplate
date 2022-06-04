@@ -1,13 +1,15 @@
 import React from "react";
 import "../style/Home.css";
-import Hero from "../Assets/Home Hero Image.jpg";
 import Product from "../components/Product";
-import Sofa from "../Assets/Sofa.jpg";
-import EndTable from "../Assets/End Table.jpg";
-import WoodChair from "../Assets/Wood Chair.jpg";
-import TableSets from "../Assets/Stylish End Table Sets.jpg";
-import ChildNightStand from "../Assets/Child Wooden Night Stand.jpg";
-import LivingRoomSet from "../Assets/Living Room Set.jpg";
+
+
+import Hero from "../public/Assets/Home Hero Image.jpg";
+import Sofa from "../public/Assets/Sofa.jpg";
+import EndTable from "../public/Assets/End Table.jpg";
+import WoodChair from "../public/Assets/Wood Chair.jpg";
+import TableSets from "../public/Assets/Stylish End Table Sets.jpg";
+import ChildNightStand from "../public/Assets/Child Wooden Night Stand.jpg";
+import LivingRoomSet from "../public/Assets/Living Room Set.jpg";
 
 function Home() {
   return (

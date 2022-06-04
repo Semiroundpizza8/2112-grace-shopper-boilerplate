@@ -84,13 +84,8 @@ useEffect(() => {
 
         setMyCart(foundProduct);
        
-        if(userId) {
         history.push('/cart');
-        } else {
-            
-            history.push('/LoggedIn');
-
-        }
+        
 
     }
 

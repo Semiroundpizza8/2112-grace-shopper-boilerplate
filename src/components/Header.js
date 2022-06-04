@@ -1,6 +1,6 @@
 import React from "react";
 import "../../src/style/Header.css";
-import Logo from "../Assets/Coconut Furniture Logo.png";
+import Logo from "../public/Assets/Coconut Furniture Logo.png";
 import SearchIcon from "@mui/icons-material/Search";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { BrowserRouter, Link } from "react-router-dom";
@@ -25,7 +25,12 @@ function Header(props) {
           <span className="header_optionLineOne">Hello {}</span>
           
            
-           {!loggedIn ? <div className="header_optionLineTwo"><Link to="/LoggedIn">Sign in</Link>/<Link to="/Register">Register</Link></div> : <Logout className="header_optionLineTwo" loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+           {!loggedIn ? 
+           <div className="header_optionLineTwo">
+             <Link to="/LoggedIn">Sign in</Link>/
+             <Link to="/Register">Register</Link></div> : 
+             <Logout className="header_optionLineTwo" 
+             loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
       
           
         </div>

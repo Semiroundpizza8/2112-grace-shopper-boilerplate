@@ -2,14 +2,13 @@ const client  = require("../client");
 
 
 async function createOrder({
-    firstname,
-    lastname,
+    userId,
     email,
     street,
     city,
     zipcode,
     country,
-    phone,
+    phone
     
 }) {
   try {
@@ -17,11 +16,11 @@ async function createOrder({
       rows: [order],
     } = await client.query(
       `
-                INSERT INTO orders(email,street,city,zipcode,country,phone)
+                INSERT INTO orders("userId",email,street,city,zipcode,country,phone)
                 VALUES ($1, $2, $3, $4, $5, $6)
                 RETURNING *;
             `,
-      [email,street,city,zipcode,country,phone]
+      [userId,email,street,city,zipcode,country,phone]
     );
     //console.log(product);
     return order;
@@ -33,9 +32,16 @@ async function createOrder({
 async function getAllOrders() {
   try {
     // SELECT the report with id equal to reportId
-    const { rows: orders } = await client.query(`
-      SELECT * FROM orders
-    `);
+    const { rows } = await client.query(
+			`
+            SELECT *, orders.id as id
+                FROM orders 
+				JOIN users
+				ON users.id = orders.id
+                WHERE "userId"=$1;
+            `,
+			[ userId ]
+		);
     
     // return the report
     console.log(orders)

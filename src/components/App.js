@@ -16,6 +16,8 @@ import Logout from "./Logout";
 import Home from "./Home";
 import Products from "./Products";
 import { getMyCartProductbyUserId } from "../axios-services/cart";
+import CheckoutPage from './CheckoutPage';
+import Order from "./Order";
 
 const userId = localStorage.getItem('userId');
 const guestCart = JSON.parse(localStorage.getItem('ActiveCart'));
@@ -32,7 +34,7 @@ const App = () => {
              myDBCartProducts.map(item => {
               sumQuantity = Number(sumQuantity) + Number(item.quantity);
               })
-        } else {
+        } else if(guestCart) {
              guestCart.map(item => {
               sumQuantity = Number(sumQuantity) + Number(item.quantity)
               });
@@ -112,6 +114,10 @@ const App = () => {
 
             <Route path='/Register'>
               {loggedIn ? null : <Register loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+            </Route>
+
+            <Route path = '/order'>
+              <Order/>
             </Route>
 
             <Route path = '/checkout'>

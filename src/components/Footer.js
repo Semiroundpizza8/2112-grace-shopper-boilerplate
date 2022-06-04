@@ -1,6 +1,7 @@
 import React from "react";
 import "../../src/style/Footer.css";
-import Logo from "../Assets/Coconut Furniture Logo.png";
+
+import Logo from "../public/Assets/Coconut Furniture Logo.png";
 
 const Footer = () => {
   return (

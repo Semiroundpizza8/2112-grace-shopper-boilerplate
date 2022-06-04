@@ -2,15 +2,7 @@ import axios from 'axios'
 export const baseUrl = 'http://localhost:4000/api';
 
 
-export const createOrders = async ( 
-  firstname,
-  lastname,
-  email,
-  street,
-  city,
-  zipcode,
-  country,
-  phone) => {
+export const createOrders = async (email,street,city,zipcode,country,phone) => {
   let response;
  
  console.log("I'm inside createOrder")
@@ -22,15 +14,15 @@ export const createOrders = async (
                                      'Content-Type': 'application/json',
                                          },
                          body: JSON.stringify(
-                                  { firstname : firstname,
-                                    lastname : lastname,
+                                  { 
                                     email : email,
                                     street : street,
                                     city : city,
                                     zipcode : zipcode,
                                     country: country,
-                                    phone : phone,}
-                                             )
+                                    phone : phone
+                                  }
+                                )
                                  }) 
                              } catch (error) {
                                  console.log("error in adding order")
@@ -42,7 +34,7 @@ export const createOrders = async (
                  console.log(orderconfirmation);
  
                    return orderconfirmation;
-                          } 
+} 
 export const getAllOrders = async () => {
   try {
     const response = await axios({
