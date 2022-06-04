@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { registerUser, loginUser } from '../axios-services/user';
 import "../../src/style/Register.css"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 
 const Register = (props) => {
     const { loggedIn, setLoggedIn } = props;
@@ -10,6 +10,7 @@ const Register = (props) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+    const history = useHistory();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -30,6 +31,7 @@ const Register = (props) => {
         setFirstName('');
         setLastName('');
         setLoggedIn(!!localStorage.getItem("token"))
+        history.push("/Shop")
 
     };
     const updateUserName = (event) => {
