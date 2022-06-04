@@ -56,7 +56,7 @@ const Register = (props) => {
                 <input className='textBoxRegister' type = 'text' placeholder = "Register Password" value = {password} onChange = {updatePassword} />
                 <input className='textBoxRegister' type = 'text' placeholder = "Register Email" value = {email} onChange = {updateEmail} />
                 <Link to="/Shop">
-                    <button className='Btn_Register'> Register </button>
+                    <button className='Btn_Register' onClick={handleSubmit}> Register </button>
                 </Link> 
             </form>
         </div>

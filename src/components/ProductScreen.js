@@ -43,10 +43,10 @@ useEffect(() => {
     let foundProduct;
     if (userId){
        let myDBCartProducts = await getMyCartProductbyUserId(userId);
-console.log(myDBCartProducts);
+//console.log(myDBCartProducts);
     //look myDBCartProduct to see if the current product  is in there
        foundProduct = myDBCartProducts.find(({ productId }) => productId === singleProduct.id)
-console.log(foundProduct);
+//console.log(foundProduct);
     //if it is add +1 in database
         if (foundProduct){
             foundProduct.quantity = foundProduct.quantity + qty;
@@ -64,7 +64,9 @@ console.log(foundProduct);
             productInActiveCart = JSON.parse(localStorage.getItem('ActiveCart'));
             foundProduct = productInActiveCart.find(({ productId }) => productId === singleProduct.id)
                 if (foundProduct){
-                foundProduct.quantity = foundProduct.quantity + qty;
+                foundProduct.quantity = Number(foundProduct.quantity) + Number(qty);
+                console.log("qty", typeof(qty));
+                console.log("foundProduct.quantity", typeof(foundProduct.quantity));
                 cartArray = foundProduct
                 // setMyCart(cartArray);
                 localStorage.setItem('ActiveCart', JSON.stringify(productInActiveCart))
@@ -117,8 +119,9 @@ return (
             value={ qty }
             onChange={(event) => setQty(event.target.value)}>
             {[...Array(singleProduct.stock).keys()].map((x) => (
-                <option key = {x+1} value={(x+1)}>
-                    {x+1}
+                <option key = {x} value={(x)}>
+                    {x}
+                    {console.log(typeof(x))}
                 </option>
             ))}
         </select>

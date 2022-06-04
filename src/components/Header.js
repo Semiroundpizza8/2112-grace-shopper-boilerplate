@@ -26,7 +26,7 @@ function Header(props) {
           <span className="header_optionLineOne">Hello Guest</span>
           
            
-           {!loggedIn ? <Link to="/LoggedIn"><LoggedIn className="header_optionLineTwo" loggedIn={loggedIn} setLoggedIn={setLoggedIn}/></Link>  : <Logout className="header_optionLineTwo" loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+           {!loggedIn ? <div className="header_optionLineTwo"><Link to="/LoggedIn">Sign in</Link>/<Link to="/Register">Register</Link></div> : <Logout className="header_optionLineTwo" loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
       
           
         </div>
