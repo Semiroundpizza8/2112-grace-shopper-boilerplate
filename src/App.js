@@ -8,7 +8,7 @@ import { getAPIHealth, retrieve, add, update, remove, emptyCart, capture, refres
 import React, { useState, useEffect } from 'react';
 import { CssBaseline } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Navbar, Products, Cart, Checkout } from './components';
+import { Navbar, Products, Cart } from './components';
 // import { get } from 'express/lib/response';
 // import { getAllProducts } from './db/models/product';
 //import our product source
@@ -94,7 +94,7 @@ const App = () => {
             <Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
           </Route>
           <Route path="/checkout" exact>
-            <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
+            {/* <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} /> */}
           </Route>
         </Switch>
       </div>
