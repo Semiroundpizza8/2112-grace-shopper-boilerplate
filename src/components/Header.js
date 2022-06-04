@@ -9,7 +9,7 @@ import Logout from "./Logout";
 import LoggedIn  from "./LoggedIn";
 
 function Header(props) {
-  const {loggedIn, setLoggedIn} =props;
+  const {loggedIn, setLoggedIn, quantityInCart} =props;
   return (
     <div className="header">
         <Link to="/">
@@ -23,10 +23,10 @@ function Header(props) {
 
       <div className="header_nav">
         <div className="header_option">
-          <span className="header_optionLineOne">Hello Guest</span>
+          <span className="header_optionLineOne">Hello {}</span>
           
            
-           {!loggedIn ? <Link to="/LoggedIn"><LoggedIn className="header_optionLineTwo" loggedIn={loggedIn} setLoggedIn={setLoggedIn}/></Link>  : <Logout className="header_optionLineTwo" loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+           {!loggedIn ? <div className="header_optionLineTwo"><Link to="/LoggedIn">Sign in</Link>/<Link to="/Register">Register</Link></div> : <Logout className="header_optionLineTwo" loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
       
           
         </div>
@@ -38,7 +38,7 @@ function Header(props) {
 
         <div className="header_optionBasket">
           <LocalShippingIcon />
-          <span className="header_optionLineTwo header_basketCount">{}</span>
+          <span className="header_optionLineTwo header_basketCount">{quantityInCart}</span>
           
         </div>
       </div>
