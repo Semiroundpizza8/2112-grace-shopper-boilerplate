@@ -162,7 +162,7 @@ const handleEditCart = async (productId, event) => {
                                 <input value={qty} onChange={(event) => setQty(event.target.value)} />
                                 <button onClick={(event) => { handleEditCart(product.id, event) }}>Submit Edited cart</button>
                         </> : null}  
-                      {<button onClick={(id, event) => { handleDeleteCart(product.id, event) }}>Delete</button>}</div>
+                      {product.userId ? <button onClick={(id, event) => { handleDeleteCart(product.id, event) }}>Delete</button> : null}</div>
                      
                     </div>
                    
