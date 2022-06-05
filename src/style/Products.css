@@ -1,0 +1,14 @@
+.product__section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.product__card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: space-around;
+    justify-content: center;
+
+}
