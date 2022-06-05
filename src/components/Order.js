@@ -2,6 +2,7 @@ import React from 'react'
 import { createOrders } from '../axios-services/orders';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { deleteCart, getMyCartProductbyUserId } from '../axios-services/cart';
 const Order = (props) => {
     const { loggedIn, setLoggedIn } = props;
     const [email, setEmail] = useState('');
@@ -13,7 +14,7 @@ const Order = (props) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const history = useHistory();
-
+    const userId = localStorage.getItem("userId");
     const handleSubmit = async (event) => {
         event.preventDefault();
         const order = {
@@ -39,6 +40,17 @@ const Order = (props) => {
         setPhone('');
         setLoggedIn(!!localStorage.getItem("token"))
         history.push('/checkout');
+        //removing localstorage
+        if(userId) {
+            const myCartList = await getMyCartProductbyUserId(userId);
+            (myCartList.map((item) => {
+                deleteCart(item.id);
+            }));
+        }else {
+            const removeActiveCart = localStorage.removeItem("ActiveCart");
+            const removeActiveCartWProducts = localStorage.removeItem("ActiveCartWProducts")
+        }
+        
         }
     };
 
