@@ -43,3 +43,24 @@
     text-decoration: none;
     font-size: 20px;
 }
+
+.show-password{
+    padding-right: 10px;
+}
+
+.checkbox-container {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0;
+    padding: 7px 8px;
+    font-size: 17px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.check {
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+}
