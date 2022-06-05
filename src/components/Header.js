@@ -38,10 +38,10 @@ function Header(props) {
 
         </div>
 
-        <div className="header_option">
+        {/* <div className="header_option">
           <span className="header_optionLineOne">Previous</span>
           <span className="header_optionLineTwo">Orders</span>
-        </div>
+        </div> */}
 
         <div className="header_optionBasket">
           <LocalShippingIcon />

@@ -100,22 +100,37 @@ const handleEditCart = async (productId, event) => {
            history.push('/order');
          }
         
-
- useEffect(() => { (async () => {
   let sumPrice=0;
+ useEffect(() => { (async () => {
+          sumPrice=0;
             try{
+              if(userId) {
               let myDBCartProducts = await getMyCartProductbyUserId(userId);
               if (myDBCartProducts){
              myDBCartProducts.map(item => {
-               sumPrice = Number(item.price) * Number(item.price) + Number(sumPrice);
-             })
+              sumPrice += Number(item.price) * Number(item.quantity);
+             }) 
+
+             }
              setTotalPrice(sumPrice);
-          }}
-           catch(error){
+          } else {
+            let activeCartProducts = localStorage.getItem("ActiveCartWProducts");
+            console.log("activeCartProducts", activeCartProducts);
+              if (activeCartProducts){
+                activeCart.map(item => {
+               sumPrice += Number(item.price) * Number(item.quantity);
+               
+             }) 
+             console.log("sumPrice",sumPrice);
+             setTotalPrice(sumPrice);
+          }} 
+
+        }
+        catch(error){
              console.log(error)
            }  
             })();
-            }, []);
+            }, [sumPrice]);
     
         return (
         <div> 
