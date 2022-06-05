@@ -10,6 +10,12 @@ const LoggedIn = (props) => {
     const { loggedIn, setLoggedIn } = props;
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [isShown, setIsShown] = useState(false);
+
+    const togglePassword = () => {
+      setIsShown((isShown) => !isShown); 
+    };
+  
     const history = useHistory();
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -68,7 +74,26 @@ const LoggedIn = (props) => {
 
             <form >
                 <input className='textBoxLogin' type = 'text' placeholder = "UserName" value={username} onChange={updateUserName} />
-                <input className='textBoxLogin' type = 'text' placeholder = "Password" value={password} onChange={updatePassword} />
+                
+                <input 
+                type={isShown ? "text" : "password"}
+                className='textBoxLogin' 
+                
+                placeholder = "Password" 
+                value={password} 
+                onChange={updatePassword} 
+                />
+
+                <div className='checkbox-container'>
+                    <label className='show-password' htmlFor='checkbox'>Show Password</label>
+                    <input
+                    className='check'
+                    id='checkbox'
+                    type="checkbox"
+                    check={isShown}
+                    onChange={togglePassword}
+                    />
+                </div>
                
                 <button onClick={handleSubmit} className='Btn_Login' >Login</button>
                
