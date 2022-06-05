@@ -9,6 +9,7 @@ import LoggedIn  from "./LoggedIn";
 
 const Logo = "/Assets/Coconut Furniture Logo.png";
 
+
 function Header(props) {
 
   const { loggedIn, setLoggedIn, quantityInCart } = props;
@@ -44,7 +45,8 @@ function Header(props) {
         </div> */}
 
         <div className="header_optionBasket">
-          <LocalShippingIcon />
+          <Link to = '/cart'><LocalShippingIcon /></Link>
+
           <span className="header_optionLineTwo header_basketCount">{quantityInCart}</span>
           
         </div>

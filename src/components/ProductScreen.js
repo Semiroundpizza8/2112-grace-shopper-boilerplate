@@ -13,13 +13,14 @@ import { createProductCart, addNewCart, getMyCartProductbyUserId, patchCart } fr
 
 
 
-const ProductScreen = () => {
+const ProductScreen = (props) => {
     let history = useHistory();
 
 const { id } = useParams();
 const [singleProduct, setSingleProduct] = useState({})
 const [qty, setQty] = useState(1);
 const [myCart, setMyCart] = useState([]);
+const {quantityInCart, setQuantityInCart} = props;
 
 const userId = localStorage.getItem('userId');
 const cartProductArray = JSON.parse(localStorage.getItem('cartProductArray'));
@@ -35,14 +36,18 @@ useEffect(() => {
   }, []);
 
   const handleAddToCart = async(event) => {
-
-     event.preventDefault();
+    event.preventDefault();
     let userId = localStorage.getItem('userId')
     let productInActiveCart = [];
     let cartArray = [];
     let addProdToCart;
-
     let foundProduct;
+    try {
+        
+    
+    
+
+    
     if (userId){
        let myDBCartProducts = await getMyCartProductbyUserId(userId);
 
@@ -81,10 +86,15 @@ useEffect(() => {
             }
            
         }
-
+    }catch (error) {
+        console.log(error);
+    }
+    finally{
         setMyCart(foundProduct);
-       
+        setQuantityInCart(quantityInCart + qty);
         history.push('/cart');
+    }
+        
         
 
     }

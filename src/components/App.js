@@ -102,7 +102,7 @@ const App = () => {
             </Route>
             <Route path="/cart"><Cart quantityInCart={quantityInCart}/></Route>
             <Route path="/products/:id">
-              <ProductScreen  />
+              <ProductScreen quantityInCart = {quantityInCart} setQuantityInCart = {setQuantityInCart}  />
             </Route>
 
             <Route path='/LoggedIn'>

@@ -99,7 +99,10 @@ const handleEditCart = async (productId, event) => {
            console.log("We are in order page");
            history.push('/order');
          }
-        
+        const handleShop = async() => {
+          console.log("We are redirected to Shop Page");
+          history.push('/Shop');
+        }
   let sumPrice=0;
  useEffect(() => { (async () => {
           sumPrice=0;
@@ -170,6 +173,7 @@ const handleEditCart = async (productId, event) => {
             </div>
         </div>
         <div> {(productsInCart.length !== 0) && <button onClick={(event) => { handleOrder(event) }}>Submit Order</button>} </div> 
+        <div> <button onClick={(event) => { handleShop(event) }}>Continue Shopping</button> </div> 
         </div>)
 }
 
