@@ -1,12 +1,14 @@
 import React from "react";
-import "../../src/style/Header.css";
-import Logo from "../Assets/Coconut Furniture Logo.png";
+import "../style/Header.css";
+
 import SearchIcon from "@mui/icons-material/Search";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { BrowserRouter, Link } from "react-router-dom";
-import Product from "./Product";
 import Logout from "./Logout";
 import LoggedIn  from "./LoggedIn";
+
+const Logo = "/Assets/Coconut Furniture Logo.png";
+
 
 function Header(props) {
 
@@ -37,13 +39,14 @@ function Header(props) {
 
         </div>
 
-        <div className="header_option">
+        {/* <div className="header_option">
           <span className="header_optionLineOne">Previous</span>
           <span className="header_optionLineTwo">Orders</span>
-        </div>
+        </div> */}
 
         <div className="header_optionBasket">
-          <LocalShippingIcon />
+          <Link to = '/cart'><LocalShippingIcon /></Link>
+
           <span className="header_optionLineTwo header_basketCount">{quantityInCart}</span>
           
         </div>

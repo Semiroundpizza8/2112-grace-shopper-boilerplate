@@ -24,6 +24,7 @@ export const getAllProducts = async () => {
 export const getProductById = async (productId) => {
   let response;
   try {
+    console.log("id",productId);
     response = await fetch(`${apiUrl}/api/products/${productId}`, {
       method: "GET",
       headers: {
@@ -39,4 +40,4 @@ export const getProductById = async (productId) => {
   }
 };
 
-console.log(getProductById(1));
+// console.log(getProductById(1));

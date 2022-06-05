@@ -16,6 +16,8 @@ import Logout from "./Logout";
 import Home from "./Home";
 import Products from "./Products";
 import { getMyCartProductbyUserId } from "../axios-services/cart";
+import CheckoutPage from './CheckoutPage';
+import Order from "./Order";
 
 
 const userId = localStorage.getItem('userId');
@@ -100,7 +102,7 @@ const App = () => {
             </Route>
             <Route path="/cart"><Cart quantityInCart={quantityInCart}/></Route>
             <Route path="/products/:id">
-              <ProductScreen  />
+              <ProductScreen quantityInCart = {quantityInCart} setQuantityInCart = {setQuantityInCart}  />
             </Route>
 
             <Route path='/LoggedIn'>
@@ -114,6 +116,15 @@ const App = () => {
             <Route path='/Register'>
               {loggedIn ? null : <Register loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
             </Route>
+
+            <Route path = '/order'>
+              <Order loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/>
+            </Route>
+
+            <Route path = '/checkout'>
+              <CheckoutPage/>
+            </Route>
+            
           </Switch>
         </div>
         <Footer />

@@ -1,27 +1,28 @@
-//Cannot fix the cart until the order functions are ready
-
-
 import React, { useEffect, useState } from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 import { addNewCart, deleteCart, patchCart, getMyCartProductbyUserId, createProductCart } from '../axios-services/cart';
 import { getProductById } from '../axios-services/productScreen';
 import "../style/Cart.css";
+import { getAllOrders } from '../axios-services/orders';
 
 
 
 const Cart = (props) => {
+  let history = useHistory();
 const {quantityInCart} = props;
     const [productsInCart, setProductsInCart] = useState([]);
     const [qty, setQty] = useState(1);
     const [totalPrice, setTotalPrice] = useState(0);
     const [editOpen, setEditOpen] = useState(false);
     const [singleProduct, setSingleProduct] = useState([]);
+    
 
     const userId = localStorage.getItem('userId');
     const activeCart = JSON.parse(localStorage.getItem('ActiveCart'));
 
 useEffect(() => { (async () => {
 let myDBCartProducts;
+
 let products=[];
 if (userId){
     myDBCartProducts = await getMyCartProductbyUserId(userId);
@@ -93,23 +94,46 @@ const handleEditCart = async (productId, event) => {
                console.log(error)
              }
          }
-        
 
- useEffect(() => { (async () => {
+         const handleOrder = async() => {
+           console.log("We are in order page");
+           history.push('/order');
+         }
+        const handleShop = async() => {
+          console.log("We are redirected to Shop Page");
+          history.push('/Shop');
+        }
   let sumPrice=0;
+ useEffect(() => { (async () => {
+          sumPrice=0;
             try{
+              if(userId) {
               let myDBCartProducts = await getMyCartProductbyUserId(userId);
               if (myDBCartProducts){
              myDBCartProducts.map(item => {
-               sumPrice = Number(item.price) * Number(item.price) + Number(sumPrice);
-             })
+              sumPrice += Number(item.price) * Number(item.quantity);
+             }) 
+
+             }
              setTotalPrice(sumPrice);
-          }}
-           catch(error){
+          } else {
+            let activeCartProducts = localStorage.getItem("ActiveCartWProducts");
+            console.log("activeCartProducts", activeCartProducts);
+              if (activeCartProducts){
+                activeCart.map(item => {
+               sumPrice += Number(item.price) * Number(item.quantity);
+               
+             }) 
+             console.log("sumPrice",sumPrice);
+             setTotalPrice(sumPrice);
+          }} 
+
+        }
+        catch(error){
              console.log(error)
            }  
             })();
-            }, []);
+            }, [sumPrice]);
     
         return (
         <div> 
@@ -141,10 +165,15 @@ const handleEditCart = async (productId, event) => {
                       {<button onClick={(id, event) => { handleDeleteCart(product.id, event) }}>Delete</button>}</div>
                      
                     </div>
-                    </>)}
+                   
+                    </>
+                    
+                    )}
               </div>}
             </div>
         </div>
+        <div> {(productsInCart.length !== 0) && <button onClick={(event) => { handleOrder(event) }}>Submit Order</button>} </div> 
+        <div> <button onClick={(event) => { handleShop(event) }}>Continue Shopping</button> </div> 
         </div>)
 }
 
