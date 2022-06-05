@@ -168,22 +168,40 @@ async function populateProductData() {
   try {
     const productData = [
       { name: "Rocket",
-        description: "TrashPanda",
-        pictures: "png",
+        description: "Trash Panda",
+        pictures: "/assets/istockphoto-485998252-612x612.jpeg",
         price: 55
     },
 
     {name: "Gamora",
-      description: "GreenbuttoxPanda",
-      pictures: "png" ,
-      price: 150
+      description: "Green Panda",
+      pictures: "/assets/www.rmmagazine.comRM09.17_riskpandasearch-6-e9da4c1ceccb2022c5cfdbb141e07d38fc1342f4.jpg" ,
+      price: 1500
     },
 
-{name: "Groot" ,
-  description: "Cursed Wooden Pnada",
-  pictures: "png" ,
-  price: 1000000 
-}
+    {name: "Groot" ,
+      description: "Cursed Wooden Panda",
+      pictures: "/assets/images (1).jpeg" ,
+      price: 1000000 
+    },
+
+    {name: "Pixel Panda" ,
+      description: "Panda eating popcorn NFT",
+      pictures: "/assets/download.png" ,
+      price: 240000 
+    },
+
+    {name: "Polkadotted Panda" ,
+    description: "Polkadotted Panda plushie",
+    pictures: "/assets/il_fullxfull.1578803933_hulz.webp" ,
+    price: 130 
+    },
+
+    {name: "Panda Coffee Mug" ,
+    description: "Beautiful hand crafted mug",
+    pictures: "/assets/images (2).jpeg" ,
+    price: 22 
+    }
  ]
  
     // create useful starting data by leveraging your
