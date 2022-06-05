@@ -2,7 +2,7 @@ import axios from 'axios'
 export const baseUrl = 'http://localhost:4000/api';
 
 
-export const createOrders = async ({email,street,city,zipcode,country,phone}) => {
+export const createOrders = async ({email,street,city,state,zipcode,country,phone}) => {
   let response;
  
  console.log("I'm inside createOrder");
@@ -19,6 +19,7 @@ export const createOrders = async ({email,street,city,zipcode,country,phone}) =>
                                     email : email,
                                     street : street,
                                     city : city,
+                                    state:state,
                                     zipcode : zipcode,
                                     country: country,
                                     phone : phone,

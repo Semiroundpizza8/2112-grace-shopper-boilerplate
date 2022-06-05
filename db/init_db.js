@@ -90,6 +90,7 @@ async function buildTables() {
         email VARCHAR(255)  NOT NULL,
         street VARCHAR(255) NOT NULL,
         city VARCHAR(255) NOT NULL,
+        state VARCHAR(255) NOT NULL,
         zipcode VARCHAR(255) NOT NULL,
         country VARCHAR(255) NOT NULL,
         phone VARCHAR(255) NOT NULL,

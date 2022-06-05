@@ -6,6 +6,7 @@ async function createOrder({
     email,
     street,
     city,
+    state,
     zipcode,
     country,
     phone
@@ -16,11 +17,11 @@ async function createOrder({
       rows: [order],
     } = await client.query(
       `
-                INSERT INTO orders("userId",email,street,city,zipcode,country,phone)
-                VALUES ($1, $2, $3, $4, $5, $6,$7)
+                INSERT INTO orders("userId",email,street,city,state,zipcode,country,phone)
+                VALUES ($1, $2, $3, $4, $5, $6,$7,$8)
                 RETURNING *;
             `,
-      [userId,email,street,city,zipcode,country,phone]
+      [userId,email,street,city,state,zipcode,country,phone]
     );
     //console.log(product);
     return order;
