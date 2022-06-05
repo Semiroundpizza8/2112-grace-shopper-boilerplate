@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { deleteCart, getMyCartProductbyUserId } from '../axios-services/cart';
 const Order = (props) => {
     const { loggedIn, setLoggedIn } = props;
+    const [state,setState] = useState('');
     const [email, setEmail] = useState('');
     const [street, setStreet] = useState('');
     const [city, setCity] = useState('');
@@ -23,6 +24,7 @@ const Order = (props) => {
             email: email,
             street: street,
             city: city,
+            state:state,
             zipcode: zipcode,
             country:country,
             phone:phone
@@ -38,6 +40,7 @@ const Order = (props) => {
         setZipCode('');
         setCountry('');
         setPhone('');
+        setState('');
         setLoggedIn(!!localStorage.getItem("token"))
         history.push('/checkout');
         //removing localstorage
@@ -73,8 +76,11 @@ const Order = (props) => {
     const updateCity =(event) => {
         setCity(event.target.value)
     }
+    const updateState = (event) => {
+        setState(event.target.value)
+    }
     const updateCountry = (event) => {
-        setCountry(event.target.value);
+        setCountry(event.target.value)
     }
     const updatePhone =(event) => {
         setPhone(event.target.value)
@@ -88,9 +94,11 @@ const Order = (props) => {
                 <input className='textBoxRegister' type = 'text' placeholder = "Email" value = {email} onChange = {updateEmail} />
                 <input className='textBoxRegister' type = 'text' placeholder = "Street" value = {street} onChange = {updateStreet} />
                 <input className='textBoxRegister' type = 'text' placeholder = "City" value = {city} onChange = {updateCity} />
+                <input className='textBoxRegister' type = 'text' placeholder = "State" value = {state} onChange = {updateState} />
                 <input className='textBoxRegister' type = 'text' placeholder = "Zipcode" value = {zipcode} onChange = {updateZipcode} />
                 <input className='textBoxRegister' type = 'text' placeholder = "Country" value = {country} onChange = {updateCountry} />
                 <input className='textBoxRegister' type = 'text' placeholder = "Phone" value = {phone} onChange = {updatePhone} />
+
                 <button className='Btn_Register' onClick={(event) => { handleSubmit(event) }}>Checkout</button>
                 
             </form>
