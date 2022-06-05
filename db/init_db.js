@@ -168,19 +168,19 @@ async function populateProductData() {
   try {
     const productData = [
       { name: "Rocket",
-        description: "Trash Panda",
+        description: "Trash panda",
         pictures: "/assets/istockphoto-485998252-612x612.jpeg",
         price: 55
     },
 
     {name: "Gamora",
-      description: "Green Panda",
+      description: "Green panda",
       pictures: "/assets/www.rmmagazine.comRM09.17_riskpandasearch-6-e9da4c1ceccb2022c5cfdbb141e07d38fc1342f4.jpg" ,
       price: 1500
     },
 
     {name: "Groot" ,
-      description: "Cursed Wooden Panda",
+      description: "Cursed wooden panda",
       pictures: "/assets/images (1).jpeg" ,
       price: 1000000 
     },
@@ -192,7 +192,7 @@ async function populateProductData() {
     },
 
     {name: "Polkadotted Panda" ,
-    description: "Polkadotted Panda plushie",
+    description: "Polkadotted panda plushie",
     pictures: "/assets/il_fullxfull.1578803933_hulz.webp" ,
     price: 130 
     },
@@ -201,7 +201,43 @@ async function populateProductData() {
     description: "Beautiful hand crafted mug",
     pictures: "/assets/images (2).jpeg" ,
     price: 22 
-    }
+    },
+
+    { name: "Red Panda",
+    description: "Red panda, not Disney",
+    pictures: "/assets/Ming-Yue-exploring-1024x576.jpeg",
+    price: 55000
+    },
+
+    {name: "Vintage Panda POG",
+      description: "Panda POG from the 90's",
+      pictures: "/assets/12-POG-Panda.png" ,
+      price: 15
+    },
+    
+    {name: "Panda Lamp" ,
+    description: "The perfect panda lamp",
+    pictures: "/assets/Pillowfort-Panda-Table-Lamp.webp" ,
+    price: 150
+    },
+    
+    {name: "Panda Chair" ,
+    description: "AP Collection panda chair",
+    pictures: "/assets/ap-collection-panda-chair.jpeg" ,
+    price: 14000
+    },
+
+    {name: "Panda Poncho" ,
+      description: "One size fits most",
+      pictures: "/assets/1_330d4338-1b04-465f-babf-ec7b59814b7d_large.webp" ,
+      price: 120
+    },
+
+    {name: "Panda Bag " ,
+      description: "by Throm Browne ",
+      pictures: "/assets/thom-browne-black-and-white-pebble-grain-leather-panda-bag_16702292_34082038_800.webp" ,
+      price: 5000
+    },
  ]
  
     // create useful starting data by leveraging your
