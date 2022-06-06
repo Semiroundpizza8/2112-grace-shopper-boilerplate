@@ -1,0 +1,43 @@
+.product__card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: space-around;
+    justify-content: center;
+
+}
+
+.product__hero {
+    width: 100%;
+    height: 15vh;
+    color: white;
+    background: linear-gradient(rgba(0, 0, 0, 0.413), rgba(0, 0, 0, 0.726)), url('https: //i.imgur.com/LVC95bY.jpg') no-repeat center / cover;
+    margin-bottom: 5%;
+
+}
+
+.hero__container {
+    width: 90%;
+    height: 100%;
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero__title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    text-align: left;
+    margin: 0px auto;
+    width: 100%;
+}
+
+.hero__info {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-align: left;
+    margin: 0px auto;
+    width: 100%;
+}

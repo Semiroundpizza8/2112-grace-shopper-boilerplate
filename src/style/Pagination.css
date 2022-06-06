@@ -1,0 +1,36 @@
+.pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 25px;
+}
+
+.page__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0%;
+    margin-bottom: 2%;
+    font-size: 22px;
+
+}
+
+.page__link {
+    display: flex;
+    background-color: #846041;
+    padding: 5px 10px;
+    color: white;
+    text-decoration: none;
+
+}
+
+.page__item :hover {
+    background-color: black;
+    transition: 0.7s;
+}
+
+.page__item :active {
+    background-color: black;
+    transition: 0.5s;
+}
