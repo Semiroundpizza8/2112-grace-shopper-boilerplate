@@ -1,8 +1,8 @@
 import React from "react";
 import "../style/Product.css";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
-function Product({ id, title, image, price, rating, alt }) {
+function Product({ id, title, image, price, reviewstars, alt }) {
   return (
     <div className="product" key={id}>
       <div className="product__info">
@@ -12,7 +12,7 @@ function Product({ id, title, image, price, rating, alt }) {
           <strong>{price}</strong>
         </p>
         <div className="product__rating">
-          {Array(rating)
+          {Array(reviewstars)
             .fill()
             .map((_, i) => (
               <p>🌟</p>
@@ -20,10 +20,9 @@ function Product({ id, title, image, price, rating, alt }) {
         </div>
       </div>
 
-      <Link to = {`/products/${id}`} ><img src={image} alt={alt} /></Link>
-      
-
-      <button>Add to Cart</button>
+      <Link to={`/products/${id}`}>
+        <img src={image} alt={alt} />
+      </Link>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
-import {useParams, useHistory} from 'react-router-dom';
+import { useParams, useHistory } from "react-router-dom";
 // getAPIHealth is defined in our axios-services directory index.js
 // you can think of that directory as a collection of api adapters
 // where each adapter fetches specific info from our express server's /api route
@@ -16,38 +16,36 @@ import Logout from "./Logout";
 import Home from "./Home";
 import Products from "./Products";
 import { getMyCartProductbyUserId } from "../axios-services/cart";
-import CheckoutPage from './CheckoutPage';
+import CheckoutPage from "./CheckoutPage";
 import Order from "./Order";
 
-
-const userId = localStorage.getItem('userId');
-const guestCart = JSON.parse(localStorage.getItem('ActiveCartWProducts'));
-
+const userId = localStorage.getItem("userId");
+const guestCart = JSON.parse(localStorage.getItem("ActiveCartWProducts"));
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
-  const [quantityInCart, setQuantityInCart] = useState(0)
+  const [quantityInCart, setQuantityInCart] = useState(0);
 
-
-  useEffect(() => { (async () => {
-    let sumQuantity=0;
-        if(userId){
-            let myDBCartProducts = await getMyCartProductbyUserId(userId);
-            if(myDBCartProducts){
-             myDBCartProducts.map(item => {
-              sumQuantity = Number(sumQuantity) + Number(item.quantity);
-              })}
-        } else {
-          if(guestCart){
-             guestCart.map(item => {
-              sumQuantity = Number(sumQuantity) + Number(item.quantity)
-              });}
+  useEffect(() => {
+    (async () => {
+      let sumQuantity = 0;
+      if (userId) {
+        let myDBCartProducts = await getMyCartProductbyUserId(userId);
+        if (myDBCartProducts) {
+          myDBCartProducts.map((item) => {
+            sumQuantity = Number(sumQuantity) + Number(item.quantity);
+          });
         }
-    setQuantityInCart(sumQuantity);
- }
-  )();
-   }, []);
-  
+      } else {
+        if (guestCart) {
+          guestCart.map((item) => {
+            sumQuantity = Number(sumQuantity) + Number(item.quantity);
+          });
+        }
+      }
+      setQuantityInCart(sumQuantity);
+    })();
+  }, []);
 
   // const[user, setUser] = useState();
   // const [username, setUsername] = useState('');
@@ -79,16 +77,8 @@ const App = () => {
 
   return (
     <div className="app-container">
-
-
-    
       <BrowserRouter>
-        <Header loggedIn={loggedIn} quantityInCart={quantityInCart}/>
-        <div id="header">
-          <h1 className="header">The furniture store</h1>
-        </div>
-
-
+        <Header loggedIn={loggedIn} quantityInCart={quantityInCart} />
 
         <Route path="/User"> </Route>
         <div className="content">
@@ -100,31 +90,37 @@ const App = () => {
             <Route exact path={"/Shop"}>
               <Products />
             </Route>
-            <Route path="/cart"><Cart quantityInCart={quantityInCart}/></Route>
+            <Route path="/cart">
+              <Cart quantityInCart={quantityInCart} />
+            </Route>
             <Route path="/products/:id">
-              <ProductScreen quantityInCart = {quantityInCart} setQuantityInCart = {setQuantityInCart}  />
+              <ProductScreen
+                quantityInCart={quantityInCart}
+                setQuantityInCart={setQuantityInCart}
+              />
             </Route>
 
-            <Route path='/LoggedIn'>
-              {loggedIn ? <Logout loggedIn={loggedIn} setLoggedIn={setLoggedIn}/> :
+            <Route path="/LoggedIn">
+              {loggedIn ? (
+                <Logout loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+              ) : (
                 <LoggedIn loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-              }
+              )}
             </Route>
 
-
-
-            <Route path='/Register'>
-              {loggedIn ? null : <Register loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+            <Route path="/Register">
+              {loggedIn ? null : (
+                <Register loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+              )}
             </Route>
 
-            <Route path = '/order'>
-              <Order loggedIn = {loggedIn} setLoggedIn = {setLoggedIn}/>
+            <Route path="/order">
+              <Order loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
             </Route>
 
-            <Route path = '/checkout'>
-              <CheckoutPage/>
+            <Route path="/checkout">
+              <CheckoutPage />
             </Route>
-            
           </Switch>
         </div>
         <Footer />

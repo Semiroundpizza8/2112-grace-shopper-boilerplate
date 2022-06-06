@@ -169,7 +169,7 @@ const productsToAdd = [
     image: "https://i.imgur.com/Uh21Q3g.jpg",
     stock: 26,
     price: 325,
-    reviewstars: 71,
+    reviewstars: 5,
     category: "Dining Room",
   },
   {
@@ -187,7 +187,7 @@ const productsToAdd = [
     image: "https://i.imgur.com/8GBDj29.jpg",
     stock: 14,
     price: 696,
-    reviewstars: 0,
+    reviewstars: 5,
     category: "Dining Room Set",
   },
   {
